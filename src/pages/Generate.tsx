@@ -249,7 +249,7 @@ const Generate = () => {
             value={answers}
             onChange={(e) => setAnswers(e.target.value)}
             placeholder={`Paste the client's Day ${selectedDay} assignment answers here...`}
-            rows={6}
+            rows={12}
             className="w-full rounded-xl border-2 border-white/10 bg-white/[0.04] text-white placeholder-white/20 px-5 py-4 text-sm leading-relaxed focus:outline-none focus:border-[hsl(45,100%,55%)]/50 focus:bg-white/[0.06] transition-all resize-none"
           />
         </motion.div>
