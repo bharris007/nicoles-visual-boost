@@ -165,7 +165,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
                   {pillar.headline || pillarWords[i]}
                 </motion.p>
 
-                <ul className="space-y-1.5 w-full">
+                <ul className="space-y-1.5 w-full mt-2">
                   {(pillar.bullets || []).map((b, bi) => (
                     <motion.li
                       key={bi}
