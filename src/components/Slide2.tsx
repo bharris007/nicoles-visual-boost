@@ -148,8 +148,8 @@ const Slide2 = () => {
           <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-[3px] border-[hsl(45,100%,55%)] shadow-lg shadow-black/20">
             <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
           </div>
-          <div className="absolute -bottom-1 -right-1 w-7 h-7 md:w-7 md:h-7 rounded-full bg-[hsl(145,65%,38%)] border-2 border-[hsl(45,100%,55%)] flex items-center justify-center shadow-md">
-            <img src={gtFavicon} alt="Growth Tools" className="w-3.5 h-3.5 md:w-4 md:h-4" />
+          <div className="absolute -bottom-1 -right-1 w-7 h-7 md:w-7 md:h-7 rounded-lg overflow-hidden shadow-lg shadow-black/30 border border-white/20">
+            <img src={gtFavicon} alt="Growth Tools" className="w-full h-full object-cover" />
           </div>
         </motion.div>
 
