@@ -18,6 +18,18 @@ const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
 
 const tapItems = [
   {
+    letter: "P",
+    word: "Plan",
+    icon: Map,
+    color: "hsl(25,100%,55%)",
+    headline: "Custom Recovery Plan",
+    bullets: [
+      "Deep-dive assessment of their unique situation",
+      "Clear roadmap: dysfunction → thriving",
+      "Monthly milestones to track progress",
+    ],
+  },
+  {
     letter: "T",
     word: "Training",
     icon: Video,
@@ -39,18 +51,6 @@ const tapItems = [
       "Weekly Zoom coaching calls",
       "Email support between sessions",
       "6–12 months until they're thriving",
-    ],
-  },
-  {
-    letter: "P",
-    word: "Plan",
-    icon: Map,
-    color: "hsl(25,100%,55%)",
-    headline: "Custom Recovery Plan",
-    bullets: [
-      "Deep-dive assessment of their unique situation",
-      "Clear roadmap: dysfunction → thriving",
-      "Monthly milestones to track progress",
     ],
   },
 ];
@@ -75,7 +75,7 @@ const TapPillar = ({
       transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
       onClick={onClick}
       layout
-      className={`flex-1 rounded-xl border cursor-pointer transition-colors duration-300 flex flex-col items-center text-center px-4 md:px-5 py-4 md:py-5 gap-2.5 group ${
+      className={`flex-1 rounded-xl border cursor-pointer transition-colors duration-300 flex flex-col items-center text-center px-3 md:px-4 py-3 md:py-4 gap-1.5 group ${
         isActive
           ? "bg-white/[0.10] border-white/20 shadow-xl"
           : "bg-white/[0.04] border-white/10 hover:bg-white/[0.08] hover:border-white/20"
