@@ -175,7 +175,7 @@ const Slide5 = () => {
             Nicole's $10,000 Offer
           </p>
           <p className="text-white/60 text-[10px] md:text-sm mt-1 leading-snug">
-            They hire you. You make a <span className="text-[hsl(45,100%,55%)] font-semibold">simple plan</span> for them. You walk alongside them — training and coaching — for several months to get the result.
+            Imagine this: You are hired. And you do an intake and turn that into a <span className="text-[hsl(45,100%,55%)] font-semibold">simple plan</span> for them to recover their marriage. Then you train them and walk alongside them. Coaching and advising them for several months until their marriage is restored and healthy.
           </p>
         </motion.div>
 
