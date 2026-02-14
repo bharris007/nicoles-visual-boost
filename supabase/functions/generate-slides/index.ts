@@ -323,6 +323,19 @@ serve(async (req) => {
       );
     }
 
+    // Strip all em dashes from every string in the response
+    const stripEmDashes = (obj: any): any => {
+      if (typeof obj === "string") return obj.replace(/\u2014/g, "-").replace(/\u2013/g, "-");
+      if (Array.isArray(obj)) return obj.map(stripEmDashes);
+      if (obj && typeof obj === "object") {
+        const out: any = {};
+        for (const [k, v] of Object.entries(obj)) out[k] = stripEmDashes(v);
+        return out;
+      }
+      return obj;
+    };
+    slideData = stripEmDashes(slideData);
+
     return new Response(JSON.stringify({ day, data: slideData }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
