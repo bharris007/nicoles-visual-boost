@@ -68,8 +68,7 @@ const Slide9 = () => {
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-            className="relative rounded-xl px-5 py-4 backdrop-blur-sm flex flex-col gap-1 overflow-hidden cursor-default"
+            className="relative rounded-xl px-5 py-4 backdrop-blur-sm flex flex-col gap-1 overflow-hidden transition-all duration-200 hover:shadow-[0_0_35px_hsl(45,100%,55%,0.25)]"
             style={{
               background: "linear-gradient(135deg, hsl(145,50%,30%) 0%, hsl(145,50%,20%) 60%, hsl(45,80%,25%) 100%)",
               boxShadow: "0 0 25px hsl(45,100%,55%,0.15), 0 0 50px hsl(145,50%,45%,0.1), inset 0 1px 0 hsl(45,100%,65%,0.25)",
@@ -99,8 +98,7 @@ const Slide9 = () => {
 
           <motion.div
             {...fadeUp(0.55)}
-            whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-            className="bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm cursor-default"
+            className="bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.10] hover:border-white/20 hover:shadow-lg"
           >
             <div className="flex items-center gap-2 mb-1">
               <Users className="w-3.5 h-3.5 text-[hsl(145,50%,55%)]" />
@@ -112,8 +110,7 @@ const Slide9 = () => {
 
           <motion.div
             {...fadeUp(0.6)}
-            whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-            className="bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm cursor-default"
+            className="bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.10] hover:border-white/20 hover:shadow-lg"
           >
             <div className="flex items-center gap-2 mb-1">
               <Calendar className="w-3.5 h-3.5 text-[hsl(145,50%,55%)]" />
@@ -128,8 +125,7 @@ const Slide9 = () => {
         <div className="grid grid-cols-2 gap-3 flex-1">
           <motion.div
             {...fadeUp(0.65)}
-            whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-            className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm cursor-default"
+            className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.10] hover:border-white/20 hover:shadow-lg"
           >
             <div className="flex items-center gap-2 mb-1.5">
               <Mail className="w-3.5 h-3.5 text-[hsl(145,50%,55%)]" />
@@ -142,8 +138,7 @@ const Slide9 = () => {
 
           <motion.div
             {...fadeUp(0.75)}
-            whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-            className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm cursor-default"
+            className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.10] hover:border-white/20 hover:shadow-lg"
           >
             <div className="flex items-center gap-2 mb-1.5">
               <Handshake className="w-4 h-4 text-[hsl(145,50%,55%)]" />
@@ -158,8 +153,7 @@ const Slide9 = () => {
         {/* CTA callout — 1 col, pinned bottom */}
         <motion.div
           {...fadeUp(1.0)}
-          whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-          className="flex items-center gap-3 bg-[hsl(45,100%,55%)]/[0.12] border-2 border-[hsl(45,100%,55%)]/30 rounded-xl px-5 py-3 mt-3 cursor-default"
+          className="flex items-center gap-3 bg-[hsl(45,100%,55%)]/[0.12] border-2 border-[hsl(45,100%,55%)]/30 rounded-xl px-5 py-3 mt-3 transition-all duration-200 hover:bg-[hsl(45,100%,55%)]/[0.18] hover:shadow-lg"
         >
           <AlertTriangle className="w-5 h-5 text-[hsl(45,100%,55%)] shrink-0" />
           <p className="text-white/80 text-xs md:text-sm leading-relaxed">
