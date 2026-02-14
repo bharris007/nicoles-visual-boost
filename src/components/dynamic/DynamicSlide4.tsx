@@ -41,7 +41,7 @@ const countryNames: Record<string, string> = { US: "United States", UK: "United 
 
 interface MarketData {
   totalUS: string;
-  incomeSegments: { name: string; percentage: number; color: string }[];
+  incomeSegments: { name: string; percentage: number; count: string; color: string }[];
   countries: Record<string, Record<string, string>>;
   subtitle: string;
   bottomCallout: string;
@@ -163,12 +163,12 @@ const DynamicSlide4 = ({ data }: DynamicSlide4Props) => {
   const isAll = activeIdx === "all";
   const allTotal = marketData.totalUS || "0";
 
-  // Calculate count for active segment
-  const getSegmentCount = (idx: number) => {
-    const totalNum = parseInt(allTotal.replace(/,/g, ""), 10);
-    const pct = fullPieData[idx]?.value || 0;
-    const count = Math.round((pct / 100) * totalNum);
-    return count.toLocaleString();
+  // Get count from the AI-provided data directly
+  const getSegmentCount = (idx: number): string => {
+    // idx 0 = "Under $100K" (not in segments), idx 1 = $100K+, idx 2 = $200K+, idx 3 = $500K+
+    if (idx === 0) return allTotal;
+    const seg = segments[idx]; // segments[1] = $100K+, segments[2] = $200K+, segments[3] = $500K+
+    return seg?.count || "0";
   };
 
   const activeCouples = isAll ? allTotal : getSegmentCount(activeIdx as number);
@@ -248,8 +248,8 @@ const DynamicSlide4 = ({ data }: DynamicSlide4Props) => {
           <div className="grid grid-cols-2 gap-2 md:gap-3 w-[45%]">
             {segmentLabels.map((label, i) => {
               const isActive = (i === 0 && activeIdx === "all") || activeIdx === i;
-              const count = i === 0 ? formatNum(allTotal) : formatNum(getSegmentCount(i));
-              const pct = i === 0 ? "100%" : `${fullPieData[i]?.value || 0}%`;
+              const count = formatNum(getSegmentCount(i));
+              const pct = i === 0 ? "100%" : `${segments[i]?.percentage || 0}%`;
               return (
                 <motion.div key={label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65 + i * 0.08 }} onClick={() => setActiveIdx(i === 0 ? "all" : i)} onDoubleClick={() => { if (i > 0) setDrillDownIdx(i); }} className={`flex flex-col rounded-lg px-3 py-2 md:py-3 cursor-pointer transition-all duration-200 ${isActive ? "bg-white/[0.12] border border-white/20 shadow-lg" : "bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/15"}`}>
                   <div className="flex items-center gap-1.5 mb-1">
