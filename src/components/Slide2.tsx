@@ -29,6 +29,8 @@ const FunnelStep = ({
   delay,
   widthPercent,
   highlight = false,
+  active = false,
+  onClick,
 }: {
   number: string;
   label: string;
@@ -36,54 +38,60 @@ const FunnelStep = ({
   delay: number;
   widthPercent: number;
   highlight?: boolean;
-}) => (
-  <motion.div
-    initial={{ opacity: 0, x: 40 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
-    className="flex items-center gap-4 md:gap-5"
-  >
-    <div
-      className={`relative rounded-lg flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-2.5 border transition-all duration-200 cursor-pointer ${
-        highlight
-          ? "bg-[hsl(45,100%,55%)]/15 border-[hsl(45,100%,55%)]/40 hover:bg-[hsl(45,100%,55%)]/25 hover:border-[hsl(45,100%,55%)]/60 hover:scale-[1.02] hover:shadow-lg hover:shadow-[hsl(45,100%,55%)]/10"
-          : "bg-white/[0.06] border-white/10 hover:bg-white/[0.12] hover:border-white/25 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5"
-      }`}
-      style={{ width: `${widthPercent}%` }}
+  active?: boolean;
+  onClick?: () => void;
+}) => {
+  const isLit = highlight || active;
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 40 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
+      className="flex items-center gap-4 md:gap-5"
     >
       <div
-        className={`w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center shrink-0 ${
-          highlight ? "bg-[hsl(45,100%,55%)]/20" : "bg-white/10"
+        onClick={onClick}
+        className={`relative rounded-lg flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-2.5 border transition-all duration-200 cursor-pointer ${
+          isLit
+            ? "bg-[hsl(45,100%,55%)]/15 border-[hsl(45,100%,55%)]/40 hover:bg-[hsl(45,100%,55%)]/25 hover:border-[hsl(45,100%,55%)]/60 hover:scale-[1.02] hover:shadow-lg hover:shadow-[hsl(45,100%,55%)]/10"
+            : "bg-white/[0.06] border-white/10 hover:bg-white/[0.12] hover:border-white/25 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5"
         }`}
+        style={{ width: `${widthPercent}%` }}
       >
-        <Icon
-          className={`w-4 h-4 md:w-5 md:h-5 ${
-            highlight ? "text-[hsl(45,100%,55%)]" : "text-white/60"
+        <div
+          className={`w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center shrink-0 ${
+            isLit ? "bg-[hsl(45,100%,55%)]/20" : "bg-white/10"
           }`}
-        />
-      </div>
-      <div className="min-w-0">
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={number}
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.2 }}
-            className={`text-xl md:text-2xl font-extrabold leading-none ${
-              highlight ? "text-[hsl(45,100%,55%)]" : "text-white"
+        >
+          <Icon
+            className={`w-4 h-4 md:w-5 md:h-5 ${
+              isLit ? "text-[hsl(45,100%,55%)]" : "text-white/60"
             }`}
-          >
-            {number}
-          </motion.p>
-        </AnimatePresence>
-        <p className="text-white/50 text-[8px] md:text-[10px] font-semibold uppercase tracking-wider mt-0.5">
-          {label}
-        </p>
+          />
+        </div>
+        <div className="min-w-0">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={number}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.2 }}
+              className={`text-xl md:text-2xl font-extrabold leading-none ${
+                isLit ? "text-[hsl(45,100%,55%)]" : "text-white"
+              }`}
+            >
+              {number}
+            </motion.p>
+          </AnimatePresence>
+          <p className="text-white/50 text-[8px] md:text-[10px] font-semibold uppercase tracking-wider mt-0.5">
+            {label}
+          </p>
+        </div>
       </div>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 const FunnelArrow = ({ delay }: { delay: number }) => (
   <motion.div
@@ -103,6 +111,7 @@ const timeFrameLabels: { value: TimeFrame; label: string }[] = [
 
 const Slide2 = () => {
   const [timeFrame, setTimeFrame] = useState<TimeFrame>("year");
+  const [activeStep, setActiveStep] = useState<string | null>(null);
   const data = funnelData[timeFrame] ?? funnelData.year;
 
   return (
@@ -188,13 +197,13 @@ const Slide2 = () => {
 
         {/* Funnel */}
         <div className="flex flex-col gap-1 md:gap-1.5">
-          <FunnelStep icon={Users} number={data.leads} label="Leads raise their hand" delay={0.45} widthPercent={100} />
+          <FunnelStep icon={Users} number={data.leads} label="Leads raise their hand" delay={0.45} widthPercent={100} active={activeStep === "leads"} onClick={() => setActiveStep(activeStep === "leads" ? null : "leads")} />
           <FunnelArrow delay={0.55} />
-          <FunnelStep icon={MessageCircle} number={data.conversations} label="Conversations" delay={0.65} widthPercent={80} />
+          <FunnelStep icon={MessageCircle} number={data.conversations} label="Conversations" delay={0.65} widthPercent={80} active={activeStep === "conversations"} onClick={() => setActiveStep(activeStep === "conversations" ? null : "conversations")} />
           <FunnelArrow delay={0.75} />
-          <FunnelStep icon={Handshake} number={data.clients} label="Clients" delay={0.85} widthPercent={55} />
+          <FunnelStep icon={Handshake} number={data.clients} label="Clients" delay={0.85} widthPercent={55} active={activeStep === "clients"} onClick={() => setActiveStep(activeStep === "clients" ? null : "clients")} />
           <FunnelArrow delay={0.95} />
-          <FunnelStep icon={DollarSign} number={data.revenue} label="Revenue" delay={1.05} widthPercent={45} highlight />
+          <FunnelStep icon={DollarSign} number={data.revenue} label="Revenue" delay={1.05} widthPercent={45} highlight active={activeStep === "revenue"} onClick={() => setActiveStep(activeStep === "revenue" ? null : "revenue")} />
         </div>
 
         {/* Time frame toggle — bottom right */}
