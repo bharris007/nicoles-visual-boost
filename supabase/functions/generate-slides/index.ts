@@ -272,6 +272,14 @@ serve(async (req) => {
         slideData = JSON.parse(cleaned);
       } catch {
         // Attempt to repair common JSON issues from AI output
+        
+        // Fix missing } before ] (AI often forgets to close the last object in an array)
+        // Pattern: "value" ] where a } should be between them
+        cleaned = cleaned.replace(/(")\s*\n?\s*\]/g, '$1 }]');
+        
+        // Fix trailing commas before ] or }
+        cleaned = cleaned.replace(/,\s*([\]}])/g, '$1');
+        
         // Fix missing closing brackets by balancing them
         let openBraces = 0, closeBraces = 0, openBrackets = 0, closeBrackets = 0;
         for (const ch of cleaned) {
@@ -280,12 +288,8 @@ serve(async (req) => {
           if (ch === '[') openBrackets++;
           if (ch === ']') closeBrackets++;
         }
-        // Append missing closers
         cleaned += ']'.repeat(Math.max(0, openBrackets - closeBrackets));
         cleaned += '}'.repeat(Math.max(0, openBraces - closeBraces));
-        
-        // Fix trailing commas before ] or }
-        cleaned = cleaned.replace(/,\s*([\]}])/g, '$1');
         
         slideData = JSON.parse(cleaned);
         console.log("Repaired malformed AI JSON successfully");
