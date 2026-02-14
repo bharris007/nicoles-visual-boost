@@ -44,10 +44,10 @@ const FunnelStep = ({
     className="flex items-center gap-4 md:gap-5"
   >
     <div
-      className={`relative rounded-lg flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-2.5 border ${
+      className={`relative rounded-lg flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-2.5 border transition-all duration-200 cursor-pointer ${
         highlight
-          ? "bg-[hsl(45,100%,55%)]/15 border-[hsl(45,100%,55%)]/40"
-          : "bg-white/[0.06] border-white/10"
+          ? "bg-[hsl(45,100%,55%)]/15 border-[hsl(45,100%,55%)]/40 hover:bg-[hsl(45,100%,55%)]/25 hover:border-[hsl(45,100%,55%)]/60 hover:scale-[1.02] hover:shadow-lg hover:shadow-[hsl(45,100%,55%)]/10"
+          : "bg-white/[0.06] border-white/10 hover:bg-white/[0.12] hover:border-white/25 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5"
       }`}
       style={{ width: `${widthPercent}%` }}
     >
