@@ -26,13 +26,30 @@ From their answers, extract and return a JSON object with EXACTLY this structure
     { "name": "Segment name", "percentage": 0.5, "count": "XX,XXX", "detail": "Description" }
   ],
   "pricePerClient": 10000,
-  "clientsNeeded": 12,
+  "clientsNeeded": "CALCULATE: revenueGoal / 10000. e.g. $100,000 goal = 10 clients",
   "funnelData": {
-    "year": { "leads": "1,200", "conversations": "120", "clients": "12", "revenue": "$120,000" },
-    "month": { "leads": "100", "conversations": "10", "clients": "1", "revenue": "$10,000" }
+    "year": {
+      "leads": "CALCULATE: clientsNeeded × 100. Format with commas.",
+      "conversations": "CALCULATE: clientsNeeded × 10. Format with commas.",
+      "clients": "CALCULATE: revenueGoal / 10000. Just the number as string.",
+      "revenue": "The revenue goal string e.g. $100,000"
+    },
+    "month": {
+      "leads": "CALCULATE: yearly leads / 12, rounded. Format with commas.",
+      "conversations": "CALCULATE: yearly conversations / 12, rounded.",
+      "clients": "CALCULATE: yearly clients / 12, rounded to 1 decimal if needed.",
+      "revenue": "CALCULATE: revenueGoal / 12, rounded. Format as $X,XXX."
+    }
   },
   "bottomCallout": "A compelling one-liner about their market opportunity"
 }
+
+CRITICAL MATH RULES:
+- Price per client is ALWAYS $10,000
+- clientsNeeded = revenueGoal / 10,000
+- Yearly leads = clientsNeeded × 100
+- Yearly conversations = clientsNeeded × 10
+- Monthly = yearly / 12
 
 Make reasonable estimates for market data based on their niche. Keep the tone motivational and data-driven.
 Return ONLY valid JSON, no markdown fences.`,
