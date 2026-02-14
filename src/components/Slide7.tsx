@@ -61,9 +61,9 @@ const Slide7 = () => {
         transition={{ delay: 0.3 }}
         className="absolute top-0 left-[40%] right-0 z-20 bg-[hsl(45,100%,55%)]/15 backdrop-blur-sm border-b border-[hsl(45,100%,55%)]/20 px-6 py-3 flex items-center gap-3"
       >
-        <span className="text-xl">🗺️</span>
+        <span className="text-xl">🔥</span>
         <span className="text-[hsl(45,100%,55%)] text-sm md:text-base font-bold uppercase tracking-wider">
-          The Game Plan
+          Tomorrow's Training Preview
         </span>
         <div className="flex-1 h-px bg-[hsl(45,100%,55%)]/20" />
         <div className="w-6 h-6 rounded-md overflow-hidden shadow-lg shadow-black/30">
@@ -92,11 +92,11 @@ const Slide7 = () => {
       </div>
 
       {/* Right: Content */}
-      <div className="w-[60%] flex flex-col justify-center px-8 md:px-10 py-6 pt-12 relative z-10">
+      <div className="w-[60%] flex flex-col justify-center px-8 md:px-10 py-6 pt-16 relative z-10">
         {/* Headline */}
         <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
           <h2 className="text-xl md:text-3xl font-black text-white leading-tight">
-            How Nicole Will Find Her <span className="text-[hsl(45,100%,55%)]">12 High-Ticket Clients</span>
+            Finding Your <span className="text-[hsl(45,100%,55%)]">12 Clients</span>
           </h2>
           <p className="text-white/50 text-[10px] md:text-xs mt-2 leading-relaxed">
             A step-by-step roadmap we'll build together — from market research to a launch-ready offer.
