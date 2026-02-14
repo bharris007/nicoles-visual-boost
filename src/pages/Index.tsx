@@ -55,8 +55,8 @@ const Index = () => {
               <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
             </div>
             {/* Logo badge */}
-            <div className="absolute -bottom-2 -right-2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[hsl(145,65%,38%)] border-2 border-[hsl(45,100%,55%)] flex items-center justify-center shadow-md">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+            <div className="absolute -bottom-2 -right-2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[hsl(145,65%,38%)] border-2 border-[hsl(45,100%,55%)] flex items-center justify-center shadow-md">
+              <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
                 <rect x="2" y="12" width="4" height="8" rx="1" fill="white" opacity="0.5" />
                 <rect x="8" y="7" width="4" height="13" rx="1" fill="white" opacity="0.75" />
                 <rect x="14" y="2" width="4" height="18" rx="1" fill="white" />
@@ -80,14 +80,15 @@ const Index = () => {
             <GrowthToolsLogo className="text-[8px] md:text-[9px] mt-1 text-white/50" />
           </motion.div>
 
-          {/* Big trending icon as visual element */}
+          {/* Big trending icon aligned with why box */}
+          <div className="flex-1" />
           <motion.div
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7, duration: 0.5 }}
-            className="mt-auto"
+            className="mb-2"
           >
-            <TrendingUp className="w-20 h-20 md:w-28 md:h-28 text-white/[0.08]" strokeWidth={1.5} />
+            <TrendingUp className="w-24 h-24 md:w-32 md:h-32 text-white/[0.08]" strokeWidth={1.5} />
           </motion.div>
         </div>
 
