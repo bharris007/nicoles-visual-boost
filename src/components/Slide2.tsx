@@ -137,7 +137,7 @@ const Slide2 = () => {
       <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[hsl(145,60%,50%)] opacity-[0.1] blur-[100px] pointer-events-none" />
 
       {/* Left sidebar — coach */}
-      <div className="w-[25%] flex flex-col items-center pt-8 md:pt-10 pb-8 md:pb-10 px-4 relative border-r border-white/10">
+      <div className="w-[28%] flex flex-col items-center pt-8 md:pt-10 pb-8 md:pb-10 px-4 relative border-r border-white/10">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -184,7 +184,7 @@ const Slide2 = () => {
       </div>
 
       {/* Right content — the math */}
-      <div className="w-[75%] flex flex-col justify-between px-6 md:px-10 py-14 md:py-16 gap-2 relative z-10">
+      <div className="w-[72%] flex flex-col justify-between px-6 md:px-10 py-14 md:py-16 gap-2 relative z-10">
         {/* Title */}
         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="mb-2">
           <p className="text-white text-xl md:text-2xl font-extrabold tracking-normal uppercase">
