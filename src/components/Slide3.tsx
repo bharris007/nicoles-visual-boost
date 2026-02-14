@@ -109,7 +109,7 @@ const Slide3 = () => {
           className="flex items-center gap-4 md:gap-6 flex-1 min-h-0 -ml-4"
         >
           {/* Chart */}
-          <div className="w-[58%] aspect-square max-h-full relative">
+          <div className="w-[50%] aspect-square max-h-full relative">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -155,7 +155,7 @@ const Slide3 = () => {
           </div>
 
           {/* Legend */}
-          <div className="grid grid-cols-2 gap-2 md:gap-3 w-[42%]">
+          <div className="grid grid-cols-2 gap-2 md:gap-3 w-[50%]">
             {[
               { label: "All", income: "All Incomes", couples: "12M", percent: "100%", color: undefined, border: true, idx: "all" as const },
               { label: "Over $100K+", income: "$100K+/yr", couples: "2.4M", percent: "20%", color: "hsl(145,50%,45%)", border: false, idx: 1 },
@@ -182,7 +182,7 @@ const Slide3 = () => {
                     ) : (
                       <div className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ backgroundColor: item.color, opacity: isActive ? 1 : 0.5 }} />
                     )}
-                    <p className={`text-[9px] md:text-[11px] font-semibold transition-colors ${isActive ? "text-white" : "text-white/45"}`}>
+                    <p className={`text-[10px] md:text-xs font-semibold transition-colors ${isActive ? "text-white" : "text-white/45"}`}>
                       {item.label}
                     </p>
                   </div>
