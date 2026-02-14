@@ -38,7 +38,7 @@ const FunnelStep = ({
     className="flex items-center gap-4 md:gap-5"
   >
     <div
-      className={`relative rounded-xl flex items-center gap-3 md:gap-4 px-4 md:px-5 py-2.5 md:py-3 border ${
+      className={`relative rounded-lg flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-2.5 border ${
         highlight
           ? "bg-[hsl(45,100%,55%)]/15 border-[hsl(45,100%,55%)]/40"
           : "bg-white/[0.06] border-white/10"
@@ -46,27 +46,27 @@ const FunnelStep = ({
       style={{ width: `${widthPercent}%` }}
     >
       <div
-        className={`w-9 h-9 md:w-11 md:h-11 rounded-lg flex items-center justify-center shrink-0 ${
+        className={`w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center shrink-0 ${
           highlight
             ? "bg-[hsl(45,100%,55%)]/20"
             : "bg-white/10"
         }`}
       >
         <Icon
-          className={`w-5 h-5 md:w-6 md:h-6 ${
+          className={`w-4 h-4 md:w-5 md:h-5 ${
             highlight ? "text-[hsl(45,100%,55%)]" : "text-white/60"
           }`}
         />
       </div>
       <div className="min-w-0">
         <p
-          className={`text-2xl md:text-3xl font-extrabold leading-none ${
+          className={`text-xl md:text-2xl font-extrabold leading-none ${
             highlight ? "text-[hsl(45,100%,55%)]" : "text-white"
           }`}
         >
           {number}
         </p>
-        <p className="text-white/50 text-[10px] md:text-xs font-semibold uppercase tracking-wider mt-0.5">
+        <p className="text-white/50 text-[8px] md:text-[10px] font-semibold uppercase tracking-wider mt-0.5">
           {label}
         </p>
       </div>
@@ -84,9 +84,9 @@ const FunnelArrow = ({ delay }: { delay: number }) => (
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ delay, duration: 0.3 }}
-    className="flex items-center pl-8 md:pl-12"
+    className="flex items-center pl-6 md:pl-10 -my-0.5"
   >
-    <ChevronDown className="w-5 h-5 text-[hsl(145,60%,50%)]/40" />
+    <ChevronDown className="w-4 h-4 text-[hsl(145,60%,50%)]/40" />
   </motion.div>
 );
 
@@ -188,10 +188,10 @@ const Slide2 = () => {
           transition={{ delay: 0.3 }}
           className="mb-2"
         >
-          <p className="text-white text-2xl md:text-3xl font-extrabold tracking-normal uppercase">
+          <p className="text-white text-xl md:text-2xl font-extrabold tracking-normal uppercase">
             Nicole's Path to $120K
           </p>
-          <p className="text-white/25 text-[10px] md:text-xs mt-1">
+          <p className="text-white/25 text-[9px] md:text-[11px] mt-0.5">
             Here's exactly what it takes — and why it's completely doable.
           </p>
         </motion.div>
