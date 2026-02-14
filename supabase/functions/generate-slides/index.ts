@@ -96,7 +96,8 @@ STEP 3 — From their answers, extract and return a JSON object with EXACTLY thi
       }
     },
     "subtitle": "A one-liner summary with the total market size, e.g. '12.1 million struggling marriages in the U.S. — broken down by household income.'",
-    "bottomCallout": "A motivational one-liner mentioning the client name. Reference the exact $100K+ count (e.g. 'Over 1,156,000 high-earning people in crisis'). Say they only need a 'tiny fraction' of them. Do NOT mention specific client counts or price points. Example format: 'With over [100K+ count] high-earning [crisis people], [Name], you only need a tiny fraction to build a thriving practice.'"
+    "bottomCallout": "A motivational one-liner mentioning the client name. Reference the exact $100K+ count (e.g. 'Over 1,156,000 high-earning people in crisis'). Say they only need a 'tiny fraction' of them. Do NOT mention specific client counts or price points. Example format: 'With over [100K+ count] high-earning [crisis people], [Name], you only need a tiny fraction to build a thriving practice.'",
+    "additionalSource": "Name of a credible research source relevant to this specific crisis/niche (e.g. 'American Psychological Association' for divorce, 'National Institute of Mental Health' for burnout). NOT 'U.S. Census Bureau' — that is already included."
   },
   "mediaChannels": [
     { "label": "Channel name (e.g. Read Newsletters)", "sublabel": "Frequency", "percent": 85, "stat": "X,XXX,XXX", "detail": "Why this channel matters" },
