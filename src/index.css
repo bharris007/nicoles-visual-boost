@@ -2,39 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap');
 
 @layer base {
   :root {
-    --background: 145 60% 42%;
-    --foreground: 0 0% 100%;
+    --background: 220 10% 92%;
+    --foreground: 220 15% 20%;
 
-    --card: 145 55% 38%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 145 60% 20%;
+    --popover-foreground: 220 15% 15%;
 
-    --primary: 45 100% 55%;
-    --primary-foreground: 145 60% 20%;
+    --primary: 145 60% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 145 50% 50%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 145 45% 92%;
+    --secondary-foreground: 145 60% 25%;
 
-    --muted: 145 40% 35%;
-    --muted-foreground: 145 10% 85%;
+    --muted: 220 10% 95%;
+    --muted-foreground: 220 10% 50%;
 
-    --accent: 45 100% 55%;
-    --accent-foreground: 145 60% 20%;
+    --accent: 45 100% 52%;
+    --accent-foreground: 30 80% 18%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 145 30% 50%;
-    --input: 145 30% 50%;
-    --ring: 45 100% 55%;
+    --border: 220 10% 88%;
+    --input: 220 10% 88%;
+    --ring: 145 60% 40%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
+
+    --slide-green: 145 60% 42%;
+    --slide-green-dark: 150 50% 28%;
+    --slide-gold: 45 100% 55%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -44,31 +48,31 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-
-    --gradient-hero: linear-gradient(160deg, hsl(145 65% 48%), hsl(145 55% 35%), hsl(150 50% 28%));
-    --gradient-gold: linear-gradient(135deg, hsl(45 100% 55%), hsl(38 100% 50%));
   }
 
   .dark {
-    --background: 145 60% 10%;
-    --foreground: 0 0% 100%;
-    --card: 145 50% 12%;
-    --card-foreground: 0 0% 100%;
-    --popover: 145 50% 12%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 45 100% 55%;
-    --primary-foreground: 145 60% 10%;
-    --secondary: 145 40% 20%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 145 30% 18%;
-    --muted-foreground: 145 10% 70%;
+    --background: 220 15% 8%;
+    --foreground: 0 0% 95%;
+    --card: 220 15% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 15% 12%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 145 60% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 145 30% 18%;
+    --secondary-foreground: 145 30% 85%;
+    --muted: 220 10% 18%;
+    --muted-foreground: 220 10% 60%;
     --accent: 45 100% 55%;
-    --accent-foreground: 145 60% 10%;
+    --accent-foreground: 30 80% 18%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 145 30% 25%;
-    --input: 145 30% 25%;
-    --ring: 45 100% 55%;
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 145 60% 45%;
+    --slide-green: 145 60% 42%;
+    --slide-green-dark: 150 50% 28%;
+    --slide-gold: 45 100% 55%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -87,29 +91,32 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Rethink Sans', sans-serif;
   }
 }
 
 @layer utilities {
-  .font-display {
-    font-family: 'DM Serif Display', serif;
-  }
-
   .text-gradient-gold {
-    background: var(--gradient-gold);
+    background: linear-gradient(135deg, hsl(var(--slide-gold)), hsl(38 100% 48%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .bg-hero-gradient {
-    background: var(--gradient-hero);
+  .bg-slide-gradient {
+    background: linear-gradient(160deg, hsl(var(--slide-green)), hsl(var(--slide-green-dark)));
   }
 
-  .glass-card {
-    background: hsla(145, 50%, 30%, 0.4);
-    backdrop-filter: blur(20px);
+  .slide-grid {
+    background-image:
+      linear-gradient(hsla(0,0%,100%,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsla(0,0%,100%,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .glass-panel {
+    background: hsla(0, 0%, 100%, 0.08);
+    backdrop-filter: blur(16px);
     border: 1px solid hsla(0, 0%, 100%, 0.12);
   }
 }

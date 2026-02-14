@@ -3,83 +3,88 @@ import headshot from "@/assets/headshot.png";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-hero-gradient flex items-center justify-center p-6 overflow-hidden relative">
-      {/* Subtle grid overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "linear-gradient(hsla(0,0%,100%,1) 1px, transparent 1px), linear-gradient(90deg, hsla(0,0%,100%,1) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+    <div className="min-h-screen bg-background flex items-center justify-center p-4 md:p-8">
+      {/* 16:9 Slide Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-5xl aspect-video bg-slide-gradient slide-grid rounded-2xl shadow-2xl overflow-hidden relative flex"
+      >
+        {/* Left column — coach + branding */}
+        <div className="w-[38%] flex flex-col items-center justify-center gap-5 px-6 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-hsla(0,0%,0%,0.1) pointer-events-none" />
 
-      <div className="relative z-10 max-w-3xl w-full flex flex-col items-center gap-10">
-        {/* Coach intro */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center gap-4"
-        >
-          <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-foreground/20 shadow-2xl">
-            <img
-              src={headshot}
-              alt="Coach headshot"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="relative z-10"
+          >
+            <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-[3px] border-primary/20 shadow-xl">
+              <img
+                src={headshot}
+                alt="Coach"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="relative z-10 text-primary-foreground/50 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase"
+          >
             Growth Tools
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
-        {/* Client name */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center"
-        >
-          <h2 className="text-foreground/80 text-xl md:text-2xl font-medium mb-2">
+        {/* Right column — goal + why */}
+        <div className="w-[62%] flex flex-col justify-center pr-8 md:pr-14 py-8 gap-5 md:gap-7">
+          {/* Client name label */}
+          <motion.p
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-primary-foreground/60 text-xs md:text-sm font-semibold tracking-[0.2em] uppercase"
+          >
             Nicole's Revenue Goal
-          </h2>
-        </motion.div>
+          </motion.p>
 
-        {/* Revenue number */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.4, type: "spring", stiffness: 100 }}
-          className="text-center"
-        >
-          <h1 className="font-display text-7xl md:text-9xl text-gradient-gold leading-none tracking-tight">
+          {/* Revenue number */}
+          <motion.h1
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.45, type: "spring", stiffness: 80 }}
+            className="text-gradient-gold text-5xl md:text-8xl font-extrabold leading-none tracking-tight"
+          >
             $120,000
-          </h1>
-          <p className="text-foreground/60 text-lg mt-3 font-medium">per year</p>
-        </motion.div>
+            <span className="block text-primary-foreground/40 text-sm md:text-lg font-medium tracking-normal mt-1">
+              per year
+            </span>
+          </motion.h1>
 
-        {/* The Why */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.7 }}
-          className="w-full"
-        >
-          <div className="glass-card rounded-2xl p-8 md:p-10">
-            <p className="text-accent text-xs font-bold tracking-[0.25em] uppercase mb-4">
+          {/* The Why */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65, duration: 0.6 }}
+            className="glass-panel rounded-xl p-4 md:p-6"
+          >
+            <p className="text-[hsl(var(--slide-gold))] text-[9px] md:text-[11px] font-bold tracking-[0.25em] uppercase mb-2">
               Why This Matters
             </p>
-            <p className="text-foreground/90 text-lg md:text-xl leading-relaxed font-light">
+            <p className="text-primary-foreground/80 text-[11px] md:text-sm leading-relaxed font-light">
               "Achieving my revenue goal would make it possible for me to improve my quality of life
               by quitting my second job, getting access to better quality healthcare providers,
               getting rid of debt, increasing my spending on whole foods and fresh produce, moving to
               a nicer residence in an even better, quieter zip code, traveling more often and for
               longer periods of time, and spending more time with friends and family."
             </p>
-          </div>
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
+      </motion.div>
     </div>
   );
 };
