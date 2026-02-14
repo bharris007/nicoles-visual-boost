@@ -123,10 +123,10 @@ const Slide3 = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="flex items-center gap-4 md:gap-6 flex-1 min-h-0 -ml-4"
+          className="flex items-center gap-4 md:gap-6 flex-1 min-h-0 -ml-6"
         >
           {/* Chart */}
-          <div className="w-[63%] aspect-square max-h-full relative [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none [&_path]:outline-none [&_.recharts-layer]:outline-none">
+          <div className="w-[55%] aspect-square max-h-full relative [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none [&_path]:outline-none [&_.recharts-layer]:outline-none">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
