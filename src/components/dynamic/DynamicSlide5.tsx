@@ -43,6 +43,12 @@ interface SourceItem {
   url: string;
 }
 
+interface MediaExample {
+  type: string;
+  name: string;
+  description: string;
+}
+
 interface DynamicSlide5Props {
   data: {
     clientName: string;
@@ -55,6 +61,7 @@ interface DynamicSlide5Props {
       channels: ChannelData[];
       sources?: SourceItem[];
     };
+    mediaExamples?: MediaExample[];
   };
 }
 
@@ -148,13 +155,27 @@ const BarRow = ({
   );
 };
 
+const mediaExampleIcons: Record<string, React.ComponentType<any>> = {
+  newsletter: Mail,
+  podcast: Headphones,
+  youtube: Youtube,
+};
+
+const mediaExampleColors: Record<string, string> = {
+  newsletter: "hsl(45,95%,52%)",
+  podcast: "hsl(145,50%,45%)",
+  youtube: "hsl(25,100%,55%)",
+};
+
 const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const [showSources, setShowSources] = useState(false);
-  const { clientName, crisis, mediaChannels } = data;
+  const [showExamples, setShowExamples] = useState(false);
+  const { clientName, crisis, mediaChannels, mediaExamples } = data;
   const channels = mediaChannels?.channels || [];
   const totalAudience = mediaChannels?.totalAudience || "";
   const sources = mediaChannels?.sources || [];
+  const examples = mediaExamples || [];
 
   return (
     <motion.div
@@ -218,7 +239,8 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.5 }}
-          className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2 md:py-2.5 border border-[hsl(45,100%,55%)]/20"
+          className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2 md:py-2.5 border border-[hsl(45,100%,55%)]/20 cursor-pointer hover:bg-[hsl(45,100%,55%)]/[0.12] transition-colors"
+          onClick={() => setShowExamples(true)}
         >
           <div className="flex items-center justify-start gap-3">
             <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[hsl(45,100%,55%)]/20 flex items-center justify-center shrink-0">
@@ -234,6 +256,74 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
           Source: Edison Research, Pew Research Center, HubSpot · $100K+ household earners ↗
         </motion.p>
       </div>
+
+      {/* Media examples overlay */}
+      <AnimatePresence>
+        {showExamples && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.7 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="absolute inset-0 z-30 flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm rounded-2xl"
+              onClick={() => setShowExamples(false)}
+            />
+            <motion.div
+              initial={{ rotateX: 15 }}
+              animate={{ rotateX: 0 }}
+              exit={{ rotateX: 15, opacity: 0 }}
+              className="relative z-10 w-[85%] max-w-lg rounded-xl overflow-hidden shadow-2xl border border-white/15"
+              style={{ background: "linear-gradient(145deg, hsl(160,50%,14%), hsl(160,50%,10%) 60%, hsl(160,50%,7%))" }}
+            >
+              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full opacity-20 blur-[60px] pointer-events-none bg-[hsl(45,100%,55%)]" />
+              <div className="flex items-center justify-between px-6 pt-5 pb-3">
+                <div>
+                  <p className="text-white/50 text-[12px] font-semibold uppercase tracking-wider">Where Your Audience Is</p>
+                  <p className="text-white text-base font-extrabold mt-0.5">Real Media Examples</p>
+                </div>
+                <button onClick={() => setShowExamples(false)} className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+                  <X className="w-4 h-4 text-white/70" />
+                </button>
+              </div>
+              <div className="flex flex-col gap-2.5 px-6 py-4">
+                {examples.map((ex, i) => {
+                  const ExIcon = mediaExampleIcons[ex.type] || Mail;
+                  const exColor = mediaExampleColors[ex.type] || "hsl(45,95%,52%)";
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.08 }}
+                      className="flex items-start gap-3 rounded-lg px-4 py-3 bg-white/[0.04] border border-white/[0.06]"
+                    >
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: `${exColor}20` }}>
+                        <ExIcon className="w-4 h-4" style={{ color: exColor }} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-white/90 text-sm font-bold leading-snug">{ex.name}</p>
+                        <p className="text-white/45 text-[11px] mt-1 leading-relaxed">{ex.description}</p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+                {examples.length === 0 && (
+                  <p className="text-white/30 text-sm text-center py-4">No media examples available</p>
+                )}
+              </div>
+              <div className="px-6 pb-4">
+                <p className="text-white/25 text-[9px] text-center">Click outside or ✕ to close</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Sources overlay */}
       <AnimatePresence>

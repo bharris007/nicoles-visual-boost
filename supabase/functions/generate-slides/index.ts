@@ -115,8 +115,13 @@ STEP 3 — From their answers, extract and return a JSON object with EXACTLY thi
       { "title": "Headline of a media consumption study (e.g. 'The Podcast Consumer 2024')", "org": "Research org (e.g. 'Edison Research')", "url": "https://... direct URL" },
       { "title": "Headline of a newsletter/email engagement study", "org": "Research org (e.g. 'Pew Research Center')", "url": "https://... direct URL" },
       { "title": "Headline of a video consumption or YouTube study", "org": "Research org (e.g. 'HubSpot')", "url": "https://... direct URL" }
-    ]
-  },
+     ]
+   },
+   "mediaExamples": [
+     { "type": "newsletter", "name": "Name of a real, well-known newsletter in this niche", "description": "One sentence about what it covers and why it's relevant to the crisis audience" },
+     { "type": "podcast", "name": "Name of a real, well-known podcast in this niche", "description": "One sentence about what it covers" },
+     { "type": "youtube", "name": "Name of a real, well-known YouTube channel in this niche", "description": "One sentence about what it covers" }
+   ],
   "offerStructure": {
     "plan": { "headline": "Custom Plan Name", "bullets": ["bullet 1", "bullet 2", "bullet 3"] },
     "training": { "headline": "Training Component Name", "bullets": ["bullet 1", "bullet 2", "bullet 3"] },
