@@ -180,36 +180,6 @@ const Generate = () => {
   if (generatedData) {
     return (
       <div className="min-h-screen bg-[hsl(220,15%,18%)] flex flex-col items-center justify-center p-4 md:p-8 relative">
-        {/* Top-left: back button */}
-        <button
-          onClick={() => setGeneratedData(null)}
-          className="absolute top-4 left-4 z-20 w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/40 hover:text-white/70 transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </button>
-
-        {/* Top-right: slide pips + client info */}
-        <div className="absolute top-4 right-4 z-20 flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-white/[0.06] rounded-lg border border-white/10 px-1 py-0.5">
-            {Array.from({ length: slideCount }, (_, i) => i + 1).map((num) => (
-              <button
-                key={num}
-                onClick={() => setActiveSlide(num)}
-                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-                  activeSlide === num
-                    ? "bg-white/20 text-white"
-                    : "text-white/40 hover:text-white/60"
-                }`}
-              >
-                {num}
-              </button>
-            ))}
-          </div>
-          <p className="text-white/30 text-xs">
-            Day {generatedData.day} • {generatedData.data.clientName}
-          </p>
-        </div>
-
         {/* Slide */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -224,14 +194,27 @@ const Generate = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom-left: Variables/Settings icon */}
-        <div className="absolute bottom-4 left-4 z-20">
+        {/* Bottom-left: back button + settings */}
+        <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2">
+          <button
+            onClick={() => setGeneratedData(null)}
+            className="w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/40 hover:text-white/70 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
           <VariablesPanel
             day={generatedData.day}
             data={generatedData.data}
             isRegenerating={isRegenerating}
             onRegenerate={handleRegenerate}
           />
+        </div>
+
+        {/* Bottom-right: slide number circle */}
+        <div className="absolute bottom-4 right-4 z-20">
+          <div className="w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center">
+            <span className="text-white/50 text-xs font-bold">{activeSlide}/{slideCount}</span>
+          </div>
         </div>
       </div>
     );
