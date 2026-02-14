@@ -85,7 +85,7 @@ const Index = () => {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7, duration: 0.5 }}
-            className="absolute bottom-[28%] left-1/2 -translate-x-1/2"
+            className="absolute bottom-[28%] inset-x-0 flex justify-center"
           >
             <TrendingUp className="w-24 h-24 md:w-32 md:h-32 text-white/[0.08]" strokeWidth={1.5} />
           </motion.div>
