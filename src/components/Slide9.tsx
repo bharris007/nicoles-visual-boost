@@ -91,7 +91,7 @@ const Slide9 = () => {
               <CheckCircle2 className="w-6 h-6 text-white" />
             </div>
             <div className="relative z-10">
-              <span className="text-base font-black uppercase tracking-wider block" style={{ background: "linear-gradient(90deg, hsl(145,50%,60%), hsl(45,100%,60%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>You are a Match!</span>
+              <span className="text-base font-black uppercase tracking-wider block" style={{ background: "linear-gradient(90deg, hsl(145,50%,60%), hsl(45,100%,60%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>You're Matched!</span>
               <span className="text-white/40 text-[10px]">Liz is actively looking for people like you to promote!</span>
             </div>
           </motion.div>
