@@ -17,12 +17,13 @@ const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
 );
 
 const pieData = [
-  { name: "Under $50K", value: 30, couples: "3,600,000", color: "hsl(160,30%,35%)", detail: "3.6M couples earning under $50K — not your ideal market, but they still represent the scale of this crisis." },
-  { name: "$50K – $100K", value: 50, couples: "6,000,000", color: "hsl(145,45%,42%)", detail: "6 million couples in the $50–100K range. Many can afford coaching but may need payment plans." },
-  { name: "$100K – $250K", value: 15, couples: "1,800,000", color: "hsl(45,90%,50%)", detail: "1.8M couples earning $100–250K. They have real budgets and actively invest in solutions." },
-  { name: "$250K – $500K", value: 4.5, couples: "540,000", color: "hsl(40,100%,55%)", detail: "540,000 high-income couples in crisis. Premium clients who value expertise and won't flinch at your pricing." },
+  { name: "Under $100K", value: 80, couples: "9,600,000", color: "hsl(160,30%,35%)", detail: "9.6M couples earning under $100K. They represent the vast scale of this marriage crisis nationwide." },
+  { name: "$100K – $200K", value: 15, couples: "1,800,000", color: "hsl(145,50%,45%)", detail: "1.8M couples earning $100–200K. They have real budgets and actively invest in premium solutions." },
+  { name: "$200K – $500K", value: 4.5, couples: "540,000", color: "hsl(45,95%,52%)", detail: "540,000 high-income couples in crisis. Premium clients who value expertise and won't hesitate at your pricing." },
   { name: "$500K+", value: 0.5, couples: "60,000", color: "hsl(25,100%,55%)", detail: "60,000 ultra-high earners. Price is no object — they want the best help available, fast." },
 ];
+
+const allSegment = { name: "All Struggling Marriages", couples: "12,000,000", detail: "12 million married couples in the U.S. report significant marital distress each year. This is your total addressable market." };
 
 const renderActiveShape = (props: any) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
@@ -43,9 +44,10 @@ const renderActiveShape = (props: any) => {
 };
 
 const Slide3 = () => {
-  const [activeIdx, setActiveIdx] = useState<number>(3);
+  const [activeIdx, setActiveIdx] = useState<"all" | number>("all");
 
-  const activeSeg = pieData[activeIdx];
+  const isAll = activeIdx === "all";
+  const activeSeg = isAll ? allSegment : pieData[activeIdx as number];
 
   return (
     <motion.div
@@ -129,7 +131,7 @@ const Slide3 = () => {
                   innerRadius="38%"
                   outerRadius="72%"
                   dataKey="value"
-                  activeIndex={activeIdx}
+                  activeIndex={typeof activeIdx === "number" ? activeIdx : undefined}
                   activeShape={renderActiveShape}
                   onMouseEnter={(_, idx) => setActiveIdx(idx)}
                   onClick={(_, idx) => setActiveIdx(idx)}
@@ -138,13 +140,16 @@ const Slide3 = () => {
                   animationDuration={800}
                 >
                   {pieData.map((entry, i) => (
-                    <Cell key={entry.name} fill={entry.color} opacity={activeIdx === i ? 1 : 0.7} cursor="pointer" />
+                    <Cell key={entry.name} fill={entry.color} opacity={isAll || activeIdx === i ? 1 : 0.7} cursor="pointer" />
                   ))}
                 </Pie>
               </PieChart>
             </ResponsiveContainer>
-            {/* Center label */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            {/* Center label — click to select ALL */}
+            <div
+              className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer"
+              onClick={() => setActiveIdx("all")}
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIdx}
@@ -163,34 +168,52 @@ const Slide3 = () => {
 
           {/* Legend */}
           <div className="flex flex-col gap-1.5 md:gap-2 w-[45%]">
-            {pieData.map((seg, i) => (
-              <motion.div
-                key={seg.name}
-                initial={{ opacity: 0, x: 15 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7 + i * 0.08 }}
-                onClick={() => setActiveIdx(i)}
-                className={`flex items-center gap-2 px-2 py-1 md:py-1.5 rounded-md cursor-pointer transition-all duration-200 ${
-                  activeIdx === i
-                    ? "bg-white/10 border border-white/15"
-                    : "hover:bg-white/[0.05] border border-transparent"
-                }`}
-              >
-                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-sm shrink-0" style={{ backgroundColor: seg.color, opacity: activeIdx === i ? 1 : 0.6 }} />
-                <div className="min-w-0">
-                  <p className={`text-[8px] md:text-[10px] font-semibold leading-tight transition-colors ${
-                    activeIdx === i ? "text-white" : "text-white/50"
-                  }`}>
-                    {seg.name}
-                  </p>
-                  <p className={`text-[7px] md:text-[8px] transition-colors ${
-                    activeIdx === i ? "text-[hsl(45,100%,55%)]" : "text-white/30"
-                  }`}>
-                    {seg.value}% · {seg.couples}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+            {/* All option */}
+            <motion.div
+              initial={{ opacity: 0, x: 15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.65 }}
+              onClick={() => setActiveIdx("all")}
+              className={`flex items-center gap-2 px-2 py-1 md:py-1.5 rounded-md cursor-pointer transition-all duration-200 ${
+                isAll ? "bg-white/10 border border-white/15" : "hover:bg-white/[0.05] border border-transparent"
+              }`}
+            >
+              <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full shrink-0 border-2 border-white/40" style={{ opacity: isAll ? 1 : 0.5 }} />
+              <div className="min-w-0">
+                <p className={`text-[8px] md:text-[10px] font-semibold leading-tight transition-colors ${isAll ? "text-white" : "text-white/50"}`}>All</p>
+                <p className={`text-[7px] md:text-[8px] transition-colors ${isAll ? "text-[hsl(45,100%,55%)]" : "text-white/30"}`}>100% · 12,000,000</p>
+              </div>
+            </motion.div>
+            {/* Income segments — skip "Under $100K", show only $100K+, $200K+, $500K+ */}
+            {pieData.slice(1).map((seg, i) => {
+              const realIdx = i + 1;
+              const isActive = activeIdx === realIdx;
+              const cumulativeLabels = ["$100K+", "$200K+", "$500K+"];
+              const cumulativeCouples = ["2,400,000", "600,000", "60,000"];
+              const cumulativePercent = [20, 5, 0.5];
+              return (
+                <motion.div
+                  key={seg.name}
+                  initial={{ opacity: 0, x: 15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.7 + i * 0.08 }}
+                  onClick={() => setActiveIdx(realIdx)}
+                  className={`flex items-center gap-2 px-2 py-1 md:py-1.5 rounded-md cursor-pointer transition-all duration-200 ${
+                    isActive ? "bg-white/10 border border-white/15" : "hover:bg-white/[0.05] border border-transparent"
+                  }`}
+                >
+                  <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-sm shrink-0" style={{ backgroundColor: seg.color, opacity: isActive ? 1 : 0.6 }} />
+                  <div className="min-w-0">
+                    <p className={`text-[8px] md:text-[10px] font-semibold leading-tight transition-colors ${isActive ? "text-white" : "text-white/50"}`}>
+                      Over {cumulativeLabels[i]}
+                    </p>
+                    <p className={`text-[7px] md:text-[8px] transition-colors ${isActive ? "text-[hsl(45,100%,55%)]" : "text-white/30"}`}>
+                      {cumulativePercent[i]}% · {cumulativeCouples[i]}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
 
