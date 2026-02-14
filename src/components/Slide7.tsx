@@ -132,18 +132,6 @@ const Slide7 = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1 }}
-          className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2.5 border border-[hsl(45,100%,55%)]/20 flex items-center justify-center gap-2 mt-4"
-        >
-          <Sparkles className="w-4 h-4 text-[hsl(45,100%,55%)]" />
-          <p className="text-[hsl(45,100%,55%)] text-xs md:text-sm font-bold">
-            By the end — Nicole has a complete business blueprint
-          </p>
-        </motion.div>
       </div>
     </motion.div>
   );
