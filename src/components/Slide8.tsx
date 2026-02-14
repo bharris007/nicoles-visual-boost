@@ -75,7 +75,7 @@ const Slide8 = () => {
                 <p className={`text-3xl md:text-4xl font-black leading-none ${w.hitGoal ? "text-[hsl(45,100%,55%)]" : "text-white"}`}>
                   {w.totalClients}
                 </p>
-                <p className="text-white/40 text-xs font-semibold mt-1">clients total</p>
+                <p className="text-white/40 text-xs font-semibold mt-1">new clients</p>
               </div>
 
               {/* Revenue */}
