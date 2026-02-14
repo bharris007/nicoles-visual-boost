@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import headshot from "@/assets/headshot.png";
 import { TrendingUp } from "lucide-react";
+import ScaledSlide from "@/components/ScaledSlide";
 
 const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
   <div className={`flex items-center gap-[3px] font-extrabold tracking-[0.12em] uppercase text-white ${className}`}>
@@ -16,11 +17,12 @@ const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
 
 const Slide1 = () => {
   return (
+    <ScaledSlide>
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex"
+      className="w-full h-full overflow-hidden relative flex"
       style={{
         background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)",
       }}
@@ -117,6 +119,7 @@ const Slide1 = () => {
         </motion.p>
       </div>
     </motion.div>
+    </ScaledSlide>
   );
 };
 
