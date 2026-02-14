@@ -45,6 +45,7 @@ interface MarketData {
   countries: Record<string, Record<string, string>>;
   subtitle: string;
   bottomCallout: string;
+  additionalSource?: string;
 }
 
 interface DynamicSlide4Props {
@@ -285,7 +286,7 @@ const DynamicSlide4 = ({ data }: DynamicSlide4Props) => {
         </motion.div>
 
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="text-white/35 text-[8px] md:text-[10px] text-left mt-1">
-          Source: U.S. Census Bureau, American Community Survey · Double-click a segment to drill down
+          Source: U.S. Census Bureau, American Community Survey{marketData.additionalSource ? `, ${marketData.additionalSource}` : ""} · Double-click a segment to drill down
         </motion.p>
       </div>
 
