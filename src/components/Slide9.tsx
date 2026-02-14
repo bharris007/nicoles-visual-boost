@@ -63,16 +63,21 @@ const Slide9 = () => {
 
         {/* 3-col row: Open to Partners | List Size | Email Cadence */}
         <div className="grid grid-cols-3 gap-3 mb-3">
+          {/* Open to Partners — hero badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.4 }}
-            className="bg-[hsl(145,50%,45%)]/20 border border-[hsl(145,50%,45%)]/40 rounded-xl px-4 py-3 backdrop-blur-sm flex items-center gap-3"
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="relative bg-[hsl(145,50%,45%)]/25 border-2 border-[hsl(145,50%,45%)]/60 rounded-xl px-5 py-4 backdrop-blur-sm flex items-center gap-4 shadow-[0_0_20px_hsl(145,50%,45%,0.15),inset_0_1px_0_hsl(145,50%,55%,0.2)]"
           >
-            <CheckCircle2 className="w-7 h-7 text-[hsl(145,50%,55%)] shrink-0" />
+            {/* Glow ring */}
+            <div className="absolute inset-0 rounded-xl ring-1 ring-[hsl(145,50%,55%)]/20 pointer-events-none" />
+            <div className="w-10 h-10 rounded-full bg-[hsl(145,50%,45%)]/30 flex items-center justify-center shrink-0">
+              <CheckCircle2 className="w-6 h-6 text-[hsl(145,50%,55%)]" />
+            </div>
             <div>
-              <span className="text-[hsl(145,50%,55%)] text-sm font-black uppercase tracking-wider block">Open to Partners</span>
-              <span className="text-white/30 text-[10px]">Actively looking for collaborators</span>
+              <span className="text-[hsl(145,50%,55%)] text-base font-black uppercase tracking-wider block">Open to Partners</span>
+              <span className="text-white/40 text-[10px]">Actively looking for collaborators</span>
             </div>
           </motion.div>
 
@@ -102,7 +107,7 @@ const Slide9 = () => {
         </div>
 
         {/* 2-col row: What She Does | Why You'd Be a Good Fit */}
-        <div className="grid grid-cols-2 gap-3 mb-auto">
+        <div className="grid grid-cols-2 gap-3 flex-1">
           <motion.div
             {...fadeUp(0.65)}
             className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm"
@@ -133,7 +138,7 @@ const Slide9 = () => {
         {/* CTA callout — 1 col, pinned bottom */}
         <motion.div
           {...fadeUp(1.0)}
-          className="flex items-center gap-3 bg-[hsl(45,100%,55%)]/[0.12] border-2 border-[hsl(45,100%,55%)]/30 rounded-xl px-5 py-3 mt-4"
+          className="flex items-center gap-3 bg-[hsl(45,100%,55%)]/[0.12] border-2 border-[hsl(45,100%,55%)]/30 rounded-xl px-5 py-3 mt-3"
         >
           <AlertTriangle className="w-5 h-5 text-[hsl(45,100%,55%)] shrink-0" />
           <p className="text-white/80 text-xs md:text-sm leading-relaxed">
