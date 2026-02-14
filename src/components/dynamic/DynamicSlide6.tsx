@@ -60,13 +60,19 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
   const renderNarrative = (text: string) => {
     if (!text) return null;
     const parts = text.split(/\*\*(.*?)\*\*/g);
-    return parts.map((part, i) =>
-      i % 2 === 1 ? (
-        <span key={i} className="text-[hsl(45,100%,55%)] font-semibold">{part}</span>
-      ) : (
-        <span key={i}>{part}</span>
-      )
-    );
+    let boldIndex = 0;
+    return parts.map((part, i) => {
+      if (i % 2 === 1) {
+        boldIndex++;
+        // First bold phrase = white bold ("Imagine this:"), rest = yellow highlight
+        return boldIndex === 1 ? (
+          <span key={i} className="font-bold text-white">{part}</span>
+        ) : (
+          <span key={i} className="text-[hsl(45,100%,55%)] font-semibold">{part}</span>
+        );
+      }
+      return <span key={i}>{part}</span>;
+    });
   };
 
   const pillars = [
@@ -117,7 +123,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
           </p>
           <p className="text-white/60 text-[8px] md:text-xs mt-1 leading-snug">
             {narrative ? renderNarrative(narrative) : (
-              <>Imagine this: You are hired. And you do an intake and turn that into a <span className="text-[hsl(45,100%,55%)] font-semibold">simple plan</span> for them. Then you <span className="text-[hsl(45,100%,55%)] font-semibold">train them</span> and walk alongside them. <span className="text-[hsl(45,100%,55%)] font-semibold">Coaching and advising</span> them for several months until they're thriving.</>
+              <><span className="font-bold text-white">Imagine this:</span> You are hired. And you do an intake and turn that into a <span className="text-[hsl(45,100%,55%)] font-semibold">simple plan</span> for them. Then you <span className="text-[hsl(45,100%,55%)] font-semibold">train them</span> and walk alongside them. <span className="text-[hsl(45,100%,55%)] font-semibold">Coaching and advising</span> them for several months until they're thriving.</>
             )}
           </p>
         </motion.div>
