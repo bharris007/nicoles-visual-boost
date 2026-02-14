@@ -50,26 +50,6 @@ const Slide8 = () => {
         </motion.div>
       </div>
 
-      {/* Assumption pills */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="px-8 flex gap-2.5 relative z-10 mt-2"
-      >
-        <div className="flex items-center gap-1.5 bg-white/[0.06] border border-white/10 rounded-full px-3.5 py-1.5">
-          <Users className="w-4 h-4 text-[hsl(145,50%,45%)]" />
-          <span className="text-white/60 text-sm font-semibold">1,000 people / week</span>
-        </div>
-        <div className="flex items-center gap-1.5 bg-white/[0.06] border border-white/10 rounded-full px-3.5 py-1.5">
-          <Target className="w-4 h-4 text-[hsl(25,100%,55%)]" />
-          <span className="text-white/60 text-sm font-semibold">2 clients each time</span>
-        </div>
-        <div className="flex items-center gap-1.5 bg-white/[0.06] border border-white/10 rounded-full px-3.5 py-1.5">
-          <DollarSign className="w-4 h-4 text-[hsl(45,100%,55%)]" />
-          <span className="text-white/60 text-sm font-semibold">$10,000 per client</span>
-        </div>
-      </motion.div>
 
       {/* Weekly progression */}
       <div className="flex-1 px-8 py-3 relative z-10 flex flex-col justify-center min-h-0">
