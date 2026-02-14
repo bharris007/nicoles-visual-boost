@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Mail, Globe, Users, Calendar, CheckCircle2, AlertTriangle } from "lucide-react";
 import headshot from "@/assets/headshot.png";
 import gtFavicon from "@/assets/gt-favicon.png";
+import lizPhoto from "@/assets/liz-wilcox.png";
 
 const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
   <div className={`flex items-center gap-[3px] font-extrabold tracking-[0.12em] uppercase text-white ${className}`}>
@@ -87,15 +88,20 @@ const Slide9 = () => {
           </span>
         </motion.div>
 
-        <motion.div {...fadeUp(0.4)} className="mb-4">
-          <h2 className="text-2xl md:text-3xl font-black text-white leading-tight">
-            Meet{" "}
-            <span className="text-[hsl(45,100%,55%)]">Liz Wilcox</span>
-          </h2>
-          <p className="text-white/40 text-xs mt-0.5 flex items-center gap-1.5">
-            <Globe className="w-3 h-3" />
-            marriagesrestored.com
-          </p>
+        <motion.div {...fadeUp(0.4)} className="mb-4 flex items-center gap-4">
+          <div className="w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-[hsl(45,100%,55%)] shadow-lg shadow-black/20 shrink-0">
+            <img src={lizPhoto} alt="Liz Wilcox" className="w-full h-full object-cover" />
+          </div>
+          <div>
+            <h2 className="text-2xl md:text-3xl font-black text-white leading-tight">
+              Meet{" "}
+              <span className="text-[hsl(45,100%,55%)]">Liz Wilcox</span>
+            </h2>
+            <p className="text-white/40 text-xs mt-0.5 flex items-center gap-1.5">
+              <Globe className="w-3 h-3" />
+              marriagesrestored.com
+            </p>
+          </div>
         </motion.div>
 
         {/* Info grid */}
