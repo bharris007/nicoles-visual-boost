@@ -111,7 +111,7 @@ const Slide3DrillDown = ({ segmentIndex, segmentColor, onClose }: DrillDownProps
         {/* Header */}
         <div className="flex items-center justify-between px-5 pt-4 pb-2">
           <div>
-            <p className="text-white/50 text-[10px] font-semibold uppercase tracking-wider">English-Speaking Markets</p>
+            <p className="text-white/50 text-[10px] font-semibold uppercase tracking-wider">World Wide Market (English Primary Language)</p>
             <p className="text-white text-sm md:text-base font-extrabold mt-0.5">{segmentNames[segmentIndex]} Household Income</p>
           </div>
           <button onClick={onClose} className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
