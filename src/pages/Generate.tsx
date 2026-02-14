@@ -7,6 +7,7 @@ import DynamicSlide1 from "@/components/dynamic/DynamicSlide1";
 import DynamicSlide2 from "@/components/dynamic/DynamicSlide2";
 import DynamicSlide3 from "@/components/dynamic/DynamicSlide3";
 import DynamicSlide4 from "@/components/dynamic/DynamicSlide4";
+import DynamicSlide5 from "@/components/dynamic/DynamicSlide5";
 
 const dayLabels = [
   { day: 1, label: "Day 1", desc: "Revenue goals, motivations & target market", slides: "Slides 1–3" },
@@ -89,7 +90,9 @@ const Generate = () => {
       switch (activeSlide) {
         case 1:
           return <DynamicSlide4 data={d} />;
-        // Day 2 slides 2-4 coming soon
+        case 2:
+          return <DynamicSlide5 data={d} />;
+        // Day 2 slides 3-4 coming soon
       }
     }
 

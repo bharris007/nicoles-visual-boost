@@ -104,11 +104,14 @@ STEP 3 — From their answers, extract and return a JSON object with EXACTLY thi
       { "title": "Article/paper headline from the niche-specific source about the crisis statistics", "org": "The additional source org name", "url": "https://... direct URL to article or study" }
     ]
   },
-  "mediaChannels": [
-    { "label": "Channel name (e.g. Read Newsletters)", "sublabel": "Frequency", "percent": 85, "stat": "X,XXX,XXX", "detail": "Why this channel matters" },
-    { "label": "Channel name", "sublabel": "Frequency", "percent": 70, "stat": "X,XXX,XXX", "detail": "Why this channel matters" },
-    { "label": "Channel name", "sublabel": "Frequency", "percent": 55, "stat": "X,XXX,XXX", "detail": "Why this channel matters" }
-  ],
+  "mediaChannels": {
+    "totalAudience": "Total number of $100K+ people in crisis (from marketData incomeSegments $100K+ count)",
+    "channels": [
+      { "label": "Read Newsletters", "sublabel": "Weekly", "percent": "CALCULATE: Of people in this CRISIS who earn $100K+, what percentage actively read newsletters at least 1x/week? Use realistic industry data.", "stat": "CALCULATE: (percent/100) × totalAudience, formatted with commas", "detail": "1-2 sentence explanation of why this channel matters for reaching people in this crisis", "icon": "mail" },
+      { "label": "Listen to Podcasts", "sublabel": "Weekly", "percent": "Same calculation for podcast listeners", "stat": "Same calculation", "detail": "Why podcasts matter for this audience", "icon": "headphones" },
+      { "label": "Watch YouTube", "sublabel": "Weekly", "percent": "Same calculation for YouTube viewers", "stat": "Same calculation", "detail": "Why YouTube matters for this audience", "icon": "youtube" }
+    ]
+  },
   "offerStructure": {
     "plan": { "headline": "Custom Plan Name", "bullets": ["bullet 1", "bullet 2", "bullet 3"] },
     "training": { "headline": "Training Component Name", "bullets": ["bullet 1", "bullet 2", "bullet 3"] },
