@@ -89,7 +89,7 @@ const Slide8 = () => {
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[hsl(145,50%,45%)] via-[hsl(45,100%,55%)] to-[hsl(25,100%,55%)]" />
 
       {/* Header */}
-      <div className="px-8 pt-5 pb-1 relative z-10">
+      <div className="px-8 pt-5 pb-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -127,7 +127,7 @@ const Slide8 = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.5 }}
-        className="flex-1 mx-8 mb-2 relative z-10 min-h-0 rounded-xl border border-white/10 bg-white/[0.03] p-3 max-h-[45%]"
+        className="flex-1 mx-8 relative z-10 min-h-0 rounded-xl border border-white/10 bg-white/[0.03] p-3 max-h-[42%]"
       >
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
@@ -209,7 +209,7 @@ const Slide8 = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5 }}
-        className="mx-8 mb-4 flex items-center gap-3 bg-[hsl(45,100%,55%)]/[0.08] border border-[hsl(45,100%,55%)]/20 rounded-xl px-5 py-2.5 relative z-10"
+        className="mx-8 mt-4 mb-5 flex items-center gap-3 bg-[hsl(45,100%,55%)]/[0.08] border border-[hsl(45,100%,55%)]/20 rounded-xl px-5 py-2.5 relative z-10"
       >
         <TrendingUp className="w-6 h-6 text-[hsl(45,100%,55%)] shrink-0" />
         <p className="text-white/70 text-sm md:text-base leading-relaxed">
