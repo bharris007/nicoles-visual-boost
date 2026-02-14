@@ -33,19 +33,19 @@ const DynamicSlide3 = ({ data }: DynamicSlide3Props) => {
   const steps = [
     {
       title: "Target Market Analysis",
-      desc: `Deep dive into the ${data.targetMarketSize} ${data.targetMarket} - who they are, where they are, what they spend`,
+      desc: `Deep dive into the ${data.targetMarketSize} ${data.targetMarket}: who they are, where they are, what they spend`,
       color: STEP_COLORS[0],
       icon: STEP_ICONS[0],
     },
     {
       title: "Target Audience Analysis",
-      desc: `Where ${data.clientName}'s ideal clients consume content - newsletters, podcasts, YouTube`,
+      desc: `Where ${data.clientName}'s ideal clients consume content: newsletters, podcasts, YouTube`,
       color: STEP_COLORS[1],
       icon: STEP_ICONS[1],
     },
     {
       title: "Full Offer Creation",
-      desc: `Build out the $${data.pricePerClient.toLocaleString()} ${data.niche.toLowerCase()} package - Plan, Training, Access - ready to sell`,
+      desc: `Build out the $${data.pricePerClient.toLocaleString()} ${data.niche.toLowerCase()} package: Plan, Training, Access, ready to sell`,
       color: STEP_COLORS[2],
       icon: STEP_ICONS[2],
     },
@@ -98,7 +98,7 @@ const DynamicSlide3 = ({ data }: DynamicSlide3Props) => {
             Finding Your <span className="text-[hsl(45,100%,55%)]">{data.clientsNeeded} Clients</span>
           </h2>
           <p className="text-white/50 text-[10px] md:text-xs mt-2 leading-relaxed">
-            A step-by-step roadmap we'll build together - from market research to a launch-ready offer.
+            A step by step roadmap we'll build together, from market research to a launch ready offer.
           </p>
         </motion.div>
 
