@@ -151,7 +151,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
                 }`}
               >
                 {/* Step number */}
-                <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-white/[0.08] border border-white/10 flex items-center justify-center">
+                <div className="absolute top-2 left-2 w-5 h-5 rounded-full bg-white/[0.08] border border-white/10 flex items-center justify-center">
                   <span className="text-white/30 text-[9px] font-bold">{i + 1}</span>
                 </div>
                 <motion.div
