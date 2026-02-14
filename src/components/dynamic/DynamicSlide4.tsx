@@ -39,6 +39,12 @@ const segmentLabels = ["All", "$100K+", "$200K+", "$500K+"];
 const countryFlags: Record<string, string> = { US: "🇺🇸", UK: "🇬🇧", CA: "🇨🇦", AU: "🇦🇺" };
 const countryNames: Record<string, string> = { US: "United States", UK: "United Kingdom", CA: "Canada", AU: "Australia" };
 
+interface SourceItem {
+  title: string;
+  org: string;
+  url: string;
+}
+
 interface MarketData {
   totalUS: string;
   incomeSegments: { name: string; percentage: number; count: string; color: string }[];
@@ -46,6 +52,7 @@ interface MarketData {
   subtitle: string;
   bottomCallout: string;
   additionalSource?: string;
+  sources?: SourceItem[];
 }
 
 interface DynamicSlide4Props {
@@ -143,6 +150,7 @@ const DynamicSlide4 = ({ data }: DynamicSlide4Props) => {
   const { clientName, industry, marketData } = data;
   const [activeIdx, setActiveIdx] = useState<"all" | number>("all");
   const [drillDownIdx, setDrillDownIdx] = useState<number | null>(null);
+  const [showSources, setShowSources] = useState(false);
   const lastClickRef = useRef<{ idx: number; time: number } | null>(null);
 
   // Build pie data from incomeSegments (skip "All" at index 0)
@@ -285,8 +293,14 @@ const DynamicSlide4 = ({ data }: DynamicSlide4Props) => {
           </div>
         </motion.div>
 
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="text-white/35 text-[8px] md:text-[10px] text-left mt-1">
-          Source: U.S. Census Bureau, American Community Survey{marketData.additionalSource ? `, ${marketData.additionalSource}` : ""}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="text-white/35 text-[8px] md:text-[10px] text-left mt-1 cursor-pointer hover:text-white/50 transition-colors"
+          onClick={() => setShowSources(true)}
+        >
+          Source: U.S. Census Bureau, American Community Survey{marketData.additionalSource ? `, ${marketData.additionalSource}` : ""} ↗
         </motion.p>
       </div>
 
@@ -300,6 +314,74 @@ const DynamicSlide4 = ({ data }: DynamicSlide4Props) => {
             countryData={marketData.countries[segmentKeys[drillDownIdx]] || {}}
             onClose={() => setDrillDownIdx(null)}
           />
+        )}
+      </AnimatePresence>
+
+      {/* Sources overlay */}
+      <AnimatePresence>
+        {showSources && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.7 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="absolute inset-0 z-30 flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm rounded-2xl"
+              onClick={() => setShowSources(false)}
+            />
+            <motion.div
+              initial={{ rotateX: 15 }}
+              animate={{ rotateX: 0 }}
+              exit={{ rotateX: 15, opacity: 0 }}
+              className="relative z-10 w-[85%] max-w-lg rounded-xl overflow-hidden shadow-2xl border border-white/15"
+              style={{ background: "linear-gradient(145deg, hsl(160,50%,14%), hsl(160,50%,10%) 60%, hsl(160,50%,7%))" }}
+            >
+              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full opacity-20 blur-[60px] pointer-events-none bg-[hsl(45,100%,55%)]" />
+              <div className="flex items-center justify-between px-6 pt-5 pb-3">
+                <div>
+                  <p className="text-white/50 text-[12px] font-semibold uppercase tracking-wider">Sources & Citations</p>
+                  <p className="text-white text-base font-extrabold mt-0.5">Data References</p>
+                </div>
+                <button onClick={() => setShowSources(false)} className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+                  <X className="w-4 h-4 text-white/70" />
+                </button>
+              </div>
+              <div className="flex flex-col gap-2.5 px-6 py-4">
+                {(marketData.sources || []).map((source, i) => (
+                  <motion.a
+                    key={i}
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.08 }}
+                    className="flex items-start gap-3 rounded-lg px-4 py-3 bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.1] hover:border-white/15 transition-all duration-200 cursor-pointer group"
+                  >
+                    <div className="w-6 h-6 rounded-md bg-[hsl(45,100%,55%)]/15 flex items-center justify-center shrink-0 mt-0.5">
+                      <span className="text-[hsl(45,100%,55%)] text-xs font-bold">{i + 1}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-white/80 text-sm font-semibold leading-snug group-hover:text-white transition-colors">{source.title}</p>
+                      <p className="text-white/35 text-[11px] mt-1 font-medium">{source.org}</p>
+                      <p className="text-[hsl(145,50%,45%)] text-[10px] mt-0.5 truncate group-hover:text-[hsl(145,50%,55%)] transition-colors">{source.url} ↗</p>
+                    </div>
+                  </motion.a>
+                ))}
+                {(!marketData.sources || marketData.sources.length === 0) && (
+                  <p className="text-white/30 text-sm text-center py-4">No detailed sources available</p>
+                )}
+              </div>
+              <div className="px-6 pb-4">
+                <p className="text-white/25 text-[9px] text-center">Click outside or ✕ to close</p>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.div>
