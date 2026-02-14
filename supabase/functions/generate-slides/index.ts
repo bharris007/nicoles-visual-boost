@@ -110,6 +110,11 @@ STEP 3 — From their answers, extract and return a JSON object with EXACTLY thi
       { "label": "Read Newsletters", "sublabel": "Weekly", "percent": "CALCULATE: Of people in this CRISIS who earn $100K+, what percentage actively read newsletters at least 1x/week? Use realistic industry data.", "stat": "CALCULATE: (percent/100) × totalAudience, formatted with commas", "detail": "1-2 sentence explanation of why this channel matters for reaching people in this crisis", "icon": "mail" },
       { "label": "Listen to Podcasts", "sublabel": "Weekly", "percent": "Same calculation for podcast listeners", "stat": "Same calculation", "detail": "Why podcasts matter for this audience", "icon": "headphones" },
       { "label": "Watch YouTube", "sublabel": "Weekly", "percent": "Same calculation for YouTube viewers", "stat": "Same calculation", "detail": "Why YouTube matters for this audience", "icon": "youtube" }
+    ],
+    "sources": [
+      { "title": "Headline of a media consumption study (e.g. 'The Podcast Consumer 2024')", "org": "Research org (e.g. 'Edison Research')", "url": "https://... direct URL" },
+      { "title": "Headline of a newsletter/email engagement study", "org": "Research org (e.g. 'Pew Research Center')", "url": "https://... direct URL" },
+      { "title": "Headline of a video consumption or YouTube study", "org": "Research org (e.g. 'HubSpot')", "url": "https://... direct URL" }
     ]
   },
   "offerStructure": {
