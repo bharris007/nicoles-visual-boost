@@ -155,50 +155,45 @@ const Slide3 = () => {
           </div>
 
           {/* Legend */}
-          <div className="flex flex-col gap-2 md:gap-3 w-[42%]">
-            {/* All option */}
-            <motion.div
-              initial={{ opacity: 0, x: 15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.65 }}
-              onClick={() => setActiveIdx("all")}
-              className={`flex items-center gap-2 px-2 py-1 md:py-1.5 rounded-md cursor-pointer transition-all duration-200 ${
-                isAll ? "bg-white/10 border border-white/15" : "hover:bg-white/[0.05] border border-transparent"
-              }`}
-            >
-              <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full shrink-0 border-2 border-white/40" style={{ opacity: isAll ? 1 : 0.5 }} />
-              <div className="min-w-0">
-                <p className={`text-[10px] md:text-xs font-semibold leading-tight transition-colors ${isAll ? "text-white" : "text-white/50"}`}>All</p>
-                <p className={`text-[8px] md:text-[10px] transition-colors ${isAll ? "text-[hsl(45,100%,55%)]" : "text-white/30"}`}>100% · 12,000,000</p>
-              </div>
-            </motion.div>
-            {/* Income segments — skip "Under $100K", show only $100K+, $200K+, $500K+ */}
-            {pieData.slice(1).map((seg, i) => {
-              const realIdx = i + 1;
-              const isActive = activeIdx === realIdx;
-              const cumulativeLabels = ["$100K+", "$200K+", "$500K+"];
-              const cumulativeCouples = ["2,400,000", "600,000", "60,000"];
-              const cumulativePercent = [20, 5, 0.5];
+          <div className="grid grid-cols-2 gap-2 md:gap-3 w-[42%]">
+            {[
+              { label: "All", income: "All Incomes", couples: "12M", percent: "100%", color: undefined, border: true, idx: "all" as const },
+              { label: "Over $100K+", income: "$100K+/yr", couples: "2.4M", percent: "20%", color: "hsl(145,50%,45%)", border: false, idx: 1 },
+              { label: "Over $200K+", income: "$200K+/yr", couples: "600K", percent: "5%", color: "hsl(45,95%,52%)", border: false, idx: 2 },
+              { label: "Over $500K+", income: "$500K+/yr", couples: "60K", percent: "0.5%", color: "hsl(25,100%,55%)", border: false, idx: 3 },
+            ].map((item, i) => {
+              const isActive = activeIdx === item.idx;
               return (
                 <motion.div
-                  key={seg.name}
-                  initial={{ opacity: 0, x: 15 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.7 + i * 0.08 }}
-                  onClick={() => setActiveIdx(realIdx)}
-                  className={`flex items-center gap-2 px-2 py-1 md:py-1.5 rounded-md cursor-pointer transition-all duration-200 ${
-                    isActive ? "bg-white/10 border border-white/15" : "hover:bg-white/[0.05] border border-transparent"
+                  key={item.label}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.65 + i * 0.08 }}
+                  onClick={() => setActiveIdx(item.idx)}
+                  className={`flex flex-col rounded-lg px-3 py-2 md:py-3 cursor-pointer transition-all duration-200 ${
+                    isActive
+                      ? "bg-white/[0.12] border border-white/20 shadow-lg"
+                      : "bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/15"
                   }`}
                 >
-                  <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-sm shrink-0" style={{ backgroundColor: seg.color, opacity: isActive ? 1 : 0.6 }} />
-                  <div className="min-w-0">
-                    <p className={`text-[10px] md:text-xs font-semibold leading-tight transition-colors ${isActive ? "text-white" : "text-white/50"}`}>
-                      Over {cumulativeLabels[i]}
-                    </p>
-                    <p className={`text-[8px] md:text-[10px] transition-colors ${isActive ? "text-[hsl(45,100%,55%)]" : "text-white/30"}`}>
-                      {cumulativePercent[i]}% · {cumulativeCouples[i]}
+                  <div className="flex items-center gap-1.5 mb-1">
+                    {item.border ? (
+                      <div className="w-2.5 h-2.5 rounded-full border-2 border-white/40 shrink-0" style={{ opacity: isActive ? 1 : 0.5 }} />
+                    ) : (
+                      <div className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ backgroundColor: item.color, opacity: isActive ? 1 : 0.5 }} />
+                    )}
+                    <p className={`text-[9px] md:text-[11px] font-semibold transition-colors ${isActive ? "text-white" : "text-white/45"}`}>
+                      {item.label}
                     </p>
                   </div>
+                  <p className={`text-xl md:text-2xl font-extrabold leading-none transition-colors ${
+                    isActive ? "text-[hsl(45,100%,55%)]" : "text-white/60"
+                  }`}>
+                    {item.couples}
+                  </p>
+                  <p className={`text-[8px] md:text-[10px] font-medium mt-0.5 transition-colors ${isActive ? "text-white/50" : "text-white/25"}`}>
+                    {item.percent} of market
+                  </p>
                 </motion.div>
               );
             })}
