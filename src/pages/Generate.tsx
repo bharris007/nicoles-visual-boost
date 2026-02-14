@@ -194,7 +194,7 @@ const Generate = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom-left: back button + settings */}
+        {/* Bottom-left: back button + settings + slide number */}
         <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2">
           <button
             onClick={() => setGeneratedData(null)}
@@ -208,10 +208,6 @@ const Generate = () => {
             isRegenerating={isRegenerating}
             onRegenerate={handleRegenerate}
           />
-        </div>
-
-        {/* Bottom-right: slide number circle */}
-        <div className="absolute bottom-4 right-4 z-20">
           <div className="w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center">
             <span className="text-white/50 text-xs font-bold">{activeSlide}/{slideCount}</span>
           </div>
