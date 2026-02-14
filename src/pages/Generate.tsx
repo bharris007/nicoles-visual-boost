@@ -221,33 +221,22 @@ const Generate = () => {
   // Generator form
   return (
     <div className="min-h-screen bg-[hsl(220,15%,12%)] flex flex-col items-center px-4 py-10 md:py-16">
-      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
-        <h1 className="text-3xl md:text-4xl font-black text-white">
-          Generate <span className="text-[hsl(45,100%,55%)]">Custom Slides</span>
-        </h1>
-        <p className="text-white/40 text-sm mt-2">
-          Paste your client's assignment answers and generate personalized coaching slides.
-        </p>
-      </motion.div>
-
-      <div className="w-full max-w-2xl space-y-6">
+      <div className="w-full max-w-2xl space-y-4">
         {/* Day Selector */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <label className="text-white/60 text-xs font-bold uppercase tracking-widest mb-3 block">Select Day</label>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-2">
             {dayLabels.map((d) => (
               <button
                 key={d.day}
                 onClick={() => setSelectedDay(d.day)}
-                className={`relative rounded-xl border-2 px-4 py-4 text-left transition-all duration-200 ${
+                className={`rounded-lg border-2 px-3 py-2 text-left transition-all duration-200 ${
                   selectedDay === d.day
                     ? "border-[hsl(45,100%,55%)] bg-[hsl(45,100%,55%)]/[0.08]"
                     : "border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06]"
                 }`}
               >
-                <p className={`text-lg font-black ${selectedDay === d.day ? "text-[hsl(45,100%,55%)]" : "text-white/70"}`}>{d.label}</p>
-                <p className="text-white/40 text-[10px] mt-1 leading-snug">{d.desc}</p>
-                <p className="text-white/25 text-[9px] mt-1 font-semibold">{d.slides}</p>
+                <p className={`text-sm font-black ${selectedDay === d.day ? "text-[hsl(45,100%,55%)]" : "text-white/70"}`}>{d.label}</p>
+                <p className="text-white/25 text-[9px] font-semibold">{d.slides}</p>
               </button>
             ))}
           </div>
@@ -255,12 +244,12 @@ const Generate = () => {
 
         {/* Textarea */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-          <label className="text-white/60 text-xs font-bold uppercase tracking-widest mb-3 block">Client's Answers</label>
+          <label className="text-white/60 text-xs font-bold uppercase tracking-widest mb-2 block">Client's Answers</label>
           <textarea
             value={answers}
             onChange={(e) => setAnswers(e.target.value)}
             placeholder={`Paste the client's Day ${selectedDay} assignment answers here...`}
-            rows={12}
+            rows={6}
             className="w-full rounded-xl border-2 border-white/10 bg-white/[0.04] text-white placeholder-white/20 px-5 py-4 text-sm leading-relaxed focus:outline-none focus:border-[hsl(45,100%,55%)]/50 focus:bg-white/[0.06] transition-all resize-none"
           />
         </motion.div>
