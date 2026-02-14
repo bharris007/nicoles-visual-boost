@@ -1,0 +1,87 @@
+import { motion } from "framer-motion";
+import headshot from "@/assets/headshot.png";
+import gtFavicon from "@/assets/gt-favicon.png";
+import { TrendingUp } from "lucide-react";
+
+const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
+  <div className={`flex items-center gap-[3px] font-extrabold tracking-[0.12em] uppercase text-white ${className}`}>
+    <span>GRO</span>
+    <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none" className="inline-block -mt-[2px]">
+      <rect x="2" y="12" width="4" height="8" rx="1" fill="currentColor" opacity="0.5" />
+      <rect x="8" y="7" width="4" height="13" rx="1" fill="currentColor" opacity="0.75" />
+      <rect x="14" y="2" width="4" height="18" rx="1" fill="currentColor" />
+    </svg>
+    <span>TH TOOLS</span>
+  </div>
+);
+
+interface DynamicSlide1Props {
+  data: {
+    clientName: string;
+    revenueGoal: string;
+    revenueTimeframe: string;
+    motivatingForce: string;
+  };
+}
+
+const DynamicSlide1 = ({ data }: DynamicSlide1Props) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex"
+      style={{
+        background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)",
+      }}
+    >
+      <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
+      <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[hsl(45,100%,55%)] opacity-[0.08] blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[hsl(145,60%,50%)] opacity-[0.1] blur-[100px] pointer-events-none" />
+
+      <div className="w-[28%] flex flex-col items-center pt-8 md:pt-10 pb-6 px-4 relative border-r border-white/10">
+        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} className="relative">
+          <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-[3px] border-[hsl(45,100%,55%)] shadow-lg shadow-black/20">
+            <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
+          </div>
+          <div className="absolute bottom-1 right-0 w-6 h-6 md:w-7 md:h-7 rounded-lg overflow-hidden shadow-lg shadow-black/30">
+            <img src={gtFavicon} alt="Growth Tools" className="w-full h-full object-cover" />
+          </div>
+        </motion.div>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }} className="text-white font-bold text-sm md:text-base mt-4">Coach Bryan</motion.p>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+          <GrowthToolsLogo className="text-[8px] md:text-[9px] mt-1 text-white/50" />
+        </motion.div>
+        <motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7, duration: 0.5 }} className="absolute bottom-[28%] inset-x-0 flex justify-center">
+          <TrendingUp className="w-24 h-24 md:w-32 md:h-32 text-white/[0.08]" strokeWidth={1.5} />
+        </motion.div>
+      </div>
+
+      <div className="w-[72%] flex flex-col justify-center px-8 md:px-14 py-8 gap-4 md:gap-6 relative z-10">
+        <motion.p initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="text-white/50 text-xs md:text-sm font-semibold tracking-normal uppercase">
+          {data.clientName}'s Revenue Goal
+        </motion.p>
+
+        <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.45, type: "spring", stiffness: 80 }}>
+          <h1 className="text-gradient-gold text-5xl md:text-8xl font-extrabold leading-none tracking-tight">
+            {data.revenueGoal}
+          </h1>
+          <span className="block text-[hsl(45,100%,55%)] text-sm md:text-lg font-medium mt-1 opacity-70">
+            {data.revenueTimeframe}
+          </span>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.6 }} className="bg-white/[0.07] backdrop-blur-md rounded-xl p-4 md:p-6 border border-white/10">
+          <p className="text-[hsl(45,100%,55%)] text-[9px] md:text-[11px] font-bold tracking-[0.25em] uppercase mb-2">
+            {data.clientName}'s #1 Motivating Force
+          </p>
+          <p className="text-white/75 text-[11px] md:text-sm leading-relaxed">
+            "{data.motivatingForce}"
+          </p>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default DynamicSlide1;
