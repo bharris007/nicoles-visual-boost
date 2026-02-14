@@ -96,7 +96,7 @@ STEP 3 — From their answers, extract and return a JSON object with EXACTLY thi
       }
     },
     "subtitle": "A one-liner summary with the total market size, e.g. '12.1 million struggling marriages in the U.S. — broken down by household income.'",
-    "bottomCallout": "A motivational one-liner about the market opportunity, mentioning the client name and how few clients they need"
+    "bottomCallout": "A motivational one-liner about the market opportunity, mentioning the client name. Do NOT mention specific client counts or price points. Instead emphasize that they only need a tiny percentage of this massive market. Example: 'Stephanie, you only need a tiny fraction of this market to build a thriving practice.'"
   },
   "mediaChannels": [
     { "label": "Channel name (e.g. Read Newsletters)", "sublabel": "Frequency", "percent": 85, "stat": "X,XXX,XXX", "detail": "Why this channel matters" },
