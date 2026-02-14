@@ -35,6 +35,7 @@ interface DynamicSlide6Props {
     clientName?: string;
     niche?: string;
     crisis?: string;
+    offerNarrative?: string;
     offerStructure?: {
       plan?: { headline?: string; bullets?: string[] };
       training?: { headline?: string; bullets?: string[] };
@@ -53,6 +54,20 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
   const price = data.offerPrice || "$10,000";
   const duration = data.offerDuration || "6–12 months";
   const footer = data.offerFooter || `${duration} of transformation. ${clientName} walks with them until they're thriving.`;
+  const narrative = data.offerNarrative || "";
+
+  // Parse **bold** markers into highlighted spans
+  const renderNarrative = (text: string) => {
+    if (!text) return null;
+    const parts = text.split(/\*\*(.*?)\*\*/g);
+    return parts.map((part, i) =>
+      i % 2 === 1 ? (
+        <span key={i} className="text-[hsl(45,100%,55%)] font-semibold">{part}</span>
+      ) : (
+        <span key={i}>{part}</span>
+      )
+    );
+  };
 
   const pillars = [
     { key: "plan", ...offer.plan },
@@ -101,7 +116,9 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
             {clientName}'s {price} Offer
           </p>
           <p className="text-white/60 text-[10px] md:text-sm mt-1 leading-snug">
-            Imagine this: You are hired. And you do an intake and turn that into a <span className="text-[hsl(45,100%,55%)] font-semibold">simple plan</span> for them. Then you <span className="text-[hsl(45,100%,55%)] font-semibold">train them</span> and walk alongside them. <span className="text-[hsl(45,100%,55%)] font-semibold">Coaching and advising</span> them for several months until they're thriving.
+            {narrative ? renderNarrative(narrative) : (
+              <>Imagine this: You are hired. And you do an intake and turn that into a <span className="text-[hsl(45,100%,55%)] font-semibold">simple plan</span> for them. Then you <span className="text-[hsl(45,100%,55%)] font-semibold">train them</span> and walk alongside them. <span className="text-[hsl(45,100%,55%)] font-semibold">Coaching and advising</span> them for several months until they're thriving.</>
+            )}
           </p>
         </motion.div>
 

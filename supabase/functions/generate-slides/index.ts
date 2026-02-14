@@ -122,6 +122,7 @@ STEP 3 — From their answers, extract and return a JSON object with EXACTLY thi
     "training": { "headline": "Training Component Name", "bullets": ["bullet 1", "bullet 2", "bullet 3"] },
     "access": { "headline": "Access Component Name", "bullets": ["bullet 1", "bullet 2", "bullet 3"] }
   },
+  "offerNarrative": "Imagine this: You are hired. And you do an intake and turn that into a **simple plan** for them to [overcome their crisis]. Then you **train them** and walk alongside them as they [future positive outcome based on their crisis, e.g. 'rebuild their marriage', 'regain their health']. **Coaching and advising** them for several months until [positive end state]. Write this as a single flowing paragraph. Use the client's specific crisis/niche to make it personal. The bold markers ** ** indicate which phrases to highlight in yellow on the slide.",
   "offerPrice": "$10,000",
   "offerDuration": "6–12 months",
   "offerFooter": "A compelling one-liner about the offer value",
