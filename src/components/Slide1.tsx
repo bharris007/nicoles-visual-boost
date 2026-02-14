@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import headshot from "@/assets/headshot.png";
-import gtFavicon from "@/assets/gt-favicon.svg";
+import gtFavicon from "@/assets/gt-favicon.png";
 import { TrendingUp } from "lucide-react";
 
 const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
@@ -46,8 +46,8 @@ const Slide1 = () => {
           <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-[3px] border-[hsl(45,100%,55%)] shadow-lg shadow-black/20">
             <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
           </div>
-          <div className="absolute -bottom-2 -right-2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[hsl(145,65%,38%)] border-2 border-[hsl(45,100%,55%)] flex items-center justify-center shadow-md">
-            <img src={gtFavicon} alt="Growth Tools" className="w-6 h-6 md:w-7 md:h-7" />
+          <div className="absolute -bottom-1 -right-1 w-8 h-8 md:w-9 md:h-9 rounded-full bg-[hsl(145,65%,38%)] border-2 border-[hsl(45,100%,55%)] flex items-center justify-center shadow-md">
+            <img src={gtFavicon} alt="Growth Tools" className="w-4 h-4 md:w-5 md:h-5" />
           </div>
         </motion.div>
 
