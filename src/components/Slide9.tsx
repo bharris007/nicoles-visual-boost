@@ -61,27 +61,13 @@ const Slide9 = () => {
           </div>
         </div>
 
-        {/* What she does — full width */}
-        <motion.div
-          {...fadeUp(0.5)}
-          className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm mb-3"
-        >
-          <div className="flex items-center gap-2 mb-1.5">
-            <Mail className="w-3.5 h-3.5 text-[hsl(145,50%,55%)]" />
-            <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">What She Does</span>
-          </div>
-          <p className="text-white/80 text-xs md:text-sm leading-relaxed">
-            Liz helps couples rebuild trust and reignite connection after infidelity or emotional distance. She runs a tight-knit community of women who are actively investing in personal growth and their relationships.
-          </p>
-        </motion.div>
-
         {/* 3-col row: Said Yes | List Size | Email Cadence */}
         <div className="grid grid-cols-3 gap-3 mb-3">
           {/* Said Yes */}
           <motion.div
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.55, duration: 0.4 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
             className="bg-[hsl(145,50%,45%)]/20 border border-[hsl(145,50%,45%)]/40 rounded-xl px-4 py-3 backdrop-blur-sm flex items-center gap-3"
           >
             <CheckCircle2 className="w-7 h-7 text-[hsl(145,50%,55%)] shrink-0" />
@@ -93,7 +79,7 @@ const Slide9 = () => {
 
           {/* List Size */}
           <motion.div
-            {...fadeUp(0.6)}
+            {...fadeUp(0.55)}
             className="bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-1">
@@ -106,7 +92,7 @@ const Slide9 = () => {
 
           {/* Email Cadence */}
           <motion.div
-            {...fadeUp(0.65)}
+            {...fadeUp(0.6)}
             className="bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-1">
@@ -118,9 +104,23 @@ const Slide9 = () => {
           </motion.div>
         </div>
 
+        {/* What she does — full width */}
+        <motion.div
+          {...fadeUp(0.65)}
+          className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm mb-3"
+        >
+          <div className="flex items-center gap-2 mb-1.5">
+            <Mail className="w-3.5 h-3.5 text-[hsl(145,50%,55%)]" />
+            <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">What She Does</span>
+          </div>
+          <p className="text-white/80 text-xs md:text-sm leading-relaxed">
+            Liz helps couples rebuild trust and reignite connection after infidelity or emotional distance. She runs a tight-knit community of women who are actively investing in personal growth and their relationships.
+          </p>
+        </motion.div>
+
         {/* Why you'd be a good fit */}
         <motion.div
-          {...fadeUp(0.7)}
+          {...fadeUp(0.75)}
           className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm mb-3"
         >
           <div className="flex items-center gap-2 mb-1.5">
