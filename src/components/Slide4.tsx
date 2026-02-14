@@ -179,7 +179,7 @@ const Slide4 = () => {
         {/* Title */}
         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
           <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">
-            Your Audience Already Exists
+            Nicole's Target Audience Analysis
           </p>
           <p className="text-white/50 text-[9px] md:text-[11px] mt-0.5">
             <span className="text-[hsl(45,100%,55%)] font-semibold">2.4 million $100K+ couples</span> are already consuming content weekly — in someone else's audience.

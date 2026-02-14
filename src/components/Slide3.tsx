@@ -112,7 +112,7 @@ const Slide3 = () => {
       <div className="w-[72%] flex flex-col justify-between px-6 md:px-10 py-6 md:py-8 relative z-10">
         {/* Title */}
         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
-          <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">Target Market Analysis</p>
+          <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">Nicole's Target Market Analysis</p>
           <p className="text-white/50 text-[9px] md:text-[11px] mt-0.5">
             <span className="text-[hsl(45,100%,55%)] font-semibold">12 million struggling marriages</span> in the U.S. — broken down by household income.
           </p>
