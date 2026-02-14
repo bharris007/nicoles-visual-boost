@@ -220,8 +220,8 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
           transition={{ delay: 1.1, duration: 0.5 }}
           className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2 md:py-2.5 border border-[hsl(45,100%,55%)]/20"
         >
-          <div className="flex items-start gap-3">
-            <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[hsl(45,100%,55%)]/20 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="flex items-center justify-center gap-3">
+            <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[hsl(45,100%,55%)]/20 flex items-center justify-center shrink-0">
               <ArrowRight className="w-3.5 h-3.5 text-[hsl(45,100%,55%)]" />
             </div>
             <p className="text-white/90 text-xs md:text-sm font-semibold leading-snug">
