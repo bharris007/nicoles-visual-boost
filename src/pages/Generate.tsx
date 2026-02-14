@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import DynamicSlide1 from "@/components/dynamic/DynamicSlide1";
 import DynamicSlide2 from "@/components/dynamic/DynamicSlide2";
 import DynamicSlide3 from "@/components/dynamic/DynamicSlide3";
+import DynamicSlide4 from "@/components/dynamic/DynamicSlide4";
 
 const dayLabels = [
   { day: 1, label: "Day 1", desc: "Revenue goals, motivations & target market", slides: "Slides 1–3" },
@@ -84,12 +85,20 @@ const Generate = () => {
       }
     }
 
-    // Day 2 and 3 coming soon placeholders
+    if (generatedData.day === 2) {
+      switch (activeSlide) {
+        case 1:
+          return <DynamicSlide4 data={d} />;
+        // Day 2 slides 2-4 coming soon
+      }
+    }
+
+    // Day 3 coming soon placeholder
     return (
       <div className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex items-center justify-center" style={{ background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)" }}>
         <div className="text-center">
           <p className="text-white/60 text-lg font-bold">Day {generatedData.day} — Slide {activeSlide}</p>
-          <p className="text-white/30 text-sm mt-1">Dynamic slides for Day {generatedData.day} coming soon</p>
+          <p className="text-white/30 text-sm mt-1">Dynamic slides coming soon</p>
         </div>
       </div>
     );

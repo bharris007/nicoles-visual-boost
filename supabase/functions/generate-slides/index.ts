@@ -57,11 +57,47 @@ Return ONLY valid JSON, no markdown fences.`,
   2: `You are a business coach creating personalized slide content for a coaching client.
 The client has answered questions about their target audience, media consumption, and offer structure.
 
-From their answers, extract and return a JSON object with EXACTLY this structure:
+STEP 1 — Parse the client's answers to identify:
+- The CRISIS their ideal client is going through (1-3 words, e.g. "divorce", "burnout", "weight gain")
+- The INDUSTRY/SOLUTION they operate in — merge crisis + solution into a phrase (e.g. crisis "divorce" → industry "marriage reconciliation", crisis "burnout" → industry "executive wellness")
+
+STEP 2 — Using US Census Bureau stats or equivalent, estimate:
+- How many people in the US are experiencing this crisis (total addressable market)
+- Break that down by household income: All, $100K+, $200K+, $500K+
+- Then estimate equivalents for UK, Canada, and Australia
+
+STEP 3 — From their answers, extract and return a JSON object with EXACTLY this structure:
 {
   "clientName": "First name of the client",
   "niche": "Their coaching/business niche",
+  "crisis": "The 1-3 word crisis (e.g. 'divorce', 'burnout')",
+  "industry": "The derived industry phrase (e.g. 'marriage reconciliation')",
   "targetAudience": "Who their ideal clients are",
+  "marketData": {
+    "totalUS": "Total people in crisis in US, formatted with commas",
+    "incomeSegments": [
+      { "name": "All (any income)", "percentage": 100, "color": "hsl(160,30%,35%)" },
+      { "name": "$100K+ Household", "percentage": "CALCULATE as % of total", "color": "hsl(145,50%,45%)" },
+      { "name": "$200K+ Household", "percentage": "CALCULATE as % of total", "color": "hsl(45,95%,52%)" },
+      { "name": "$500K+ Household", "percentage": "CALCULATE as % of total", "color": "hsl(25,100%,55%)" }
+    ],
+    "countries": {
+      "all": {
+        "US": "X,XXX,XXX", "UK": "X,XXX,XXX", "CA": "X,XXX,XXX", "AU": "X,XXX,XXX", "total": "XX,XXX,XXX"
+      },
+      "100k": {
+        "US": "X,XXX,XXX", "UK": "XXX,XXX", "CA": "XXX,XXX", "AU": "XXX,XXX", "total": "X,XXX,XXX"
+      },
+      "200k": {
+        "US": "XXX,XXX", "UK": "XXX,XXX", "CA": "XX,XXX", "AU": "XX,XXX", "total": "XXX,XXX"
+      },
+      "500k": {
+        "US": "XX,XXX", "UK": "XX,XXX", "CA": "X,XXX", "AU": "X,XXX", "total": "XX,XXX"
+      }
+    },
+    "subtitle": "A one-liner summary with the total market size, e.g. '12 million struggling marriages in the U.S. — broken down by household income.'",
+    "bottomCallout": "A motivational one-liner about the market opportunity, mentioning the client name and how few clients they need"
+  },
   "mediaChannels": [
     { "label": "Channel name (e.g. Read Newsletters)", "sublabel": "Frequency", "percent": 85, "stat": "X,XXX,XXX", "detail": "Why this channel matters" },
     { "label": "Channel name", "sublabel": "Frequency", "percent": 70, "stat": "X,XXX,XXX", "detail": "Why this channel matters" },
@@ -92,7 +128,8 @@ From their answers, extract and return a JSON object with EXACTLY this structure
   "footerCallout": "A compelling statement about audience access"
 }
 
-Make reasonable estimates for media data based on their niche. Keep the tone motivational.
+CRITICAL: Use realistic census-based estimates. The numbers should be believable and roughly accurate.
+Make the incomeSegments percentages realistic (e.g. $100K+ is typically ~20-25% of US households, $200K+ ~5-7%, $500K+ ~0.5-1%).
 Return ONLY valid JSON, no markdown fences.`,
 
   3: `You are a business coach creating personalized slide content for a coaching client.
