@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import headshot from "@/assets/headshot.png";
-import { Users, MessageCircle, Handshake, DollarSign, ChevronDown } from "lucide-react";
+import { Users, MessageCircle, Handshake, DollarSign, ChevronDown, TrendingUp } from "lucide-react";
 
 const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
   <div className={`flex items-center gap-[3px] font-extrabold tracking-[0.12em] uppercase text-white ${className}`}>
@@ -163,23 +163,14 @@ const Slide2 = () => {
           <GrowthToolsLogo className="text-[7px] md:text-[8px] mt-1 text-white/50" />
         </motion.div>
 
-        {/* Conversion rates visual */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="mt-auto mb-4 w-full px-2">
-          <div className="bg-white/[0.05] rounded-lg p-3 border border-white/10 space-y-2">
-            <p className="text-[hsl(45,100%,55%)] text-[7px] md:text-[8px] font-bold tracking-[0.2em] uppercase text-center">
-              Conversion Rates
-            </p>
-            <div className="space-y-1.5">
-              <div className="flex justify-between items-center">
-                <span className="text-white/40 text-[9px] md:text-[10px]">Leads → Calls</span>
-                <span className="text-white/70 text-[9px] md:text-[10px] font-bold">10%</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-white/40 text-[9px] md:text-[10px]">Calls → Clients</span>
-                <span className="text-white/70 text-[9px] md:text-[10px] font-bold">10%</span>
-              </div>
-            </div>
-          </div>
+        {/* Big trending icon — matching Slide 1 position */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
+          className="absolute bottom-[28%] inset-x-0 flex justify-center"
+        >
+          <TrendingUp className="w-24 h-24 md:w-32 md:h-32 text-white/[0.08]" strokeWidth={1.5} />
         </motion.div>
       </div>
 
