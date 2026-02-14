@@ -98,7 +98,7 @@ const DynamicSlide3 = ({ data }: DynamicSlide3Props) => {
             Finding Your <span className="text-[hsl(45,100%,55%)]">{data.clientsNeeded} Clients</span>
           </h2>
           <p className="text-white/50 text-[10px] md:text-xs mt-2 leading-relaxed">
-            A step-by-step roadmap we'll build together — from market research to a launch-ready offer.
+            A step-by-step roadmap we'll build together - from market research to a launch-ready offer.
           </p>
         </motion.div>
 
