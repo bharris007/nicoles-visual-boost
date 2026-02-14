@@ -180,7 +180,7 @@ const Slide5 = () => {
         </motion.div>
 
         {/* 3 Pillars */}
-        <motion.div layout className="flex gap-3 md:gap-4 items-start">
+        <motion.div layout className="flex gap-3 md:gap-4 flex-1 items-stretch min-h-0">
           {tapItems.map((item, i) => (
             <TapPillar
               key={item.letter}
