@@ -61,9 +61,8 @@ const Slide9 = () => {
           </div>
         </div>
 
-        {/* 3-col row: Said Yes | List Size | Email Cadence */}
+        {/* 3-col row: Open to Partners | List Size | Email Cadence */}
         <div className="grid grid-cols-3 gap-3 mb-3">
-          {/* Said Yes */}
           <motion.div
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -72,12 +71,11 @@ const Slide9 = () => {
           >
             <CheckCircle2 className="w-7 h-7 text-[hsl(145,50%,55%)] shrink-0" />
             <div>
-              <span className="text-[hsl(145,50%,55%)] text-sm font-black uppercase tracking-wider block">She Said Yes</span>
-              <span className="text-white/30 text-[10px]">Ready to promote you</span>
+              <span className="text-[hsl(145,50%,55%)] text-sm font-black uppercase tracking-wider block">Open to Partners</span>
+              <span className="text-white/30 text-[10px]">Actively looking for collaborators</span>
             </div>
           </motion.div>
 
-          {/* List Size */}
           <motion.div
             {...fadeUp(0.55)}
             className="bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm"
@@ -90,7 +88,6 @@ const Slide9 = () => {
             <p className="text-white/30 text-[10px]">engaged email subscribers</p>
           </motion.div>
 
-          {/* Email Cadence */}
           <motion.div
             {...fadeUp(0.6)}
             className="bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm"
@@ -104,41 +101,39 @@ const Slide9 = () => {
           </motion.div>
         </div>
 
-        {/* What she does — full width */}
-        <motion.div
-          {...fadeUp(0.65)}
-          className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm mb-3"
-        >
-          <div className="flex items-center gap-2 mb-1.5">
-            <Mail className="w-3.5 h-3.5 text-[hsl(145,50%,55%)]" />
-            <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">What She Does</span>
-          </div>
-          <p className="text-white/80 text-xs md:text-sm leading-relaxed">
-            Liz helps couples rebuild trust and reignite connection after infidelity or emotional distance. She runs a tight-knit community of women who are actively investing in personal growth and their relationships.
-          </p>
-        </motion.div>
+        {/* 2-col row: What She Does | Why You'd Be a Good Fit */}
+        <div className="grid grid-cols-2 gap-3 mb-auto">
+          <motion.div
+            {...fadeUp(0.65)}
+            className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm"
+          >
+            <div className="flex items-center gap-2 mb-1.5">
+              <Mail className="w-3.5 h-3.5 text-[hsl(145,50%,55%)]" />
+              <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">What She Does</span>
+            </div>
+            <p className="text-white/80 text-xs md:text-sm leading-relaxed">
+              Liz helps couples rebuild trust and reignite connection after infidelity or emotional distance. She runs a tight-knit community of women actively investing in personal growth.
+            </p>
+          </motion.div>
 
-        {/* Why you'd be a good fit */}
-        <motion.div
-          {...fadeUp(0.75)}
-          className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm mb-3"
-        >
-          <div className="flex items-center gap-2 mb-1.5">
-            <Handshake className="w-4 h-4 text-[hsl(145,50%,55%)]" />
-            <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">Why You'd Be a Good Fit Together</span>
-          </div>
-          <p className="text-white/80 text-xs md:text-sm leading-relaxed">
-            Her audience is full of women doing deep inner work — they're already buyers of coaching and courses. Your offer is a natural next step for them, and Liz gets to deliver even more value to her community without creating anything new.
-          </p>
-        </motion.div>
+          <motion.div
+            {...fadeUp(0.75)}
+            className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm"
+          >
+            <div className="flex items-center gap-2 mb-1.5">
+              <Handshake className="w-4 h-4 text-[hsl(145,50%,55%)]" />
+              <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">Why You'd Be a Good Fit</span>
+            </div>
+            <p className="text-white/80 text-xs md:text-sm leading-relaxed">
+              Her audience is full of women doing deep inner work — they're already buyers of coaching and courses. Your offer is a natural next step for them.
+            </p>
+          </motion.div>
+        </div>
 
-        {/* Spacer */}
-        <div className="flex-1" />
-
-        {/* CTA callout */}
+        {/* CTA callout — 1 col, pinned bottom */}
         <motion.div
           {...fadeUp(1.0)}
-          className="flex items-center gap-3 bg-[hsl(45,100%,55%)]/[0.12] border-2 border-[hsl(45,100%,55%)]/30 rounded-xl px-5 py-3"
+          className="flex items-center gap-3 bg-[hsl(45,100%,55%)]/[0.12] border-2 border-[hsl(45,100%,55%)]/30 rounded-xl px-5 py-3 mt-4"
         >
           <AlertTriangle className="w-5 h-5 text-[hsl(45,100%,55%)] shrink-0" />
           <p className="text-white/80 text-xs md:text-sm leading-relaxed">
