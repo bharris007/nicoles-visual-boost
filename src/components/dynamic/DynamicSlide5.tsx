@@ -87,7 +87,7 @@ const BarRow = ({
     <motion.div
       initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
+      transition={{ delay, duration: 0.25, type: "spring", stiffness: 80 }}
       onClick={onClick}
       className={`rounded-xl px-4 md:px-5 py-3 md:py-4 cursor-pointer transition-all duration-200 border ${
         isActive
@@ -127,7 +127,7 @@ const BarRow = ({
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${item.percent}%` }}
-          transition={{ delay: delay + 0.3, duration: 0.8, ease: "easeOut" }}
+          transition={{ delay: delay + 0.15, duration: 0.4, ease: "easeOut" }}
           className="h-full rounded-full"
           style={{ backgroundColor: color }}
         />
@@ -139,7 +139,7 @@ const BarRow = ({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.12 }}
             className="overflow-hidden"
           >
             <div className="mt-2.5 flex items-baseline gap-2 flex-wrap">
@@ -182,7 +182,7 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.3 }}
       className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex"
       style={{
         background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)",
@@ -194,7 +194,7 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
 
       {/* Left sidebar */}
       <div className="w-[28%] flex flex-col items-center pt-8 md:pt-10 pb-6 px-4 relative border-r border-white/10">
-        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} className="relative">
+        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.15, duration: 0.25 }} className="relative">
           <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-[3px] border-[hsl(45,100%,55%)] shadow-lg shadow-black/20">
             <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
           </div>
@@ -202,18 +202,18 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
             <img src={gtFavicon} alt="Growth Tools" className="w-full h-full object-cover" />
           </div>
         </motion.div>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }} className="text-white font-bold text-sm md:text-base mt-4">Coach Bryan</motion.p>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.22 }} className="text-white font-bold text-sm md:text-base mt-4">Coach Bryan</motion.p>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.25 }}>
           <GrowthToolsLogo className="text-[8px] md:text-[9px] mt-1 text-white/50" />
         </motion.div>
-        <motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7, duration: 0.5 }} className="absolute bottom-[28%] inset-x-0 flex justify-center">
+        <motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.35, duration: 0.25 }} className="absolute bottom-[28%] inset-x-0 flex justify-center">
           <TrendingUp className="w-24 h-24 md:w-32 md:h-32 text-white/[0.08]" strokeWidth={1.5} />
         </motion.div>
       </div>
 
       {/* Right content */}
       <div className="w-[72%] flex flex-col justify-between px-6 md:px-10 py-6 md:py-8 relative z-10">
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
+        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 }}>
           <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">
             {clientName}'s Target Audience Analysis
           </p>
@@ -228,7 +228,7 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
               key={item.label}
               item={item}
               color={barColors[i] || barColors[0]}
-              delay={0.45 + i * 0.15}
+              delay={0.22 + i * 0.08}
               isActive={activeIdx === i}
               onClick={() => setActiveIdx(activeIdx === i ? null : i)}
               crisis={crisis}
@@ -239,7 +239,7 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.5 }}
+          transition={{ delay: 0.55, duration: 0.25 }}
           className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2 md:py-2.5 border border-[hsl(45,100%,55%)]/20 cursor-pointer hover:bg-[hsl(45,100%,55%)]/[0.12] transition-colors"
           onClick={() => setShowExamples(true)}
         >
@@ -253,7 +253,7 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
           </div>
         </motion.div>
 
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.3 }} className="text-white/35 text-[8px] md:text-[10px] text-left mt-1 cursor-pointer hover:text-white/50 transition-colors" onClick={() => setShowSources(true)}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }} className="text-white/35 text-[8px] md:text-[10px] text-left mt-1 cursor-pointer hover:text-white/50 transition-colors" onClick={() => setShowSources(true)}>
           Source: Edison Research, Pew Research Center, HubSpot · $100K+ household earners ↗
         </motion.p>
       </div>
@@ -305,7 +305,7 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
                       rel="noopener noreferrer"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 + i * 0.08 }}
+                      transition={{ delay: 0.05 + i * 0.04 }}
                       className="flex items-start gap-3 rounded-lg px-4 py-3 bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.1] hover:border-white/15 transition-all duration-200 cursor-pointer group"
                     >
                       <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 overflow-hidden" style={{ backgroundColor: `${exColor}15` }}>
@@ -378,7 +378,7 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
                     rel="noopener noreferrer"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.08 }}
+                    transition={{ delay: 0.05 + i * 0.04 }}
                     className="flex items-start gap-3 rounded-lg px-4 py-3 bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.1] hover:border-white/15 transition-all duration-200 cursor-pointer group"
                   >
                     <div className="w-6 h-6 rounded-md bg-[hsl(45,100%,55%)]/15 flex items-center justify-center shrink-0 mt-0.5">

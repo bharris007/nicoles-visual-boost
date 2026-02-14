@@ -42,7 +42,7 @@ const FunnelStep = ({
     <motion.div
       initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
+      transition={{ delay, duration: 0.25, type: "spring", stiffness: 80 }}
       className="flex items-center gap-4 md:gap-5"
     >
       <div
@@ -59,7 +59,7 @@ const FunnelStep = ({
         </div>
         <div className="min-w-0">
           <AnimatePresence mode="wait">
-            <motion.p key={number} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.2 }} className={`text-xl md:text-2xl font-extrabold leading-none ${isLit ? "text-[hsl(45,100%,55%)]" : "text-white"}`}>
+            <motion.p key={number} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.1 }} className={`text-xl md:text-2xl font-extrabold leading-none ${isLit ? "text-[hsl(45,100%,55%)]" : "text-white"}`}>
               {number}
             </motion.p>
           </AnimatePresence>
@@ -71,7 +71,7 @@ const FunnelStep = ({
 };
 
 const FunnelArrow = ({ delay }: { delay: number }) => (
-  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay, duration: 0.3 }} className="flex items-center pl-6 md:pl-10 -my-0.5">
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay, duration: 0.15 }} className="flex items-center pl-6 md:pl-10 -my-0.5">
     <ChevronDown className="w-4 h-4 text-[hsl(145,60%,50%)]/40" />
   </motion.div>
 );
@@ -96,7 +96,7 @@ const DynamicSlide2 = ({ data }: DynamicSlide2Props) => {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.3 }}
       className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex"
       style={{ background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)" }}
     >
@@ -106,7 +106,7 @@ const DynamicSlide2 = ({ data }: DynamicSlide2Props) => {
 
       {/* Left sidebar */}
       <div className="w-[28%] flex flex-col items-center pt-8 md:pt-10 pb-6 px-4 relative border-r border-white/10">
-        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} className="relative">
+        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.15, duration: 0.25 }} className="relative">
           <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-[3px] border-[hsl(45,100%,55%)] shadow-lg shadow-black/20">
             <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
           </div>
@@ -114,18 +114,18 @@ const DynamicSlide2 = ({ data }: DynamicSlide2Props) => {
             <img src={gtFavicon} alt="Growth Tools" className="w-full h-full object-cover" />
           </div>
         </motion.div>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }} className="text-white font-bold text-sm md:text-base mt-4">Coach Bryan</motion.p>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.22 }} className="text-white font-bold text-sm md:text-base mt-4">Coach Bryan</motion.p>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.25 }}>
           <GrowthToolsLogo className="text-[8px] md:text-[9px] mt-1 text-white/50" />
         </motion.div>
-        <motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7, duration: 0.5 }} className="absolute bottom-[28%] inset-x-0 flex justify-center">
+        <motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.35, duration: 0.25 }} className="absolute bottom-[28%] inset-x-0 flex justify-center">
           <TrendingUp className="w-24 h-24 md:w-32 md:h-32 text-white/[0.08]" strokeWidth={1.5} />
         </motion.div>
       </div>
 
       {/* Right content */}
       <div className="w-[72%] flex flex-col justify-between px-6 md:px-10 py-14 md:py-16 gap-2 relative z-10">
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="mb-2">
+        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 }} className="mb-2">
           <p className="text-white text-xl md:text-2xl font-extrabold tracking-normal uppercase">
             {data.clientName}'s Path to {data.revenueGoal}
           </p>
@@ -135,16 +135,16 @@ const DynamicSlide2 = ({ data }: DynamicSlide2Props) => {
         </motion.div>
 
         <div className="flex flex-col gap-1 md:gap-1.5">
-          <FunnelStep icon={Users} number={fd.leads} label="People from other audiences" delay={0.45} widthPercent={100} active={activeStep === "leads"} onClick={() => setActiveStep(activeStep === "leads" ? null : "leads")} />
-          <FunnelArrow delay={0.55} />
-          <FunnelStep icon={MessageCircle} number={fd.conversations} label="Conversations" delay={0.65} widthPercent={80} active={activeStep === "conversations"} onClick={() => setActiveStep(activeStep === "conversations" ? null : "conversations")} />
-          <FunnelArrow delay={0.75} />
-          <FunnelStep icon={Handshake} number={fd.clients} label="Clients" delay={0.85} widthPercent={55} active={activeStep === "clients"} onClick={() => setActiveStep(activeStep === "clients" ? null : "clients")} />
-          <FunnelArrow delay={0.95} />
-          <FunnelStep icon={DollarSign} number={fd.revenue} label="Revenue" delay={1.05} widthPercent={45} highlight active={activeStep === "revenue"} onClick={() => setActiveStep(activeStep === "revenue" ? null : "revenue")} />
+          <FunnelStep icon={Users} number={fd.leads} label="People from other audiences" delay={0.22} widthPercent={100} active={activeStep === "leads"} onClick={() => setActiveStep(activeStep === "leads" ? null : "leads")} />
+          <FunnelArrow delay={0.27} />
+          <FunnelStep icon={MessageCircle} number={fd.conversations} label="Conversations" delay={0.32} widthPercent={80} active={activeStep === "conversations"} onClick={() => setActiveStep(activeStep === "conversations" ? null : "conversations")} />
+          <FunnelArrow delay={0.37} />
+          <FunnelStep icon={Handshake} number={fd.clients} label="Clients" delay={0.42} widthPercent={55} active={activeStep === "clients"} onClick={() => setActiveStep(activeStep === "clients" ? null : "clients")} />
+          <FunnelArrow delay={0.47} />
+          <FunnelStep icon={DollarSign} number={fd.revenue} label="Revenue" delay={0.52} widthPercent={45} highlight active={activeStep === "revenue"} onClick={() => setActiveStep(activeStep === "revenue" ? null : "revenue")} />
         </div>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }} className="flex justify-end mt-1">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55 }} className="flex justify-end mt-1">
           <div className="flex items-center bg-white/[0.06] rounded-lg border border-white/10 p-0.5">
             {(["year", "month"] as TimeFrame[]).map((value) => (
               <button

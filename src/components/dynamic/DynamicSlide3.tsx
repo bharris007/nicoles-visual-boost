@@ -55,7 +55,7 @@ const DynamicSlide3 = ({ data }: DynamicSlide3Props) => {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.3 }}
       className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex"
       style={{ background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)" }}
     >
@@ -68,7 +68,7 @@ const DynamicSlide3 = ({ data }: DynamicSlide3Props) => {
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.15 }}
         className="absolute top-0 left-[40%] right-0 z-20 bg-[hsl(45,100%,55%)]/15 backdrop-blur-sm border-b border-[hsl(45,100%,55%)]/20 px-6 py-3 flex items-center gap-3"
       >
         <span className="text-xl">🔥</span>
@@ -85,7 +85,7 @@ const DynamicSlide3 = ({ data }: DynamicSlide3Props) => {
       <div className="w-[40%] relative overflow-hidden">
         <img src={coachImg} alt="Coach Bryan strategizing" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[hsl(160,50%,18%)] to-transparent" />
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm border border-white/15 rounded-lg px-3 py-1.5 z-10">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm border border-white/15 rounded-lg px-3 py-1.5 z-10">
           <p className="text-white text-sm md:text-base font-bold">Coach Bryan</p>
           <GrowthToolsLogo className="text-[7px] text-white/40" />
         </motion.div>
@@ -93,7 +93,7 @@ const DynamicSlide3 = ({ data }: DynamicSlide3Props) => {
 
       {/* Right: Content */}
       <div className="w-[60%] flex flex-col justify-center px-8 md:px-10 py-6 pt-16 relative z-10">
-        <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
+        <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
           <h2 className="text-xl md:text-3xl font-black text-white leading-tight">
             Finding Your <span className="text-[hsl(45,100%,55%)]">{data.clientsNeeded} Clients</span>
           </h2>
@@ -108,7 +108,7 @@ const DynamicSlide3 = ({ data }: DynamicSlide3Props) => {
               key={step.title}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.55 + i * 0.15 }}
+              transition={{ delay: 0.27 + i * 0.08 }}
               className="flex items-start gap-3 bg-white/[0.05] border border-white/10 rounded-xl p-3 hover:bg-white/[0.08] transition-colors"
             >
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${step.color}15` }}>
