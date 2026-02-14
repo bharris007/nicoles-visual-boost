@@ -132,7 +132,7 @@ const Slide8 = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.5 }}
-        className="flex-1 px-4 pr-8 pb-2 relative z-10 min-h-0"
+        className="flex-1 mx-8 mb-2 relative z-10 min-h-0 rounded-xl border border-white/10 bg-white/[0.03] p-3 max-h-[55%]"
       >
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
