@@ -97,11 +97,11 @@ const Slide10 = () => {
 
         {/* Title */}
         <motion.h2 {...fadeUp(0.3)} className="text-center text-3xl md:text-5xl font-black text-white leading-tight mb-1">
-          <span className="italic text-[hsl(45,100%,55%)]">Plus </span>
-          These Fast-Action Bonuses
+          Hire Us Today &{" "}
+          <span className="italic text-[hsl(45,100%,55%)]">Get These Bonuses</span>
         </motion.h2>
         <motion.p {...fadeUp(0.35)} className="text-center text-white/50 text-xs md:text-sm mb-4">
-          Hire us today and get over <span className="text-[hsl(45,100%,55%)] font-bold">$10,000</span> in bonuses included at no extra cost.
+          Over <span className="text-[hsl(45,100%,55%)] font-bold">$10,000 in value</span> — included free when you start coaching with us within 24 hours.
         </motion.p>
 
         {/* Bonus cards */}
