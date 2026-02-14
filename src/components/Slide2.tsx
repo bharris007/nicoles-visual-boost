@@ -188,10 +188,10 @@ const Slide2 = () => {
           transition={{ delay: 0.3 }}
           className="mb-2"
         >
-          <p className="text-white/50 text-xs md:text-sm font-semibold tracking-normal uppercase">
+          <p className="text-white text-2xl md:text-3xl font-extrabold tracking-normal uppercase">
             Nicole's Path to $120K
           </p>
-          <p className="text-white/25 text-[10px] md:text-xs mt-0.5">
+          <p className="text-white/25 text-[10px] md:text-xs mt-1">
             Here's exactly what it takes — and why it's completely doable.
           </p>
         </motion.div>
