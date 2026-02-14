@@ -220,7 +220,7 @@ const Slide3 = () => {
         </motion.div>
 
         {/* Source */}
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="text-white/35 text-[8px] md:text-[10px] text-right mt-1">
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="text-white/35 text-[8px] md:text-[10px] text-left mt-1">
           Source: U.S. Census Bureau, American Community Survey · Click segments to explore
         </motion.p>
       </div>
