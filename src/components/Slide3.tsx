@@ -230,7 +230,7 @@ const Slide3 = () => {
               <span className="text-sm">💡</span>
             </div>
             <div>
-              <p className="text-white/90 text-[9px] md:text-[11px] font-semibold leading-snug">
+              <p className="text-white/90 text-xs md:text-sm font-semibold leading-snug">
                 Over <span className="text-[hsl(45,100%,55%)] font-bold">400,000 couples</span> earning $150K+ are in crisis and can afford premium coaching. You only need <span className="text-[hsl(45,100%,55%)] font-bold">12 clients</span>.
               </p>
             </div>
