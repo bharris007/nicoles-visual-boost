@@ -109,7 +109,7 @@ const Slide3 = () => {
       </div>
 
       {/* Right content */}
-      <div className="w-[72%] flex flex-col justify-between px-6 md:px-8 py-6 md:py-8 relative z-10">
+      <div className="w-[72%] flex flex-col justify-between px-6 md:px-10 py-6 md:py-8 relative z-10">
         {/* Title */}
         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
           <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">Target Market Analysis</p>
@@ -123,10 +123,10 @@ const Slide3 = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="flex items-center gap-3 md:gap-5 flex-1 min-h-0 -ml-8"
+          className="flex items-center gap-4 md:gap-6 flex-1 min-h-0 -ml-4"
         >
           {/* Chart */}
-          <div className="w-[55%] aspect-square max-h-full relative [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none [&_path]:outline-none [&_.recharts-layer]:outline-none">
+          <div className="w-[63%] aspect-square max-h-full relative [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none [&_path]:outline-none [&_.recharts-layer]:outline-none">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -172,7 +172,7 @@ const Slide3 = () => {
           </div>
 
           {/* Legend */}
-          <div className="grid grid-cols-2 gap-2 md:gap-3 w-[40%]">
+          <div className="grid grid-cols-2 gap-2 md:gap-3 w-[45%]">
             {[
               { label: "All", couples: "12M", percent: "100%", color: undefined, border: true, idx: "all" as const },
               { label: "$100K+", couples: "2.4M", percent: "20%", color: "hsl(145,50%,45%)", border: false, idx: 1 },
@@ -223,7 +223,7 @@ const Slide3 = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0, duration: 0.5 }}
-          className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2 md:py-2.5 border border-[hsl(45,100%,55%)]/20 max-w-[92%]"
+          className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2 md:py-2.5 border border-[hsl(45,100%,55%)]/20"
         >
           <div className="flex items-start gap-3">
             <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[hsl(45,100%,55%)]/20 flex items-center justify-center shrink-0 mt-0.5">
