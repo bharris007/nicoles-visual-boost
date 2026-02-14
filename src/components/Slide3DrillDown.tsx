@@ -100,7 +100,7 @@ const Slide3DrillDown = ({ segmentIndex, segmentColor, onClose }: DrillDownProps
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
         className="relative z-10 w-[85%] max-w-lg rounded-xl overflow-hidden shadow-2xl border border-white/15"
         style={{
-          background: `linear-gradient(145deg, ${segmentColor}22, hsl(160,50%,12%) 60%, hsl(160,50%,8%))`,
+          background: `linear-gradient(145deg, hsl(160,50%,14%), hsl(160,50%,10%) 60%, hsl(160,50%,7%))`,
           transformStyle: "preserve-3d",
           boxShadow: `0 25px 60px -15px ${segmentColor}40, 0 0 40px ${segmentColor}15`,
         }}
