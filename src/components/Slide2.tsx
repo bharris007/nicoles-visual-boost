@@ -175,7 +175,7 @@ const Slide2 = () => {
       </div>
 
       {/* Right content — the math */}
-      <div className="w-[72%] flex flex-col justify-between px-6 md:px-10 py-14 md:py-16 gap-2 relative z-10">
+      <div className="w-[72%] flex flex-col justify-between px-6 md:px-10 py-8 md:py-10 gap-2 relative z-10">
         {/* Title */}
         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="mb-2">
           <p className="text-white text-xl md:text-2xl font-extrabold tracking-normal uppercase">
