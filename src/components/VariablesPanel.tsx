@@ -74,7 +74,7 @@ const VariablesPanel = ({ day, data, isRegenerating, onRegenerate }: VariablesPa
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-12 left-0 z-50 w-[400px] md:w-[500px] rounded-xl border border-white/10 bg-[hsl(220,15%,15%)] shadow-2xl p-4 md:p-5"
+            className="absolute bottom-12 left-0 z-50 w-[400px] md:w-[500px] rounded-xl border border-white/10 bg-[hsl(220,15%,15%)] shadow-2xl p-4 md:p-5"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {fields.map((f) => (
