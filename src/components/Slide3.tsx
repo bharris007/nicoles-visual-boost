@@ -86,26 +86,7 @@ const Slide3 = () => {
           <GrowthToolsLogo className="text-[7px] md:text-[8px] mt-1 text-white/50" />
         </motion.div>
 
-        {/* Detail card */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeIdx}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-            className="absolute bottom-6 left-3 right-3 bg-white/[0.08] backdrop-blur-md rounded-lg p-3 border border-white/10"
-          >
-            <p className="text-[hsl(45,100%,55%)] text-[8px] md:text-[9px] font-bold tracking-[0.2em] uppercase mb-1">
-              {activeSeg.name}
-            </p>
-            <p className="text-white/70 text-[9px] md:text-[10px] leading-relaxed">
-              {activeSeg.detail}
-            </p>
-          </motion.div>
-        </AnimatePresence>
-
-        <motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7, duration: 0.5 }} className="absolute bottom-[38%] inset-x-0 flex justify-center">
+        <motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7, duration: 0.5 }} className="absolute bottom-[28%] inset-x-0 flex justify-center">
           <TrendingUp className="w-24 h-24 md:w-32 md:h-32 text-white/[0.04]" strokeWidth={1.5} />
         </motion.div>
       </div>
