@@ -189,7 +189,7 @@ const Slide2 = () => {
           className="mb-2"
         >
           <p className="text-white text-xl md:text-2xl font-extrabold tracking-normal uppercase">
-            Nicole's Path to $120K
+            Nicole's Path to $120,000
           </p>
           <p className="text-white/25 text-[9px] md:text-[11px] mt-0.5">
             Here's exactly what it takes — and why it's completely doable.
