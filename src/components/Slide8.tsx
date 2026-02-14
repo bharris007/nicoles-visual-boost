@@ -31,20 +31,20 @@ const Slide8 = () => {
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[hsl(45,100%,55%)] opacity-[0.08] blur-[80px] pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[hsl(145,50%,45%)] via-[hsl(45,100%,55%)] to-[hsl(25,100%,55%)]" />
 
-      {/* Header — compact */}
+      {/* Header */}
       <div className="px-8 pt-5 pb-1 relative z-10">
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="flex items-center gap-2 mb-2">
-          <div className="w-6 h-6 rounded-md overflow-hidden shadow-lg shadow-black/30">
+          <div className="w-7 h-7 rounded-md overflow-hidden shadow-lg shadow-black/30">
             <img src={gtFavicon} alt="Growth Tools" className="w-full h-full object-cover" />
           </div>
-          <span className="text-white/30 text-xs font-bold uppercase tracking-widest">Your Revenue Roadmap</span>
+          <span className="text-white/30 text-sm font-bold uppercase tracking-widest">Your Revenue Roadmap</span>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
-          <h2 className="text-2xl md:text-3xl font-black text-white leading-tight">
+          <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
             You said <span className="text-[hsl(45,100%,55%)]">2 clients</span> from every 1,000 people.
           </h2>
-          <p className="text-white/50 text-xs md:text-sm mt-1">
+          <p className="text-white/50 text-sm mt-1">
             Here's what that looks like when you do it once a week.
           </p>
         </motion.div>
@@ -55,59 +55,60 @@ const Slide8 = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="px-8 flex gap-2 relative z-10 mt-1"
+        className="px-8 flex gap-2.5 relative z-10 mt-2"
       >
-        <div className="flex items-center gap-1.5 bg-white/[0.06] border border-white/10 rounded-full px-3 py-1">
-          <Users className="w-3.5 h-3.5 text-[hsl(145,50%,45%)]" />
-          <span className="text-white/60 text-xs font-semibold">1,000 people / week</span>
+        <div className="flex items-center gap-1.5 bg-white/[0.06] border border-white/10 rounded-full px-3.5 py-1.5">
+          <Users className="w-4 h-4 text-[hsl(145,50%,45%)]" />
+          <span className="text-white/60 text-sm font-semibold">1,000 people / week</span>
         </div>
-        <div className="flex items-center gap-1.5 bg-white/[0.06] border border-white/10 rounded-full px-3 py-1">
-          <Target className="w-3.5 h-3.5 text-[hsl(25,100%,55%)]" />
-          <span className="text-white/60 text-xs font-semibold">2 clients each time</span>
+        <div className="flex items-center gap-1.5 bg-white/[0.06] border border-white/10 rounded-full px-3.5 py-1.5">
+          <Target className="w-4 h-4 text-[hsl(25,100%,55%)]" />
+          <span className="text-white/60 text-sm font-semibold">2 clients each time</span>
         </div>
-        <div className="flex items-center gap-1.5 bg-white/[0.06] border border-white/10 rounded-full px-3 py-1">
-          <DollarSign className="w-3.5 h-3.5 text-[hsl(45,100%,55%)]" />
-          <span className="text-white/60 text-xs font-semibold">$10,000 per client</span>
+        <div className="flex items-center gap-1.5 bg-white/[0.06] border border-white/10 rounded-full px-3.5 py-1.5">
+          <DollarSign className="w-4 h-4 text-[hsl(45,100%,55%)]" />
+          <span className="text-white/60 text-sm font-semibold">$10,000 per client</span>
         </div>
       </motion.div>
 
       {/* Weekly progression */}
       <div className="flex-1 px-8 py-3 relative z-10 flex flex-col justify-center min-h-0">
-        <div className="grid grid-cols-6 gap-2">
+        <div className="grid grid-cols-6 gap-2.5">
           {weeks.map((w, i) => (
             <motion.div
               key={w.week}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 + i * 0.1 }}
-              className={`rounded-xl p-2.5 border flex flex-col items-center gap-1.5 ${
+              className={`rounded-xl p-3 border flex flex-col items-center gap-2 ${
                 w.hitGoal
                   ? "bg-[hsl(45,100%,55%)]/[0.12] border-[hsl(45,100%,55%)]/30"
                   : "bg-white/[0.05] border-white/10"
               }`}
             >
-              <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">
+              <span className="text-white/40 text-xs font-bold uppercase tracking-wider">
                 Week {w.week}
               </span>
-              <div className="flex items-center gap-1">
-                <Users className="w-3.5 h-3.5 text-[hsl(145,50%,45%)]" />
-                <span className="text-white/60 text-xs font-semibold">1,000</span>
-              </div>
-              <div className="w-px h-2 bg-white/15" />
+
+              {/* Clients */}
               <div className="text-center">
-                <p className={`text-xl md:text-2xl font-black leading-none ${w.hitGoal ? "text-[hsl(45,100%,55%)]" : "text-white"}`}>
+                <p className={`text-3xl md:text-4xl font-black leading-none ${w.hitGoal ? "text-[hsl(45,100%,55%)]" : "text-white"}`}>
                   {w.totalClients}
                 </p>
-                <p className="text-white/40 text-[9px] md:text-[10px] font-semibold mt-0.5">clients total</p>
+                <p className="text-white/40 text-xs font-semibold mt-1">clients total</p>
               </div>
-              <div className={`text-center rounded-lg px-2 py-1 w-full ${
+
+              {/* Revenue */}
+              <div className={`text-center rounded-lg px-2 py-1.5 w-full ${
                 w.hitGoal ? "bg-[hsl(45,100%,55%)]/20" : "bg-white/[0.04]"
               }`}>
-                <p className={`text-base md:text-lg font-black ${w.hitGoal ? "text-[hsl(45,100%,55%)]" : "text-[hsl(145,50%,45%)]"}`}>
+                <p className={`text-xl md:text-2xl font-black ${w.hitGoal ? "text-[hsl(45,100%,55%)]" : "text-[hsl(145,50%,45%)]"}`}>
                   ${(w.totalRevenue / 1000).toFixed(0)}K
                 </p>
-                <p className="text-white/30 text-[8px] md:text-[9px] font-semibold">revenue</p>
+                <p className="text-white/30 text-[10px] font-semibold">revenue</p>
               </div>
+
+              {/* Progress bar */}
               <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
@@ -116,12 +117,13 @@ const Slide8 = () => {
                   className={`h-full rounded-full ${w.hitGoal ? "bg-[hsl(45,100%,55%)]" : "bg-[hsl(145,50%,45%)]"}`}
                 />
               </div>
+
               {w.hitGoal && (
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 1.4, type: "spring" }}
-                  className="text-[hsl(45,100%,55%)] text-[10px] font-black uppercase tracking-wider"
+                  className="text-[hsl(45,100%,55%)] text-xs font-black uppercase tracking-wider"
                 >
                   🎯 Goal Hit!
                 </motion.span>
@@ -137,8 +139,8 @@ const Slide8 = () => {
           transition={{ delay: 1.5 }}
           className="mt-3 flex items-center gap-3 bg-[hsl(45,100%,55%)]/[0.08] border border-[hsl(45,100%,55%)]/20 rounded-xl px-5 py-2.5"
         >
-          <TrendingUp className="w-5 h-5 text-[hsl(45,100%,55%)] shrink-0" />
-          <p className="text-white/70 text-xs md:text-sm leading-relaxed">
+          <TrendingUp className="w-6 h-6 text-[hsl(45,100%,55%)] shrink-0" />
+          <p className="text-white/70 text-sm md:text-base leading-relaxed">
             At just <span className="text-[hsl(45,100%,55%)] font-bold">2 clients per 1,000 people</span>, you hit your
             <span className="text-[hsl(45,100%,55%)] font-bold"> $120K goal in 6 weeks</span>.
             The only question is — where do those 1,000 people come from? <span className="text-white font-bold">We already have an answer for you.</span>
