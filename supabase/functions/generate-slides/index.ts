@@ -261,12 +261,35 @@ serve(async (req) => {
       );
     }
 
-    // Parse the JSON from the AI response
+    // Parse the JSON from the AI response, with repair for common AI mistakes
     let slideData;
     try {
       // Strip markdown fences if present
-      const cleaned = content.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
-      slideData = JSON.parse(cleaned);
+      let cleaned = content.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+      
+      // Try parsing as-is first
+      try {
+        slideData = JSON.parse(cleaned);
+      } catch {
+        // Attempt to repair common JSON issues from AI output
+        // Fix missing closing brackets by balancing them
+        let openBraces = 0, closeBraces = 0, openBrackets = 0, closeBrackets = 0;
+        for (const ch of cleaned) {
+          if (ch === '{') openBraces++;
+          if (ch === '}') closeBraces++;
+          if (ch === '[') openBrackets++;
+          if (ch === ']') closeBrackets++;
+        }
+        // Append missing closers
+        cleaned += ']'.repeat(Math.max(0, openBrackets - closeBrackets));
+        cleaned += '}'.repeat(Math.max(0, openBraces - closeBraces));
+        
+        // Fix trailing commas before ] or }
+        cleaned = cleaned.replace(/,\s*([\]}])/g, '$1');
+        
+        slideData = JSON.parse(cleaned);
+        console.log("Repaired malformed AI JSON successfully");
+      }
     } catch {
       console.error("Failed to parse AI JSON:", content);
       return new Response(
