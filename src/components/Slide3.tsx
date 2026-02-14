@@ -121,7 +121,7 @@ const Slide3 = () => {
           className="flex items-center gap-4 md:gap-6 flex-1 min-h-0"
         >
           {/* Chart */}
-          <div className="w-[55%] aspect-square max-h-full relative">
+          <div className="w-[45%] aspect-square max-h-full relative">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -167,7 +167,7 @@ const Slide3 = () => {
           </div>
 
           {/* Legend */}
-          <div className="flex flex-col gap-1.5 md:gap-2 w-[45%]">
+          <div className="flex flex-col gap-2 md:gap-3 w-[55%]">
             {/* All option */}
             <motion.div
               initial={{ opacity: 0, x: 15 }}
@@ -180,8 +180,8 @@ const Slide3 = () => {
             >
               <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full shrink-0 border-2 border-white/40" style={{ opacity: isAll ? 1 : 0.5 }} />
               <div className="min-w-0">
-                <p className={`text-[8px] md:text-[10px] font-semibold leading-tight transition-colors ${isAll ? "text-white" : "text-white/50"}`}>All</p>
-                <p className={`text-[7px] md:text-[8px] transition-colors ${isAll ? "text-[hsl(45,100%,55%)]" : "text-white/30"}`}>100% · 12,000,000</p>
+                <p className={`text-[10px] md:text-xs font-semibold leading-tight transition-colors ${isAll ? "text-white" : "text-white/50"}`}>All</p>
+                <p className={`text-[8px] md:text-[10px] transition-colors ${isAll ? "text-[hsl(45,100%,55%)]" : "text-white/30"}`}>100% · 12,000,000</p>
               </div>
             </motion.div>
             {/* Income segments — skip "Under $100K", show only $100K+, $200K+, $500K+ */}
@@ -204,10 +204,10 @@ const Slide3 = () => {
                 >
                   <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-sm shrink-0" style={{ backgroundColor: seg.color, opacity: isActive ? 1 : 0.6 }} />
                   <div className="min-w-0">
-                    <p className={`text-[8px] md:text-[10px] font-semibold leading-tight transition-colors ${isActive ? "text-white" : "text-white/50"}`}>
+                    <p className={`text-[10px] md:text-xs font-semibold leading-tight transition-colors ${isActive ? "text-white" : "text-white/50"}`}>
                       Over {cumulativeLabels[i]}
                     </p>
-                    <p className={`text-[7px] md:text-[8px] transition-colors ${isActive ? "text-[hsl(45,100%,55%)]" : "text-white/30"}`}>
+                    <p className={`text-[8px] md:text-[10px] transition-colors ${isActive ? "text-[hsl(45,100%,55%)]" : "text-white/30"}`}>
                       {cumulativePercent[i]}% · {cumulativeCouples[i]}
                     </p>
                   </div>
@@ -237,7 +237,7 @@ const Slide3 = () => {
         </motion.div>
 
         {/* Source */}
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="text-white/20 text-[7px] md:text-[8px] text-right mt-1">
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="text-white/35 text-[8px] md:text-[10px] text-right mt-1">
           Source: U.S. Census Bureau, American Community Survey · Click segments to explore
         </motion.p>
       </div>
