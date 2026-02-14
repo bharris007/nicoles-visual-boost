@@ -10,6 +10,7 @@ import Slide5 from "@/components/Slide5";
 import Slide6 from "@/components/Slide6";
 import Slide8 from "@/components/Slide8";
 import Slide9 from "@/components/Slide9";
+import Slide10 from "@/components/Slide10";
 
 const slides: Record<number, React.ComponentType> = {
   1: Slide1,
@@ -21,12 +22,13 @@ const slides: Record<number, React.ComponentType> = {
   7: Slide6,
   8: Slide8,
   9: Slide9,
+  10: Slide10,
 };
 
 const days = [
   { label: "Day 1", slides: [1, 2, 3] },
   { label: "Day 2", slides: [4, 5, 6, 7] },
-  { label: "Day 3", slides: [8, 9] },
+  { label: "Day 3", slides: [8, 9, 10] },
 ];
 
 const Index = () => {
