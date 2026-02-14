@@ -25,7 +25,7 @@ const Index = () => {
         transition={{ duration: 0.6 }}
         className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex"
         style={{
-          background: "linear-gradient(135deg, hsl(145,65%,38%) 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)",
+          background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)",
         }}
       >
         {/* Subtle pattern overlay */}
