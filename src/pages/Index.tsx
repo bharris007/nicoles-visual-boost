@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Slide1 from "@/components/Slide1";
 import Slide2 from "@/components/Slide2";
 import Slide3 from "@/components/Slide3";
@@ -42,6 +43,45 @@ const Index = () => {
   const [activeDay, setActiveDay] = useState("Day 1");
   const [activeSlide, setActiveSlide] = useState(1);
 
+  // Flat ordered list of all slides across all days
+  const allSlides = useMemo(
+    () => days.flatMap((d) => d.slides.map((s) => ({ ...s, day: d.day }))),
+    []
+  );
+
+  const currentIndex = allSlides.findIndex((s) => s.id === activeSlide);
+  const canGoPrev = currentIndex > 0;
+  const canGoNext = currentIndex < allSlides.length - 1;
+
+  const goTo = useCallback(
+    (index: number) => {
+      const slide = allSlides[index];
+      if (slide) {
+        setActiveSlide(slide.id);
+        setActiveDay(slide.day);
+      }
+    },
+    [allSlides]
+  );
+
+  const goPrev = useCallback(() => {
+    if (canGoPrev) goTo(currentIndex - 1);
+  }, [canGoPrev, currentIndex, goTo]);
+
+  const goNext = useCallback(() => {
+    if (canGoNext) goTo(currentIndex + 1);
+  }, [canGoNext, currentIndex, goTo]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [goPrev, goNext]);
+
   const currentDay = days.find((d) => d.day === activeDay);
   const ActiveComponent = currentDay?.slides.find((s) => s.id === activeSlide)?.component;
 
@@ -72,7 +112,6 @@ const Index = () => {
                 {group.day}
               </button>
 
-              {/* Expanded slide buttons */}
               <AnimatePresence>
                 {isActiveDay && group.slides.length > 0 && (
                   <motion.div
@@ -103,37 +142,65 @@ const Index = () => {
         })}
       </div>
 
-      {/* Slide content */}
-      <AnimatePresence mode="wait">
-        {ActiveComponent ? (
-          <motion.div
-            key={activeSlide}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="w-full flex items-center justify-center"
-          >
-            <ActiveComponent />
-          </motion.div>
-        ) : (
-          <motion.div
-            key={activeDay + "-empty"}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex items-center justify-center"
-            style={{
-              background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)",
-            }}
-          >
-            <div className="text-center">
-              <p className="text-white/40 text-lg font-semibold uppercase tracking-widest">{activeDay}</p>
-              <p className="text-white/25 text-sm mt-2">No slides yet</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Slide content with arrows */}
+      <div className="w-full flex items-center justify-center gap-4 relative">
+        {/* Left arrow */}
+        <button
+          onClick={goPrev}
+          disabled={!canGoPrev}
+          className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+            canGoPrev
+              ? "bg-white/10 text-white/60 hover:bg-white/20 hover:text-white"
+              : "bg-white/5 text-white/10 cursor-not-allowed"
+          }`}
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <AnimatePresence mode="wait">
+          {ActiveComponent ? (
+            <motion.div
+              key={activeSlide}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="w-full flex items-center justify-center"
+            >
+              <ActiveComponent />
+            </motion.div>
+          ) : (
+            <motion.div
+              key={activeDay + "-empty"}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex items-center justify-center"
+              style={{
+                background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)",
+              }}
+            >
+              <div className="text-center">
+                <p className="text-white/40 text-lg font-semibold uppercase tracking-widest">{activeDay}</p>
+                <p className="text-white/25 text-sm mt-2">No slides yet</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Right arrow */}
+        <button
+          onClick={goNext}
+          disabled={!canGoNext}
+          className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+            canGoNext
+              ? "bg-white/10 text-white/60 hover:bg-white/20 hover:text-white"
+              : "bg-white/5 text-white/10 cursor-not-allowed"
+          }`}
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
     </div>
   );
 };
