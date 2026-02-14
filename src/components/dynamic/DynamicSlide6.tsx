@@ -155,7 +155,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
                   <Icon className="w-7 h-7 md:w-8 md:h-8" style={{ color }} strokeWidth={1.8} />
                 </motion.div>
 
-                <motion.p layout className="text-sm md:text-base font-extrabold uppercase tracking-wider" style={{ color }}>
+                <motion.p layout className="text-sm md:text-base font-extrabold uppercase tracking-wider whitespace-nowrap" style={{ color }}>
                   {pillarWords[i]}
                 </motion.p>
 
