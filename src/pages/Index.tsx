@@ -125,7 +125,7 @@ const Index = () => {
             className="bg-white/[0.07] backdrop-blur-md rounded-xl p-4 md:p-6 border border-white/10"
           >
             <p className="text-[hsl(45,100%,55%)] text-[9px] md:text-[11px] font-bold tracking-[0.25em] uppercase mb-2">
-              Why This Matters
+              Nicole's #1 Motivating Force
             </p>
             <p className="text-white/75 text-[11px] md:text-sm leading-relaxed">
               "Achieving my revenue goal would make it possible for me to improve my quality of life
