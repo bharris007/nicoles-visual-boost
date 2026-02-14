@@ -38,7 +38,7 @@ const FunnelStep = ({
     className="flex items-center gap-4 md:gap-5"
   >
     <div
-      className={`relative rounded-xl flex items-center gap-3 md:gap-4 px-4 md:px-6 py-3 md:py-4 border ${
+      className={`relative rounded-xl flex items-center gap-3 md:gap-4 px-4 md:px-5 py-2.5 md:py-3 border ${
         highlight
           ? "bg-[hsl(45,100%,55%)]/15 border-[hsl(45,100%,55%)]/40"
           : "bg-white/[0.06] border-white/10"
@@ -115,7 +115,7 @@ const Slide2 = () => {
       <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[hsl(145,60%,50%)] opacity-[0.1] blur-[100px] pointer-events-none" />
 
       {/* Left sidebar — coach */}
-      <div className="w-[25%] flex flex-col items-center pt-8 md:pt-10 pb-6 px-4 relative border-r border-white/10">
+      <div className="w-[25%] flex flex-col items-center pt-8 md:pt-10 pb-8 md:pb-10 px-4 relative border-r border-white/10">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -180,7 +180,7 @@ const Slide2 = () => {
       </div>
 
       {/* Right content — the math */}
-      <div className="w-[75%] flex flex-col justify-center px-6 md:px-10 py-10 md:py-14 gap-2 relative z-10">
+      <div className="w-[75%] flex flex-col justify-center px-6 md:px-10 py-8 md:py-10 gap-2 relative z-10">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
@@ -197,7 +197,7 @@ const Slide2 = () => {
         </motion.div>
 
         {/* Funnel */}
-        <div className="flex flex-col gap-1.5 md:gap-2">
+        <div className="flex flex-col gap-1 md:gap-1.5">
           <FunnelStep
             icon={Users}
             number="1,200"
