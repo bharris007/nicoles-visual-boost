@@ -121,7 +121,7 @@ const Slide7 = () => {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm md:text-base font-bold" style={{ color: step.color }}>
-                  {step.title}
+                  {i + 1}. {step.title}
                 </p>
                 <p className="text-white/50 text-[10px] md:text-xs leading-relaxed mt-0.5">
                   {step.desc}
