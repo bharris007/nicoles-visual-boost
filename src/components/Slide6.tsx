@@ -130,7 +130,7 @@ const Slide6 = () => {
           className="flex gap-2 items-start mt-4"
         >
           <div className="w-1 self-stretch rounded-full bg-[hsl(45,100%,55%)]/30 shrink-0" />
-          <p className="text-white/45 text-[10px] md:text-xs italic leading-relaxed">
+          <p className="text-white/45 text-xs md:text-sm italic leading-relaxed">
             "One partnership changed everything. We went from grinding for leads to having them come to us. BOPA made it repeatable."
           </p>
         </motion.div>
