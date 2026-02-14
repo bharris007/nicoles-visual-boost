@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import gtFavicon from "@/assets/gt-favicon.png";
 import { TrendingUp } from "lucide-react";
 import {
   AreaChart,
@@ -7,6 +6,7 @@ import {
   XAxis,
   YAxis,
   ReferenceLine,
+  ReferenceDot,
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
@@ -24,6 +24,8 @@ const totalPoints = Math.max(weeksToGoal + 2, 6);
 
 // Decide label strategy: if many weeks, show monthly labels
 const useMonthlLabels = totalPoints > 12;
+
+const goalWeekIndex = weeksToGoal - 1; // 0-based index for default tooltip
 
 const chartData = Array.from({ length: totalPoints }, (_, i) => {
   const week = i + 1;
@@ -92,17 +94,10 @@ const Slide8 = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="flex items-center gap-2 mb-2"
+          className="mb-2"
         >
-          <div className="w-7 h-7 rounded-md overflow-hidden shadow-lg shadow-black/30">
-            <img
-              src={gtFavicon}
-              alt="Growth Tools"
-              className="w-full h-full object-cover"
-            />
-          </div>
           <span className="text-white/30 text-sm font-bold uppercase tracking-widest">
-            Your Revenue Roadmap
+            Nicole's Revenue Roadmap
           </span>
         </motion.div>
 
@@ -132,7 +127,7 @@ const Slide8 = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.5 }}
-        className="flex-1 mx-8 mb-2 relative z-10 min-h-0 rounded-xl border border-white/10 bg-white/[0.03] p-3 max-h-[55%]"
+        className="flex-1 mx-8 mb-2 relative z-10 min-h-0 rounded-xl border border-white/10 bg-white/[0.03] p-3 max-h-[45%]"
       >
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
@@ -189,6 +184,21 @@ const Slide8 = () => {
               fill="url(#revenueGrad)"
               animationDuration={1500}
               animationBegin={700}
+            />
+            <ReferenceDot
+              x={chartData[goalWeekIndex]?.label}
+              y={GOAL}
+              r={6}
+              fill="hsl(45,100%,55%)"
+              stroke="white"
+              strokeWidth={2}
+              label={{
+                value: `Week ${weeksToGoal}: ${fmtCurrency(GOAL)}`,
+                position: "top",
+                fill: "hsl(45,100%,55%)",
+                fontSize: 11,
+                fontWeight: 700,
+              }}
             />
           </AreaChart>
         </ResponsiveContainer>
