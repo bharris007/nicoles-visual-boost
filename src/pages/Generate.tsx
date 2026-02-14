@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Loader2, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
+import { Sparkles, Loader2, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import DynamicSlide1 from "@/components/dynamic/DynamicSlide1";
@@ -141,17 +141,19 @@ const Generate = () => {
   // Show slide viewer if we have generated data
   if (generatedData) {
     return (
-      <div className="min-h-screen bg-[hsl(220,15%,18%)] flex flex-col items-center justify-center p-4 md:p-8 gap-6">
-        {/* Top bar */}
-        <div className="flex items-center gap-4 w-full max-w-5xl">
-          <button
-            onClick={() => setGeneratedData(null)}
-            className="flex items-center gap-2 text-white/40 hover:text-white/70 text-sm font-semibold transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Generator
-          </button>
-          <div className="flex-1" />
+      <div className="min-h-screen bg-[hsl(220,15%,18%)] flex flex-col items-center justify-center p-4 md:p-8 relative">
+        {/* Top-left: Variables icon */}
+        <div className="absolute top-4 left-4 z-20">
+          <VariablesPanel
+            day={generatedData.day}
+            data={generatedData.data}
+            isRegenerating={isRegenerating}
+            onRegenerate={handleRegenerate}
+          />
+        </div>
+
+        {/* Top-right: slide pips + client info */}
+        <div className="absolute top-4 right-4 z-20 flex items-center gap-3">
           <div className="flex items-center gap-1 bg-white/[0.06] rounded-lg border border-white/10 px-1 py-0.5">
             {Array.from({ length: slideCount }, (_, i) => i + 1).map((num) => (
               <button
@@ -172,14 +174,6 @@ const Generate = () => {
           </p>
         </div>
 
-        {/* Variables Panel */}
-        <VariablesPanel
-          day={generatedData.day}
-          data={generatedData.data}
-          isRegenerating={isRegenerating}
-          onRegenerate={handleRegenerate}
-        />
-
         {/* Slide */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -194,26 +188,13 @@ const Generate = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation arrows */}
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => setActiveSlide((s) => Math.max(s - 1, 1))}
-            disabled={activeSlide === 1}
-            className="w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/40 hover:text-white/70 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <span className="text-white/30 text-xs font-semibold">
-            {activeSlide} / {slideCount}
-          </span>
-          <button
-            onClick={() => setActiveSlide((s) => Math.min(s + 1, slideCount))}
-            disabled={activeSlide === slideCount}
-            className="w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/40 hover:text-white/70 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
+        {/* Bottom-left: back button */}
+        <button
+          onClick={() => setGeneratedData(null)}
+          className="absolute bottom-4 left-4 w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/40 hover:text-white/70 transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
       </div>
     );
   }
