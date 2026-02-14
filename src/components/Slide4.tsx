@@ -212,7 +212,7 @@ const Slide4 = () => {
             </div>
             <div>
               <p className="text-white/90 text-xs md:text-sm font-semibold leading-snug">
-                These audiences need <span className="text-[hsl(45,100%,55%)] font-bold">expert content</span>. <span className="text-[hsl(45,100%,55%)] font-bold">Nicole, you are the content!</span>
+                These audiences need expert content. <span className="text-[hsl(45,100%,55%)] font-bold">Nicole</span>, you are the content!
               </p>
             </div>
           </div>
