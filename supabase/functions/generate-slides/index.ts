@@ -118,10 +118,11 @@ STEP 3 — From their answers, extract and return a JSON object with EXACTLY thi
      ]
    },
    "mediaExamples": [
-     { "type": "newsletter", "name": "Name of a real, well-known newsletter in this niche", "description": "One sentence about what it covers and why it's relevant to the crisis audience" },
-     { "type": "podcast", "name": "Name of a real, well-known podcast in this niche", "description": "One sentence about what it covers" },
-     { "type": "youtube", "name": "Name of a real, well-known YouTube channel in this niche", "description": "One sentence about what it covers" }
+     { "type": "newsletter", "name": "REAL newsletter name that verifiably exists in this niche", "url": "https://... direct URL to their website or signup page", "description": "One sentence about what it covers" },
+     { "type": "podcast", "name": "REAL podcast name that verifiably exists in this niche", "url": "https://... direct URL to the podcast website or Apple/Spotify page", "description": "One sentence about what it covers" },
+     { "type": "youtube", "name": "REAL YouTube channel name that verifiably exists in this niche", "url": "https://www.youtube.com/@channelhandle", "description": "One sentence about what it covers" }
    ],
+   "_mediaExamples_instructions": "CRITICAL: These MUST be real, verifiable media properties. Do NOT invent names. Use well-known, established newsletters, podcasts, and YouTube channels that actually exist in this niche. Include their real website URLs.",
   "offerStructure": {
     "plan": { "headline": "Custom Plan Name", "bullets": ["bullet 1", "bullet 2", "bullet 3"] },
     "training": { "headline": "Training Component Name", "bullets": ["bullet 1", "bullet 2", "bullet 3"] },
