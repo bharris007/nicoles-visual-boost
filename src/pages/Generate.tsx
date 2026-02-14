@@ -1,8 +1,11 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Sparkles, Loader2, ChevronRight } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles, Loader2, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import DynamicSlide1 from "@/components/dynamic/DynamicSlide1";
+import DynamicSlide2 from "@/components/dynamic/DynamicSlide2";
+import DynamicSlide3 from "@/components/dynamic/DynamicSlide3";
 
 const dayLabels = [
   { day: 1, label: "Day 1", desc: "Revenue goals, motivations & target market", slides: "Slides 1–3" },
@@ -15,6 +18,7 @@ const Generate = () => {
   const [answers, setAnswers] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedData, setGeneratedData] = useState<{ day: number; data: any } | null>(null);
+  const [activeSlide, setActiveSlide] = useState(1);
   const { toast } = useToast();
 
   const handleGenerate = async () => {
@@ -37,7 +41,8 @@ const Generate = () => {
         toast({ title: "Generation failed", description: data.error, variant: "destructive" });
       } else {
         setGeneratedData(data);
-        toast({ title: "Slides generated!", description: `Day ${selectedDay} content is ready.` });
+        setActiveSlide(1);
+        toast({ title: "Slides generated!", description: `Day ${selectedDay} slides are ready.` });
       }
     } catch (err: any) {
       console.error("Generation error:", err);
@@ -47,14 +52,125 @@ const Generate = () => {
     }
   };
 
+  // Determine how many slides for the generated day
+  const slideCount = generatedData?.day === 1 ? 3 : generatedData?.day === 2 ? 4 : 3;
+
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (!generatedData) return;
+      if (e.key === "ArrowRight") setActiveSlide((s) => Math.min(s + 1, slideCount));
+      if (e.key === "ArrowLeft") setActiveSlide((s) => Math.max(s - 1, 1));
+    },
+    [generatedData, slideCount]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
+  const renderSlide = () => {
+    if (!generatedData) return null;
+    const d = generatedData.data;
+
+    if (generatedData.day === 1) {
+      switch (activeSlide) {
+        case 1:
+          return <DynamicSlide1 data={d} />;
+        case 2:
+          return <DynamicSlide2 data={d} />;
+        case 3:
+          return <DynamicSlide3 data={d} />;
+      }
+    }
+
+    // Day 2 and 3 coming soon placeholders
+    return (
+      <div className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex items-center justify-center" style={{ background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)" }}>
+        <div className="text-center">
+          <p className="text-white/60 text-lg font-bold">Day {generatedData.day} — Slide {activeSlide}</p>
+          <p className="text-white/30 text-sm mt-1">Dynamic slides for Day {generatedData.day} coming soon</p>
+        </div>
+      </div>
+    );
+  };
+
+  // Show slide viewer if we have generated data
+  if (generatedData) {
+    return (
+      <div className="min-h-screen bg-[hsl(220,15%,18%)] flex flex-col items-center justify-center p-4 md:p-8 gap-6">
+        {/* Top bar */}
+        <div className="flex items-center gap-4 w-full max-w-5xl">
+          <button
+            onClick={() => setGeneratedData(null)}
+            className="flex items-center gap-2 text-white/40 hover:text-white/70 text-sm font-semibold transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Generator
+          </button>
+          <div className="flex-1" />
+          <div className="flex items-center gap-1 bg-white/[0.06] rounded-lg border border-white/10 px-1 py-0.5">
+            {Array.from({ length: slideCount }, (_, i) => i + 1).map((num) => (
+              <button
+                key={num}
+                onClick={() => setActiveSlide(num)}
+                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
+                  activeSlide === num
+                    ? "bg-white/20 text-white"
+                    : "text-white/40 hover:text-white/60"
+                }`}
+              >
+                {num}
+              </button>
+            ))}
+          </div>
+          <p className="text-white/30 text-xs">
+            Day {generatedData.day} • {generatedData.data.clientName}
+          </p>
+        </div>
+
+        {/* Slide */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeSlide}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="w-full flex items-center justify-center"
+          >
+            {renderSlide()}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation arrows */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => setActiveSlide((s) => Math.max(s - 1, 1))}
+            disabled={activeSlide === 1}
+            className="w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/40 hover:text-white/70 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <span className="text-white/30 text-xs font-semibold">
+            {activeSlide} / {slideCount}
+          </span>
+          <button
+            onClick={() => setActiveSlide((s) => Math.min(s + 1, slideCount))}
+            disabled={activeSlide === slideCount}
+            className="w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/40 hover:text-white/70 disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Generator form
   return (
     <div className="min-h-screen bg-[hsl(220,15%,12%)] flex flex-col items-center px-4 py-10 md:py-16">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-10"
-      >
+      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-black text-white">
           Generate <span className="text-[hsl(45,100%,55%)]">Custom Slides</span>
         </h1>
@@ -66,9 +182,7 @@ const Generate = () => {
       <div className="w-full max-w-2xl space-y-6">
         {/* Day Selector */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <label className="text-white/60 text-xs font-bold uppercase tracking-widest mb-3 block">
-            Select Day
-          </label>
+          <label className="text-white/60 text-xs font-bold uppercase tracking-widest mb-3 block">Select Day</label>
           <div className="grid grid-cols-3 gap-3">
             {dayLabels.map((d) => (
               <button
@@ -80,9 +194,7 @@ const Generate = () => {
                     : "border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06]"
                 }`}
               >
-                <p className={`text-lg font-black ${selectedDay === d.day ? "text-[hsl(45,100%,55%)]" : "text-white/70"}`}>
-                  {d.label}
-                </p>
+                <p className={`text-lg font-black ${selectedDay === d.day ? "text-[hsl(45,100%,55%)]" : "text-white/70"}`}>{d.label}</p>
                 <p className="text-white/40 text-[10px] mt-1 leading-snug">{d.desc}</p>
                 <p className="text-white/25 text-[9px] mt-1 font-semibold">{d.slides}</p>
               </button>
@@ -92,9 +204,7 @@ const Generate = () => {
 
         {/* Textarea */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-          <label className="text-white/60 text-xs font-bold uppercase tracking-widest mb-3 block">
-            Client's Answers
-          </label>
+          <label className="text-white/60 text-xs font-bold uppercase tracking-widest mb-3 block">Client's Answers</label>
           <textarea
             value={answers}
             onChange={(e) => setAnswers(e.target.value)}
@@ -124,33 +234,6 @@ const Generate = () => {
             )}
           </button>
         </motion.div>
-
-        {/* Results */}
-        {generatedData && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="rounded-xl border-2 border-[hsl(145,60%,40%)]/30 bg-[hsl(145,60%,40%)]/[0.05] p-6"
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-[hsl(145,60%,40%)]/20 flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-[hsl(145,60%,40%)]" />
-              </div>
-              <h3 className="text-white font-bold text-lg">Day {generatedData.day} — Generated</h3>
-            </div>
-
-            <div className="bg-black/30 rounded-lg p-4 overflow-auto max-h-96">
-              <pre className="text-white/70 text-xs leading-relaxed whitespace-pre-wrap font-mono">
-                {JSON.stringify(generatedData.data, null, 2)}
-              </pre>
-            </div>
-
-            <p className="text-white/30 text-xs mt-3 flex items-center gap-1">
-              <ChevronRight className="w-3 h-3" />
-              This data will be used to render the personalized slides. Slide viewer coming next.
-            </p>
-          </motion.div>
-        )}
       </div>
     </div>
   );
