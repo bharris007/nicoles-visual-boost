@@ -122,8 +122,12 @@ const BarRow = ({
             transition={{ duration: 0.25 }}
             className="overflow-hidden"
           >
-            <p className="text-white/50 text-[9px] md:text-[10px] leading-relaxed mt-2">
-              <span className="font-bold" style={{ color: item.color }}>{item.stat}</span> couples in your target market — {item.detail}
+            <div className="mt-2.5 flex items-baseline gap-2 flex-wrap">
+              <span className="text-lg md:text-xl font-extrabold leading-none" style={{ color: item.color }}>{item.stat}</span>
+              <span className="text-white/50 text-[10px] md:text-xs font-semibold">couples earning $100K+</span>
+            </div>
+            <p className="text-white/45 text-[9px] md:text-[11px] leading-relaxed mt-1">
+              {item.detail}
             </p>
           </motion.div>
         )}
