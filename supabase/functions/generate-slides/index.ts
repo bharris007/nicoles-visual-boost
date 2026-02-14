@@ -74,12 +74,12 @@ STEP 3 — From their answers, extract and return a JSON object with EXACTLY thi
   "industry": "The derived industry phrase (e.g. 'marriage reconciliation')",
   "targetAudience": "Who their ideal clients are",
   "marketData": {
-    "totalUS": "Total people in crisis in US, formatted with commas",
+    "totalUS": "Total people in crisis in US, formatted with commas (e.g. '12,100,000')",
     "incomeSegments": [
-      { "name": "All (any income)", "percentage": 100, "color": "hsl(160,30%,35%)" },
-      { "name": "$100K+ Household", "percentage": "CALCULATE as % of total", "color": "hsl(145,50%,45%)" },
-      { "name": "$200K+ Household", "percentage": "CALCULATE as % of total", "color": "hsl(45,95%,52%)" },
-      { "name": "$500K+ Household", "percentage": "CALCULATE as % of total", "color": "hsl(25,100%,55%)" }
+      { "name": "All (any income)", "percentage": 100, "count": "Same as totalUS formatted (e.g. '12,100,000')", "color": "hsl(160,30%,35%)" },
+      { "name": "$100K+ Household", "percentage": "CALCULATE as % of total, integer", "count": "Actual count formatted with commas (e.g. '4,100,000')", "color": "hsl(145,50%,45%)" },
+      { "name": "$200K+ Household", "percentage": "CALCULATE as % of total, integer", "count": "Actual count formatted with commas (e.g. '1,100,000')", "color": "hsl(45,95%,52%)" },
+      { "name": "$500K+ Household", "percentage": "CALCULATE as % of total, integer", "count": "Actual count formatted with commas (e.g. '121,000')", "color": "hsl(25,100%,55%)" }
     ],
     "countries": {
       "all": {
@@ -95,7 +95,7 @@ STEP 3 — From their answers, extract and return a JSON object with EXACTLY thi
         "US": "XX,XXX", "UK": "XX,XXX", "CA": "X,XXX", "AU": "X,XXX", "total": "XX,XXX"
       }
     },
-    "subtitle": "A one-liner summary with the total market size, e.g. '12 million struggling marriages in the U.S. — broken down by household income.'",
+    "subtitle": "A one-liner summary with the total market size, e.g. '12.1 million struggling marriages in the U.S. — broken down by household income.'",
     "bottomCallout": "A motivational one-liner about the market opportunity, mentioning the client name and how few clients they need"
   },
   "mediaChannels": [
