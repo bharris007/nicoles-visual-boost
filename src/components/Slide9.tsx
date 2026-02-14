@@ -68,15 +68,30 @@ const Slide9 = () => {
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="relative bg-[hsl(145,50%,45%)]/25 border-2 border-[hsl(145,50%,45%)]/60 rounded-xl px-5 py-4 backdrop-blur-sm flex items-center gap-4 shadow-[0_0_20px_hsl(145,50%,45%,0.15),inset_0_1px_0_hsl(145,50%,55%,0.2)]"
+            className="relative rounded-xl px-5 py-4 backdrop-blur-sm flex items-center gap-4 overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, hsl(145,50%,30%) 0%, hsl(145,50%,20%) 60%, hsl(45,80%,25%) 100%)",
+              boxShadow: "0 0 25px hsl(45,100%,55%,0.15), 0 0 50px hsl(145,50%,45%,0.1), inset 0 1px 0 hsl(45,100%,65%,0.25)",
+            }}
           >
-            {/* Glow ring */}
-            <div className="absolute inset-0 rounded-xl ring-1 ring-[hsl(145,50%,55%)]/20 pointer-events-none" />
-            <div className="w-10 h-10 rounded-full bg-[hsl(145,50%,45%)]/30 flex items-center justify-center shrink-0">
-              <CheckCircle2 className="w-6 h-6 text-[hsl(145,50%,55%)]" />
+            {/* Gradient border overlay */}
+            <div
+              className="absolute inset-0 rounded-xl pointer-events-none"
+              style={{
+                padding: "2px",
+                background: "linear-gradient(135deg, hsl(145,50%,55%), hsl(45,100%,55%), hsl(145,50%,55%))",
+                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+                maskComposite: "exclude",
+              }}
+            />
+            {/* Shimmer */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-[hsl(45,100%,55%)]/10 to-transparent pointer-events-none animate-pulse" />
+            <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: "linear-gradient(135deg, hsl(145,50%,45%), hsl(45,90%,45%))" }}>
+              <CheckCircle2 className="w-6 h-6 text-white" />
             </div>
-            <div>
-              <span className="text-[hsl(145,50%,55%)] text-base font-black uppercase tracking-wider block">Open to Partners</span>
+            <div className="relative z-10">
+              <span className="text-base font-black uppercase tracking-wider block" style={{ background: "linear-gradient(90deg, hsl(145,50%,60%), hsl(45,100%,60%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Open to Partners</span>
               <span className="text-white/40 text-[10px]">Actively looking for collaborators</span>
             </div>
           </motion.div>
