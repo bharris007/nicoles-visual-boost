@@ -188,7 +188,7 @@ const Slide2 = () => {
 
         {/* Funnel */}
         <div className="flex flex-col gap-1 md:gap-1.5">
-          <FunnelStep icon={Users} number={data.leads} label="Leads raise their hand" delay={0.45} widthPercent={100} active={activeStep === "leads"} onClick={() => setActiveStep(activeStep === "leads" ? null : "leads")} />
+          <FunnelStep icon={Users} number={data.leads} label="People from other audiences" delay={0.45} widthPercent={100} active={activeStep === "leads"} onClick={() => setActiveStep(activeStep === "leads" ? null : "leads")} />
           <FunnelArrow delay={0.55} />
           <FunnelStep icon={MessageCircle} number={data.conversations} label="Conversations" delay={0.65} widthPercent={80} active={activeStep === "conversations"} onClick={() => setActiveStep(activeStep === "conversations" ? null : "conversations")} />
           <FunnelArrow delay={0.75} />
