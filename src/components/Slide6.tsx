@@ -18,8 +18,22 @@ const Slide6 = () => {
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[hsl(45,100%,55%)] opacity-[0.08] blur-[80px] pointer-events-none" />
 
-      {/* Top accent bar */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[hsl(145,50%,45%)] via-[hsl(45,100%,55%)] to-[hsl(25,100%,55%)]" />
+      {/* Top banner - starts at photo edge, stretches to right */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="absolute top-0 left-[40%] right-0 z-20 bg-[hsl(45,100%,55%)]/15 backdrop-blur-sm border-b border-[hsl(45,100%,55%)]/20 px-6 py-2 flex items-center gap-2"
+      >
+        <span className="text-lg">🔥</span>
+        <span className="text-[hsl(45,100%,55%)] text-[10px] md:text-xs font-bold uppercase tracking-wider">
+          Tomorrow's Training Preview
+        </span>
+        <div className="flex-1 h-px bg-[hsl(45,100%,55%)]/20" />
+      </motion.div>
+
+      {/* Top accent bar - only on left photo portion */}
+      <div className="absolute top-0 left-0 w-[40%] h-1 bg-gradient-to-r from-[hsl(145,50%,45%)] via-[hsl(45,100%,55%)] to-[hsl(25,100%,55%)]" />
 
       {/* Left: Photo */}
       <div className="w-[40%] relative overflow-hidden">
@@ -28,19 +42,11 @@ const Slide6 = () => {
           alt="Justin Brooke"
           className="absolute inset-0 w-full h-full object-cover object-top"
         />
-        {/* Fade edge into right side */}
         <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[hsl(160,50%,18%)] to-transparent" />
       </div>
 
       {/* Right: Content */}
-      <div className="w-[60%] flex flex-col justify-center px-8 md:px-10 py-6 relative z-10">
-        {/* Badge */}
-        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mb-3">
-          <span className="bg-[hsl(45,100%,55%)]/15 border border-[hsl(45,100%,55%)]/30 rounded-full px-3 py-1 text-[hsl(45,100%,55%)] text-[9px] md:text-[11px] font-bold uppercase tracking-wider inline-block">
-            🔥 Tomorrow's Training Preview
-          </span>
-        </motion.div>
-
+      <div className="w-[60%] flex flex-col justify-center px-8 md:px-10 py-6 pt-12 relative z-10">
         {/* Name */}
         <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
           <h2 className="text-2xl md:text-4xl font-black text-white leading-tight">
