@@ -80,13 +80,12 @@ const Index = () => {
             <GrowthToolsLogo className="text-[8px] md:text-[9px] mt-1 text-white/50" />
           </motion.div>
 
-          {/* Big trending icon aligned with why box */}
-          <div className="flex-1" />
+          {/* Big trending icon vertically centered with why box */}
           <motion.div
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7, duration: 0.5 }}
-            className="mb-2"
+            className="mt-auto mb-8 md:mb-10"
           >
             <TrendingUp className="w-24 h-24 md:w-32 md:h-32 text-white/[0.08]" strokeWidth={1.5} />
           </motion.div>
