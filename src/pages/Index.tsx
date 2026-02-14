@@ -136,6 +136,15 @@ const Index = () => {
               longer periods of time, and spending more time with friends and family."
             </p>
           </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.85 }}
+            className="text-white/50 text-[10px] md:text-xs"
+          >
+            By hitting this goal, you'd be in the <span className="text-[hsl(45,100%,55%)] font-semibold">90th percentile</span> of all businesses in this space.
+          </motion.p>
         </div>
       </motion.div>
     </div>
