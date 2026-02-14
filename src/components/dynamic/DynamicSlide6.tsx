@@ -144,12 +144,16 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
                 transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
                 onClick={() => setActiveIdx(isActive ? null : i)}
                 layout
-                className={`flex-1 rounded-xl border cursor-pointer transition-colors duration-300 flex flex-col items-center text-center px-3 md:px-4 py-2 md:py-3 gap-1 group ${
+                className={`flex-1 rounded-xl border cursor-pointer transition-colors duration-300 flex flex-col items-center text-center px-3 md:px-4 py-2 md:py-3 gap-1 group relative ${
                   isActive
                     ? "bg-white/[0.10] border-white/20 shadow-xl"
                     : "bg-white/[0.04] border-white/10 hover:bg-white/[0.08] hover:border-white/20"
                 }`}
               >
+                {/* Step number */}
+                <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-white/[0.08] border border-white/10 flex items-center justify-center">
+                  <span className="text-white/30 text-[9px] font-bold">{i + 1}</span>
+                </div>
                 <motion.div
                   layout
                   initial={{ scale: 0.6, opacity: 0 }}
