@@ -105,7 +105,7 @@ const timeFrameLabels: { value: TimeFrame; label: string }[] = [
 
 const Slide2 = () => {
   const [timeFrame, setTimeFrame] = useState<TimeFrame>("year");
-  const data = funnelData[timeFrame];
+  const data = funnelData[timeFrame] ?? funnelData.year;
 
   return (
     <motion.div
