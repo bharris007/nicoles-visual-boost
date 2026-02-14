@@ -203,7 +203,7 @@ const Slide5 = () => {
             <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[hsl(45,100%,55%)]/20 flex items-center justify-center shrink-0">
               <span className="text-sm">✨</span>
             </div>
-            <p className="text-white/80 text-[9px] md:text-[11px] font-semibold leading-snug">
+            <p className="text-white/80 text-xs md:text-sm font-semibold leading-snug">
               6–12 months of transformation. Nicole walks with them until they're thriving.
             </p>
           </div>
