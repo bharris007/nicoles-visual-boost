@@ -130,7 +130,7 @@ const DynamicSlide2 = ({ data }: DynamicSlide2Props) => {
             {data.clientName}'s Path to {data.revenueGoal}
           </p>
           <p className="text-white/25 text-[9px] md:text-[11px] mt-0.5">
-            Here's exactly what it takes — and why it's completely doable.
+            Here's exactly what it takes - and why it's completely doable.
           </p>
         </motion.div>
 
