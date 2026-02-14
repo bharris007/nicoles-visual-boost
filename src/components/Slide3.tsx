@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import headshot from "@/assets/headshot.png";
 import { TrendingUp, Users } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Sector } from "recharts";
+import Slide3DrillDown from "./Slide3DrillDown";
 
 const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
   <div className={`flex items-center gap-[3px] font-extrabold tracking-[0.12em] uppercase text-white ${className}`}>
@@ -52,6 +53,21 @@ const formatNum = (s: string) => {
 
 const Slide3 = () => {
   const [activeIdx, setActiveIdx] = useState<"all" | number>("all");
+  const [drillDownIdx, setDrillDownIdx] = useState<number | null>(null);
+  const lastClickRef = useRef<{ idx: number; time: number } | null>(null);
+
+  const handlePieClick = useCallback((_: any, idx: number) => {
+    const now = Date.now();
+    const last = lastClickRef.current;
+    if (last && last.idx === idx && now - last.time < 400) {
+      // Double click — drill down
+      setDrillDownIdx(idx);
+      lastClickRef.current = null;
+    } else {
+      setActiveIdx(idx);
+      lastClickRef.current = { idx, time: now };
+    }
+  }, []);
 
   const isAll = activeIdx === "all";
   const activeSeg = isAll ? allSegment : pieData[activeIdx as number];
@@ -122,7 +138,7 @@ const Slide3 = () => {
                   activeIndex={typeof activeIdx === "number" ? activeIdx : undefined}
                   activeShape={renderActiveShape}
                   onMouseEnter={(_, idx) => setActiveIdx(idx)}
-                  onClick={(_, idx) => setActiveIdx(idx)}
+                  onClick={handlePieClick}
                   stroke="none"
                   animationBegin={400}
                   animationDuration={800}
@@ -221,9 +237,20 @@ const Slide3 = () => {
 
         {/* Source */}
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="text-white/35 text-[8px] md:text-[10px] text-left mt-1">
-          Source: U.S. Census Bureau, American Community Survey · Click segments to explore
+          Source: U.S. Census Bureau, American Community Survey · Double-click a segment to drill down
         </motion.p>
       </div>
+
+      {/* Drill-down overlay */}
+      <AnimatePresence>
+        {drillDownIdx !== null && (
+          <Slide3DrillDown
+            segmentIndex={drillDownIdx}
+            segmentColor={pieData[drillDownIdx].color}
+            onClose={() => setDrillDownIdx(null)}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
