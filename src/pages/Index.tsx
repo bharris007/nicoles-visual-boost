@@ -9,7 +9,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[hsl(220,15%,18%)] flex flex-col items-center justify-center p-4 md:p-8 gap-6">
       {/* Slide switcher */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
+        {/* Group label */}
+        <span className="text-white/30 text-[10px] font-bold uppercase tracking-widest mr-1">Day 1</span>
+        <div className="w-px h-5 bg-white/10" />
         <button
           onClick={() => setActiveSlide(1)}
           className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
