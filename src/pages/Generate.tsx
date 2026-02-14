@@ -177,15 +177,13 @@ const Generate = () => {
   if (generatedData) {
     return (
       <div className="min-h-screen bg-[hsl(220,15%,18%)] flex flex-col items-center justify-center p-4 md:p-8 relative">
-        {/* Top-left: Variables icon */}
-        <div className="absolute top-4 left-4 z-20">
-          <VariablesPanel
-            day={generatedData.day}
-            data={generatedData.data}
-            isRegenerating={isRegenerating}
-            onRegenerate={handleRegenerate}
-          />
-        </div>
+        {/* Top-left: back button */}
+        <button
+          onClick={() => setGeneratedData(null)}
+          className="absolute top-4 left-4 z-20 w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/40 hover:text-white/70 transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
 
         {/* Top-right: slide pips + client info */}
         <div className="absolute top-4 right-4 z-20 flex items-center gap-3">
@@ -223,13 +221,15 @@ const Generate = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom-left: back button */}
-        <button
-          onClick={() => setGeneratedData(null)}
-          className="absolute bottom-4 left-4 w-10 h-10 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center text-white/40 hover:text-white/70 transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </button>
+        {/* Bottom-left: Variables/Settings icon */}
+        <div className="absolute bottom-4 left-4 z-20">
+          <VariablesPanel
+            day={generatedData.day}
+            data={generatedData.data}
+            isRegenerating={isRegenerating}
+            onRegenerate={handleRegenerate}
+          />
+        </div>
       </div>
     );
   }
