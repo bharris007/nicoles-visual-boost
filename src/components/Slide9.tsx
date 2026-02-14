@@ -92,7 +92,7 @@ const Slide9 = () => {
             </div>
             <div className="relative z-10">
               <span className="text-base font-black uppercase tracking-wider block" style={{ background: "linear-gradient(90deg, hsl(145,50%,60%), hsl(45,100%,60%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Actively Looking for Partners</span>
-              <span className="text-white/40 text-[10px]">Wants you to reach out</span>
+              <span className="text-white/40 text-[10px]">Wants you to reach out!</span>
             </div>
           </motion.div>
 
