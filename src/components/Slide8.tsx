@@ -210,7 +210,7 @@ const Slide8 = () => {
                 tickLine={false}
                 width={50}
               />
-              <Tooltip content={<CustomTooltip />} defaultIndex={goalWeekIndex} />
+              <Tooltip content={<CustomTooltip />} defaultIndex={goalWeekIndex} trigger="click" />
               <ReferenceLine
                 y={GOAL}
                 stroke="hsl(45,100%,55%)"
