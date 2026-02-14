@@ -98,7 +98,7 @@ const Index = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-white/50 text-xs md:text-sm font-semibold tracking-[0.2em] uppercase"
+            className="text-white/50 text-xs md:text-sm font-semibold tracking-[0.2em]"
           >
             Nicole's Revenue Goal
           </motion.p>
