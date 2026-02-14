@@ -218,7 +218,7 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
             {clientName}'s Target Audience Analysis
           </p>
           <p className="text-white/50 text-[9px] md:text-[11px] mt-0.5">
-            <span className="text-[hsl(45,100%,55%)] font-semibold">{totalAudience} $100K+ earners</span> in {crisis} are already consuming content weekly — in someone else's audience.
+            <span className="text-[hsl(45,100%,55%)] font-semibold">{totalAudience} $100K+ earners</span> in {crisis} are already consuming content weekly, in someone else's audience.
           </p>
         </motion.div>
 
