@@ -180,7 +180,7 @@ const Slide2 = () => {
       </div>
 
       {/* Right content — the math */}
-      <div className="w-[75%] flex flex-col justify-center px-6 md:px-10 py-6 md:py-8 gap-2 relative z-10">
+      <div className="w-[75%] flex flex-col justify-center px-6 md:px-10 py-10 md:py-14 gap-2 relative z-10">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
