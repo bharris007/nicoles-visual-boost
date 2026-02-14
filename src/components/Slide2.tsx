@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import headshot from "@/assets/headshot.png";
 import { Users, MessageCircle, Handshake, DollarSign, ChevronDown, TrendingUp } from "lucide-react";
-import ScaledSlide from "@/components/ScaledSlide";
 
 const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
   <div className={`flex items-center gap-[3px] font-extrabold tracking-[0.12em] uppercase text-white ${className}`}>
@@ -48,11 +47,11 @@ const FunnelStep = ({
       initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
-      className="flex items-center gap-5"
+      className="flex items-center gap-4 md:gap-5"
     >
       <div
         onClick={onClick}
-        className={`relative rounded-xl flex items-center gap-4 px-6 py-4 border transition-all duration-200 cursor-pointer ${
+        className={`relative rounded-lg flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-2.5 border transition-all duration-200 cursor-pointer ${
           isLit
             ? "bg-[hsl(45,100%,55%)]/15 border-[hsl(45,100%,55%)]/40 hover:bg-[hsl(45,100%,55%)]/25 hover:border-[hsl(45,100%,55%)]/60 hover:scale-[1.02] hover:shadow-lg hover:shadow-[hsl(45,100%,55%)]/10"
             : "bg-white/[0.06] border-white/10 hover:bg-white/[0.12] hover:border-white/25 hover:scale-[1.02] hover:shadow-lg hover:shadow-white/5"
@@ -60,12 +59,12 @@ const FunnelStep = ({
         style={{ width: `${widthPercent}%` }}
       >
         <div
-          className={`w-12 h-12 rounded-lg flex items-center justify-center shrink-0 ${
+          className={`w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center shrink-0 ${
             isLit ? "bg-[hsl(45,100%,55%)]/20" : "bg-white/10"
           }`}
         >
           <Icon
-            className={`w-6 h-6 ${
+            className={`w-4 h-4 md:w-5 md:h-5 ${
               isLit ? "text-[hsl(45,100%,55%)]" : "text-white/60"
             }`}
           />
@@ -78,14 +77,14 @@ const FunnelStep = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.2 }}
-              className={`text-3xl font-extrabold leading-none ${
+              className={`text-xl md:text-2xl font-extrabold leading-none ${
                 isLit ? "text-[hsl(45,100%,55%)]" : "text-white"
               }`}
             >
               {number}
             </motion.p>
           </AnimatePresence>
-          <p className="text-white/50 text-xs font-semibold uppercase tracking-wider mt-1">
+          <p className="text-white/50 text-[8px] md:text-[10px] font-semibold uppercase tracking-wider mt-0.5">
             {label}
           </p>
         </div>
@@ -99,9 +98,9 @@ const FunnelArrow = ({ delay }: { delay: number }) => (
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ delay, duration: 0.3 }}
-    className="flex items-center pl-12 -my-0.5"
+    className="flex items-center pl-6 md:pl-10 -my-0.5"
   >
-    <ChevronDown className="w-5 h-5 text-[hsl(145,60%,50%)]/40" />
+    <ChevronDown className="w-4 h-4 text-[hsl(145,60%,50%)]/40" />
   </motion.div>
 );
 
@@ -116,12 +115,11 @@ const Slide2 = () => {
   const data = funnelData[timeFrame] ?? funnelData.year;
 
   return (
-    <ScaledSlide>
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="w-full h-full overflow-hidden relative flex"
+      className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex"
       style={{
         background:
           "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)",
@@ -177,19 +175,19 @@ const Slide2 = () => {
       </div>
 
       {/* Right content — the math */}
-      <div className="w-[72%] flex flex-col justify-between px-16 py-14 gap-4 relative z-10">
+      <div className="w-[72%] flex flex-col justify-between px-6 md:px-10 py-14 md:py-16 gap-2 relative z-10">
         {/* Title */}
         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="mb-2">
-          <p className="text-white text-4xl font-extrabold tracking-normal uppercase">
+          <p className="text-white text-xl md:text-2xl font-extrabold tracking-normal uppercase">
             Nicole's Path to $120,000
           </p>
-          <p className="text-white/25 text-base mt-1">
+          <p className="text-white/25 text-[9px] md:text-[11px] mt-0.5">
             Here's exactly what it takes — and why it's completely doable.
           </p>
         </motion.div>
 
         {/* Funnel */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-1 md:gap-1.5">
           <FunnelStep icon={Users} number={data.leads} label="People from other audiences" delay={0.45} widthPercent={100} active={activeStep === "leads"} onClick={() => setActiveStep(activeStep === "leads" ? null : "leads")} />
           <FunnelArrow delay={0.55} />
           <FunnelStep icon={MessageCircle} number={data.conversations} label="Conversations" delay={0.65} widthPercent={80} active={activeStep === "conversations"} onClick={() => setActiveStep(activeStep === "conversations" ? null : "conversations")} />
@@ -224,7 +222,6 @@ const Slide2 = () => {
         </motion.div>
       </div>
     </motion.div>
-    </ScaledSlide>
   );
 };
 
