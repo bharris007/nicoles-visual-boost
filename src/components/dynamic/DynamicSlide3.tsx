@@ -1,9 +1,7 @@
-import { useState, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import headshot from "@/assets/headshot.png";
+import { motion } from "framer-motion";
+import coachImg from "@/assets/bryan-harris.jpg";
 import gtFavicon from "@/assets/gt-favicon.png";
-import { TrendingUp } from "lucide-react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Sector } from "recharts";
+import { Search, BarChart3, Package, ArrowRight } from "lucide-react";
 
 const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
   <div className={`flex items-center gap-[3px] font-extrabold tracking-[0.12em] uppercase text-white ${className}`}>
@@ -17,64 +15,41 @@ const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
   </div>
 );
 
-const COLORS = [
-  "hsl(160,30%,35%)",
-  "hsl(145,50%,45%)",
-  "hsl(45,95%,52%)",
-  "hsl(25,100%,55%)",
-];
-
-const renderActiveShape = (props: any) => {
-  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
-  return (
-    <g>
-      <Sector cx={cx} cy={cy} innerRadius={innerRadius - 2} outerRadius={outerRadius + 8} startAngle={startAngle} endAngle={endAngle} fill={fill} style={{ filter: `drop-shadow(0 0 12px ${fill}60)` }} />
-    </g>
-  );
-};
-
-const formatNum = (s: string) => {
-  const n = parseInt(s.replace(/,/g, ""), 10);
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1)}M`;
-  if (n >= 1_000) return `${(n / 1_000).toFixed(0)}K`;
-  return s;
-};
+const STEP_ICONS = [Search, BarChart3, Package];
+const STEP_COLORS = ["hsl(25,100%,55%)", "hsl(145,50%,45%)", "hsl(45,100%,55%)"];
 
 interface DynamicSlide3Props {
   data: {
     clientName: string;
+    clientsNeeded: number;
+    niche: string;
     targetMarket: string;
     targetMarketSize: string;
-    targetMarketSegments: Array<{
-      name: string;
-      percentage: number;
-      count: string;
-      detail: string;
-    }>;
-    bottomCallout: string;
-    clientsNeeded: number;
+    pricePerClient: number;
   };
 }
 
 const DynamicSlide3 = ({ data }: DynamicSlide3Props) => {
-  const [activeIdx, setActiveIdx] = useState<"all" | number>("all");
-
-  const pieData = data.targetMarketSegments.map((seg, i) => ({
-    name: seg.name,
-    value: seg.percentage,
-    couples: seg.count,
-    color: COLORS[i % COLORS.length],
-    detail: seg.detail,
-  }));
-
-  const allSegment = {
-    name: "Total Market",
-    couples: data.targetMarketSize.replace(/\s*households?/i, "").trim(),
-    detail: `Total addressable market for ${data.clientName}'s ${data.targetMarket}.`,
-  };
-
-  const isAll = activeIdx === "all";
-  const activeSeg = isAll ? allSegment : pieData[activeIdx as number];
+  const steps = [
+    {
+      title: "Target Market Analysis",
+      desc: `Deep dive into the ${data.targetMarketSize} ${data.targetMarket} — who they are, where they are, what they spend`,
+      color: STEP_COLORS[0],
+      icon: STEP_ICONS[0],
+    },
+    {
+      title: "Target Audience Analysis",
+      desc: `Where ${data.clientName}'s ideal clients consume content — newsletters, podcasts, YouTube`,
+      color: STEP_COLORS[1],
+      icon: STEP_ICONS[1],
+    },
+    {
+      title: "Full Offer Creation",
+      desc: `Build out the $${data.pricePerClient.toLocaleString()} ${data.niche.toLowerCase()} package — Plan, Training, Access — ready to sell`,
+      color: STEP_COLORS[2],
+      icon: STEP_ICONS[2],
+    },
+  ];
 
   return (
     <motion.div
@@ -86,117 +61,69 @@ const DynamicSlide3 = ({ data }: DynamicSlide3Props) => {
     >
       <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[hsl(45,100%,55%)] opacity-[0.08] blur-[80px] pointer-events-none" />
-      <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[hsl(145,60%,50%)] opacity-[0.1] blur-[100px] pointer-events-none" />
 
-      {/* Left sidebar */}
-      <div className="w-[28%] flex flex-col items-center pt-8 md:pt-10 pb-6 px-4 relative border-r border-white/10">
-        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} className="relative">
-          <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-[3px] border-[hsl(45,100%,55%)] shadow-lg shadow-black/20">
-            <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
-          </div>
-          <div className="absolute bottom-1 right-0 w-6 h-6 md:w-7 md:h-7 rounded-lg overflow-hidden shadow-lg shadow-black/30">
-            <img src={gtFavicon} alt="Growth Tools" className="w-full h-full object-cover" />
-          </div>
-        </motion.div>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }} className="text-white font-bold text-sm md:text-base mt-4">Coach Bryan</motion.p>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-          <GrowthToolsLogo className="text-[8px] md:text-[9px] mt-1 text-white/50" />
-        </motion.div>
-        <motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7, duration: 0.5 }} className="absolute bottom-[28%] inset-x-0 flex justify-center">
-          <TrendingUp className="w-24 h-24 md:w-32 md:h-32 text-white/[0.08]" strokeWidth={1.5} />
+      <div className="absolute top-0 left-0 w-[40%] h-1 bg-gradient-to-r from-[hsl(145,50%,45%)] via-[hsl(45,100%,55%)] to-[hsl(25,100%,55%)]" />
+
+      {/* Top banner */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="absolute top-0 left-[40%] right-0 z-20 bg-[hsl(45,100%,55%)]/15 backdrop-blur-sm border-b border-[hsl(45,100%,55%)]/20 px-6 py-3 flex items-center gap-3"
+      >
+        <span className="text-xl">🔥</span>
+        <span className="text-[hsl(45,100%,55%)] text-sm md:text-base font-bold uppercase tracking-wider">
+          Tomorrow's Training Preview
+        </span>
+        <div className="flex-1 h-px bg-[hsl(45,100%,55%)]/20" />
+        <div className="w-6 h-6 rounded-md overflow-hidden shadow-lg shadow-black/30">
+          <img src={gtFavicon} alt="Growth Tools" className="w-full h-full object-cover" />
+        </div>
+      </motion.div>
+
+      {/* Left: Photo */}
+      <div className="w-[40%] relative overflow-hidden">
+        <img src={coachImg} alt="Coach Bryan strategizing" className="absolute inset-0 w-full h-full object-cover object-center" />
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[hsl(160,50%,18%)] to-transparent" />
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm border border-white/15 rounded-lg px-3 py-1.5 z-10">
+          <p className="text-white text-sm md:text-base font-bold">Coach Bryan</p>
+          <GrowthToolsLogo className="text-[7px] text-white/40" />
         </motion.div>
       </div>
 
-      {/* Right content */}
-      <div className="w-[72%] flex flex-col justify-between px-6 md:px-10 py-6 md:py-8 relative z-10">
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
-          <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">{data.clientName}'s Target Market Analysis</p>
-          <p className="text-white/50 text-[9px] md:text-[11px] mt-0.5">
-            <span className="text-[hsl(45,100%,55%)] font-semibold">{data.targetMarketSize}</span> — broken down by segment.
+      {/* Right: Content */}
+      <div className="w-[60%] flex flex-col justify-center px-8 md:px-10 py-6 pt-16 relative z-10">
+        <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
+          <h2 className="text-xl md:text-3xl font-black text-white leading-tight">
+            Finding Your <span className="text-[hsl(45,100%,55%)]">{data.clientsNeeded} Clients</span>
+          </h2>
+          <p className="text-white/50 text-[10px] md:text-xs mt-2 leading-relaxed">
+            A step-by-step roadmap we'll build together — from market research to a launch-ready offer.
           </p>
         </motion.div>
 
-        {/* Pie chart + legend */}
-        <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5, duration: 0.6 }} className="flex items-center gap-4 md:gap-6 flex-1 min-h-0 -ml-4">
-          <div className="w-[63%] aspect-square max-h-full relative [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none [&_path]:outline-none [&_.recharts-layer]:outline-none">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={pieData}
-                  cx="40%"
-                  cy="50%"
-                  innerRadius="38%"
-                  outerRadius="72%"
-                  dataKey="value"
-                  activeIndex={typeof activeIdx === "number" ? activeIdx : undefined}
-                  activeShape={renderActiveShape}
-                  onMouseEnter={(_, idx) => setActiveIdx(idx)}
-                  stroke="none"
-                  animationBegin={400}
-                  animationDuration={800}
-                >
-                  {pieData.map((entry, i) => (
-                    <Cell key={entry.name} fill={entry.color} opacity={isAll || activeIdx === i ? 1 : 0.7} cursor="pointer" />
-                  ))}
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
-            <div className="absolute inset-y-0 left-0 w-[80%] flex flex-col items-center justify-center pointer-events-none">
-              <AnimatePresence mode="wait">
-                <motion.div key={String(activeIdx)} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.2 }} className="text-center pointer-events-auto cursor-pointer" onClick={() => setActiveIdx("all")}>
-                  <p className="text-[hsl(45,100%,55%)] text-lg md:text-2xl font-extrabold leading-none">{activeSeg ? formatNum(activeSeg.couples) : ""}</p>
-                  <p className="text-white/40 text-[8px] md:text-[10px] font-semibold mt-0.5">{isAll ? "total market" : pieData[activeIdx as number]?.name}</p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Legend */}
-          <div className="grid grid-cols-2 gap-2 md:gap-3 w-[45%]">
-            {pieData.map((item, i) => {
-              const isActive = activeIdx === i;
-              return (
-                <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.65 + i * 0.08 }}
-                  onClick={() => setActiveIdx(i)}
-                  className={`flex flex-col rounded-lg px-3 py-2 md:py-3 cursor-pointer transition-all duration-200 ${
-                    isActive
-                      ? "bg-white/[0.12] border border-white/20 shadow-lg"
-                      : "bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/15"
-                  }`}
-                >
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <div className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ backgroundColor: item.color, opacity: isActive ? 1 : 0.5 }} />
-                    <p className={`text-[10px] md:text-xs font-bold transition-colors truncate ${isActive ? "text-white" : "text-white/45"}`}>
-                      {item.name}
-                    </p>
-                  </div>
-                  <p className={`text-lg md:text-xl font-extrabold leading-none transition-colors ${isActive ? "text-[hsl(45,100%,55%)]" : "text-white/60"}`}>
-                    {formatNum(item.couples)}
-                  </p>
-                  <p className={`text-[8px] md:text-[10px] font-medium mt-0.5 transition-colors ${isActive ? "text-white/50" : "text-white/25"}`}>
-                    {item.value}% of market
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
-
-        {/* Bottom callout */}
-        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.5 }} className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2 md:py-2.5 border border-[hsl(45,100%,55%)]/20">
-          <div className="flex items-start gap-3">
-            <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[hsl(45,100%,55%)]/20 flex items-center justify-center shrink-0 mt-0.5">
-              <span className="text-sm">💡</span>
-            </div>
-            <p className="text-white/90 text-xs md:text-sm font-semibold leading-snug">
-              {data.bottomCallout}
-            </p>
-          </div>
-        </motion.div>
+        <div className="flex flex-col gap-3 mt-5">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.title}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.55 + i * 0.15 }}
+              className="flex items-start gap-3 bg-white/[0.05] border border-white/10 rounded-xl p-3 hover:bg-white/[0.08] transition-colors"
+            >
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${step.color}15` }}>
+                <step.icon className="w-5 h-5" style={{ color: step.color }} strokeWidth={1.8} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm md:text-base font-bold" style={{ color: step.color }}>
+                  {i + 1}. {step.title}
+                </p>
+                <p className="text-white/50 text-[10px] md:text-xs leading-relaxed mt-0.5">{step.desc}</p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-white/20 shrink-0 mt-1" />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
