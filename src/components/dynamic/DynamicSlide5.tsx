@@ -46,6 +46,7 @@ interface SourceItem {
 interface MediaExample {
   type: string;
   name: string;
+  url: string;
   description: string;
 }
 
@@ -293,24 +294,33 @@ const DynamicSlide5 = ({ data }: DynamicSlide5Props) => {
               </div>
               <div className="flex flex-col gap-2.5 px-6 py-4">
                 {examples.map((ex, i) => {
-                  const ExIcon = mediaExampleIcons[ex.type] || Mail;
                   const exColor = mediaExampleColors[ex.type] || "hsl(45,95%,52%)";
+                  const domain = ex.url ? new URL(ex.url).hostname : "";
+                  const faviconUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=32` : "";
                   return (
-                    <motion.div
+                    <motion.a
                       key={i}
+                      href={ex.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + i * 0.08 }}
-                      className="flex items-start gap-3 rounded-lg px-4 py-3 bg-white/[0.04] border border-white/[0.06]"
+                      className="flex items-start gap-3 rounded-lg px-4 py-3 bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.1] hover:border-white/15 transition-all duration-200 cursor-pointer group"
                     >
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5" style={{ backgroundColor: `${exColor}20` }}>
-                        <ExIcon className="w-4 h-4" style={{ color: exColor }} />
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 overflow-hidden" style={{ backgroundColor: `${exColor}15` }}>
+                        {faviconUrl ? (
+                          <img src={faviconUrl} alt={ex.name} className="w-5 h-5 rounded-sm" />
+                        ) : (
+                          <Mail className="w-4 h-4" style={{ color: exColor }} />
+                        )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-white/90 text-sm font-bold leading-snug">{ex.name}</p>
+                        <p className="text-white/90 text-sm font-bold leading-snug group-hover:text-white transition-colors">{ex.name}</p>
                         <p className="text-white/45 text-[11px] mt-1 leading-relaxed">{ex.description}</p>
+                        <p className="text-[hsl(145,50%,45%)] text-[10px] mt-0.5 truncate group-hover:text-[hsl(145,50%,55%)] transition-colors">{domain} ↗</p>
                       </div>
-                    </motion.div>
+                    </motion.a>
                   );
                 })}
                 {examples.length === 0 && (
