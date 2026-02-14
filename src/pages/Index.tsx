@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import Slide1 from "@/components/Slide1";
 import Slide2 from "@/components/Slide2";
 import Slide7 from "@/components/Slide7";
@@ -32,6 +33,16 @@ const Index = () => {
   const [activeSlide, setActiveSlide] = useState(1);
   const totalSlides = Object.keys(slides).length;
 
+  // Which day is currently expanded — derived from activeSlide initially
+  const activeDayIdx = days.findIndex((d) => d.slides.includes(activeSlide));
+  const [expandedDay, setExpandedDay] = useState(activeDayIdx);
+
+  // Keep expanded day in sync when navigating via keyboard
+  useEffect(() => {
+    const idx = days.findIndex((d) => d.slides.includes(activeSlide));
+    if (idx !== -1) setExpandedDay(idx);
+  }, [activeSlide]);
+
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === "ArrowRight") setActiveSlide(s => Math.min(s + 1, totalSlides));
     if (e.key === "ArrowLeft") setActiveSlide(s => Math.max(s - 1, 1));
@@ -47,27 +58,50 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[hsl(220,15%,18%)] flex flex-col items-center justify-center p-4 md:p-8 gap-6">
       {/* Slide switcher */}
-      <div className="flex items-center gap-4">
-        {days.map((day, dayIdx) => (
-          <div key={day.label} className="flex items-center gap-4">
-            {dayIdx > 0 && <div className="w-px h-5 bg-white/10" />}
-            <span className="text-white/30 text-[10px] font-bold uppercase tracking-widest mr-1">{day.label}</span>
-            <div className="w-px h-5 bg-white/10" />
-            {day.slides.map((num) => (
+      <div className="flex items-center gap-2">
+        {days.map((day, dayIdx) => {
+          const isExpanded = expandedDay === dayIdx;
+          const hasActive = day.slides.includes(activeSlide);
+          return (
+            <div key={day.label} className="flex items-center gap-2">
+              {dayIdx > 0 && <div className="w-px h-5 bg-white/10" />}
               <button
-                key={num}
-                onClick={() => setActiveSlide(num)}
-                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-                  activeSlide === num
-                    ? "bg-white/20 text-white"
-                    : "bg-white/5 text-white/40 hover:text-white/60"
+                onClick={() => setExpandedDay(isExpanded ? -1 : dayIdx)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-widest transition-colors ${
+                  hasActive ? "text-white/70" : "text-white/30 hover:text-white/50"
                 }`}
               >
-                Slide {num}
+                {day.label}
+                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
               </button>
-            ))}
-          </div>
-        ))}
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: "auto", opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex items-center gap-1 overflow-hidden"
+                  >
+                    {day.slides.map((num) => (
+                      <button
+                        key={num}
+                        onClick={() => setActiveSlide(num)}
+                        className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-colors whitespace-nowrap ${
+                          activeSlide === num
+                            ? "bg-white/20 text-white"
+                            : "bg-white/5 text-white/40 hover:text-white/60"
+                        }`}
+                      >
+                        {num}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
       </div>
 
       {/* Slide content */}
