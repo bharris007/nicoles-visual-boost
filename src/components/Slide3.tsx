@@ -43,6 +43,13 @@ const renderActiveShape = (props: any) => {
   );
 };
 
+const formatNum = (s: string) => {
+  const n = parseInt(s.replace(/,/g, ""), 10);
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(n % 1_000 === 0 ? 0 : 0)}K`;
+  return s;
+};
+
 const Slide3 = () => {
   const [activeIdx, setActiveIdx] = useState<"all" | number>("all");
 
@@ -121,7 +128,7 @@ const Slide3 = () => {
           className="flex items-center gap-4 md:gap-6 flex-1 min-h-0"
         >
           {/* Chart */}
-          <div className="w-[45%] aspect-square max-h-full relative">
+          <div className="w-[52%] aspect-square max-h-full relative">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -159,15 +166,15 @@ const Slide3 = () => {
                   transition={{ duration: 0.2 }}
                   className="text-center"
                 >
-                  <p className="text-[hsl(45,100%,55%)] text-lg md:text-2xl font-extrabold leading-none">{activeSeg.couples}</p>
-                  <p className="text-white/40 text-[7px] md:text-[9px] font-semibold mt-0.5">couples</p>
+                  <p className="text-[hsl(45,100%,55%)] text-lg md:text-2xl font-extrabold leading-none">{formatNum(activeSeg.couples)}</p>
+                  <p className="text-white/40 text-[8px] md:text-[10px] font-semibold mt-0.5">couples</p>
                 </motion.div>
               </AnimatePresence>
             </div>
           </div>
 
           {/* Legend */}
-          <div className="flex flex-col gap-2 md:gap-3 w-[55%]">
+          <div className="flex flex-col gap-2 md:gap-3 w-[48%]">
             {/* All option */}
             <motion.div
               initial={{ opacity: 0, x: 15 }}
