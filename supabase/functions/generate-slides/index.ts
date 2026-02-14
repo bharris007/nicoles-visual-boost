@@ -15,7 +15,7 @@ From their answers, extract and return a JSON object with EXACTLY this structure
   "clientName": "First name of the client",
   "revenueGoal": "$XXX,XXX format",
   "revenueTimeframe": "e.g. 'in next 12 months'",
-  "motivatingForce": "Their #1 motivating reason for hitting the goal. MUST be 2-3 sentences minimum. Use their own words as much as possible, expanding into a compelling narrative.",
+  "motivatingForce": "Their #1 motivating reason for hitting the goal. MUST be written in FIRST PERSON (e.g. 'I want to...', 'My family...', 'I need to...'). MUST be 2-3 sentences minimum. Use their own words as much as possible, expanding into a compelling first-person narrative.",
   "niche": "Their coaching/business niche (e.g. 'marriage coaching', 'fitness coaching')",
   "targetMarket": "Who their ideal clients are",
   "targetMarketSize": "Estimated total addressable market size",
