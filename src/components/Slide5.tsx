@@ -126,7 +126,7 @@ const TapPillar = ({
             className="flex items-start gap-2 text-left"
           >
             <div className="w-1.5 h-1.5 rounded-full mt-[4px] shrink-0 transition-colors duration-200" style={{ backgroundColor: isActive ? item.color : `${item.color}60` }} />
-            <span className={`text-[8px] md:text-[10px] leading-snug transition-colors duration-200 ${isActive ? "text-white/70" : "text-white/40"}`}>{b}</span>
+            <span className={`text-[10px] md:text-xs leading-snug transition-colors duration-200 ${isActive ? "text-white/70" : "text-white/40"}`}>{b}</span>
           </motion.li>
         ))}
       </ul>
