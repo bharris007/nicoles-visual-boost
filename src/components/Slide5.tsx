@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import headshot from "@/assets/headshot.png";
 import gtFavicon from "@/assets/gt-favicon.png";
-import { TrendingUp, BookOpen, Video, Map, ChevronRight } from "lucide-react";
+import { TrendingUp, Video, MessageCircle, Map } from "lucide-react";
 
 const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
   <div className={`flex items-center gap-[3px] font-extrabold tracking-[0.12em] uppercase text-white ${className}`}>
@@ -18,131 +17,89 @@ const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
 
 const tapItems = [
   {
-    letter: "T",
-    word: "Training",
-    icon: BookOpen,
-    color: "hsl(145,50%,45%)",
-    headline: "Marriage Recovery Training",
-    bullets: [
-      "Core modules on communication, conflict resolution & rebuilding trust",
-      "Step-by-step video lessons Nicole delivers from her expertise",
-      "Clients learn the foundations before going deeper",
-    ],
-  },
-  {
-    letter: "A",
-    word: "Access",
-    icon: Video,
-    color: "hsl(45,95%,52%)",
-    headline: "Direct Access to Nicole",
-    bullets: [
-      "Weekly Zoom coaching calls — proactive, not reactive",
-      "Email support between sessions for real-time guidance",
-      "6–12 months of hands-on partnership until they're thriving",
-    ],
-  },
-  {
     letter: "P",
     word: "Plan",
     icon: Map,
     color: "hsl(25,100%,55%)",
     headline: "Custom Recovery Plan",
-    bullets: [
-      "Deep analysis of their unique marriage situation on day one",
-      "A clear, simple roadmap: from dysfunction → thriving",
-      "Personalized milestones so they see progress every month",
-    ],
+    description: "Day one: a deep analysis of their marriage. Then a clear, simple roadmap from dysfunction to thriving — with milestones they can see.",
+  },
+  {
+    letter: "T",
+    word: "Training",
+    icon: Video,
+    color: "hsl(145,50%,45%)",
+    headline: "Personal Training",
+    description: "Nicole teaches them communication, conflict resolution, and trust-building through live video sessions and core training modules.",
+  },
+  {
+    letter: "A",
+    word: "Access",
+    icon: MessageCircle,
+    color: "hsl(45,95%,52%)",
+    headline: "Direct Access",
+    description: "Weekly coaching on Zoom. Email support between sessions. Nicole walks alongside them for 6–12 months until they're thriving.",
   },
 ];
 
-const TapCard = ({
+const TapPillar = ({
   item,
   index,
-  isActive,
-  onClick,
 }: {
   item: (typeof tapItems)[0];
   index: number;
-  isActive: boolean;
-  onClick: () => void;
 }) => {
-  const delay = 0.45 + index * 0.15;
+  const delay = 0.5 + index * 0.18;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 25 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
-      onClick={onClick}
-      className={`rounded-xl px-4 md:px-5 py-3 md:py-4 cursor-pointer transition-all duration-200 border ${
-        isActive
-          ? "bg-white/[0.10] border-white/20 shadow-lg"
-          : "bg-white/[0.04] border-white/[0.06] hover:bg-white/[0.08] hover:border-white/15"
-      }`}
+      className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300 flex flex-col items-center text-center px-4 md:px-5 py-5 md:py-6 gap-3 group"
     >
-      <div className="flex items-center gap-3">
-        {/* Letter badge */}
-        <div
-          className="w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center shrink-0 font-black text-lg md:text-xl"
-          style={{ backgroundColor: `${item.color}20`, color: item.color }}
-        >
-          {item.letter}
-        </div>
-
-        {/* Label + icon */}
-        <div className="flex-1 min-w-0">
-          <p className={`text-sm md:text-base font-extrabold transition-colors ${isActive ? "text-white" : "text-white/70"}`}>
-            {item.word}
-          </p>
-          <p className="text-white/35 text-[8px] md:text-[10px] font-semibold">{item.headline}</p>
-        </div>
-
+      {/* Large icon area */}
+      <motion.div
+        initial={{ scale: 0.6, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: delay + 0.15, duration: 0.4, type: "spring" }}
+        className="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+        style={{ backgroundColor: `${item.color}18` }}
+      >
         <item.icon
-          className="w-5 h-5 md:w-6 md:h-6 shrink-0 transition-colors"
-          style={{ color: isActive ? item.color : "rgba(255,255,255,0.25)" }}
+          className="w-7 h-7 md:w-8 md:h-8"
+          style={{ color: item.color }}
+          strokeWidth={1.8}
         />
+      </motion.div>
 
-        <ChevronRight
-          className={`w-4 h-4 shrink-0 transition-all ${
-            isActive ? "rotate-90 text-white/40" : "text-white/15"
-          }`}
-        />
+      {/* Letter + Word */}
+      <div>
+        <p className="text-2xl md:text-3xl font-black leading-none" style={{ color: item.color }}>
+          {item.letter}
+        </p>
+        <p className="text-white text-xs md:text-sm font-extrabold uppercase tracking-wider mt-1">
+          {item.word}
+        </p>
       </div>
 
-      {/* Expandable bullets */}
-      <AnimatePresence>
-        {isActive && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden"
-          >
-            <ul className="mt-3 ml-[52px] md:ml-[56px] space-y-1.5">
-              {item.bullets.map((b, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * i }}
-                  className="flex items-start gap-2"
-                >
-                  <div className="w-1.5 h-1.5 rounded-full mt-[5px] shrink-0" style={{ backgroundColor: item.color }} />
-                  <span className="text-white/55 text-[9px] md:text-[11px] leading-snug">{b}</span>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Divider */}
+      <div className="w-8 h-px" style={{ backgroundColor: `${item.color}40` }} />
+
+      {/* Headline */}
+      <p className="text-white/80 text-[10px] md:text-xs font-bold leading-snug">
+        {item.headline}
+      </p>
+
+      {/* Description */}
+      <p className="text-white/40 text-[8px] md:text-[10px] leading-relaxed">
+        {item.description}
+      </p>
     </motion.div>
   );
 };
 
 const Slide5 = () => {
-  const [activeIdx, setActiveIdx] = useState<number | null>(null);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -195,20 +152,14 @@ const Slide5 = () => {
             </div>
           </div>
           <p className="text-white/50 text-[9px] md:text-[11px] mt-0.5">
-            The <span className="text-[hsl(45,100%,55%)] font-semibold">Training + Access + Plan</span> framework — everything a couple needs to go from crisis to thriving.
+            They hire you. You make a <span className="text-[hsl(45,100%,55%)] font-semibold">simple plan</span> for them. You walk alongside them — training and coaching — for several months to get the result.
           </p>
         </motion.div>
 
-        {/* TAP cards */}
-        <div className="flex flex-col gap-2 md:gap-2.5 flex-1 justify-center py-2">
+        {/* 3 Pillars */}
+        <div className="flex gap-3 md:gap-4 flex-1 items-stretch py-3 md:py-4">
           {tapItems.map((item, i) => (
-            <TapCard
-              key={item.letter}
-              item={item}
-              index={i}
-              isActive={activeIdx === i}
-              onClick={() => setActiveIdx(activeIdx === i ? null : i)}
-            />
+            <TapPillar key={item.letter} item={item} index={i} />
           ))}
         </div>
 
@@ -216,7 +167,7 @@ const Slide5 = () => {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0, duration: 0.5 }}
+          transition={{ delay: 1.1, duration: 0.5 }}
           className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2.5 md:py-3 border border-[hsl(45,100%,55%)]/20 flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
@@ -224,7 +175,7 @@ const Slide5 = () => {
               <span className="text-sm">✨</span>
             </div>
             <p className="text-white/80 text-[9px] md:text-[11px] font-semibold leading-snug">
-              6–12 months of transformation.<br className="hidden md:block" /> Nicole walks with them until they're thriving.
+              6–12 months of transformation. Nicole walks with them until they're thriving.
             </p>
           </div>
           <div className="text-right shrink-0 ml-4">
