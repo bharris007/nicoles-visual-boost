@@ -87,11 +87,11 @@ const TapPillar = ({
         initial={{ scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: delay + 0.15, duration: 0.4, type: "spring" }}
-        className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
+        className="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
         style={{ backgroundColor: `${item.color}18` }}
       >
         <item.icon
-          className="w-5 h-5 md:w-6 md:h-6"
+          className="w-7 h-7 md:w-8 md:h-8"
           style={{ color: item.color }}
           strokeWidth={1.8}
         />
@@ -111,7 +111,7 @@ const TapPillar = ({
       </motion.p>
 
       {/* Bullets — always visible */}
-      <ul className="space-y-1 w-full">
+      <ul className="space-y-1.5 w-full">
         {item.bullets.map((b, i) => (
           <motion.li
             key={i}
@@ -168,7 +168,7 @@ const Slide5 = () => {
       </div>
 
       {/* Right content */}
-      <div className="w-[72%] flex flex-col px-6 md:px-10 py-4 md:py-5 relative z-10">
+      <div className="w-[72%] flex flex-col px-6 md:px-10 py-5 md:py-6 relative z-10">
         {/* Title */}
         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="mb-2">
           <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">
@@ -180,7 +180,7 @@ const Slide5 = () => {
         </motion.div>
 
         {/* 3 Pillars */}
-        <motion.div layout className="flex gap-3 md:gap-4 flex-1 items-stretch min-h-0 mt-1">
+        <motion.div layout className="flex gap-3 md:gap-4 items-start">
           {tapItems.map((item, i) => (
             <TapPillar
               key={item.letter}
@@ -197,7 +197,7 @@ const Slide5 = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.5 }}
-          className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-1.5 md:py-2 border border-[hsl(45,100%,55%)]/20 flex items-center justify-between mt-2"
+          className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2 md:py-2.5 border border-[hsl(45,100%,55%)]/20 flex items-center justify-between mt-3"
         >
           <div className="flex items-center gap-3">
             <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[hsl(45,100%,55%)]/20 flex items-center justify-center shrink-0">
