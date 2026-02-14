@@ -260,7 +260,7 @@ const Slide8 = () => {
           className="mt-4 flex items-center gap-3 bg-[hsl(45,100%,55%)]/[0.08] border border-[hsl(45,100%,55%)]/20 rounded-xl px-4 py-2 relative z-10"
         >
           <TrendingUp className="w-5 h-5 text-[hsl(45,100%,55%)] shrink-0" />
-          <p className="text-white/70 text-sm md:text-base leading-relaxed">
+          <p className="text-white/70 text-xs md:text-sm leading-relaxed">
             At just{" "}
             <span className="text-[hsl(45,100%,55%)] font-bold">
               {CLIENTS_PER_1000} client{CLIENTS_PER_1000 !== 1 ? "s" : ""} per
