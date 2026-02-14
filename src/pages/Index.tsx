@@ -1,6 +1,19 @@
 import { motion } from "framer-motion";
 import headshot from "@/assets/headshot.png";
-import { Target, TrendingUp, Rocket } from "lucide-react";
+import { TrendingUp } from "lucide-react";
+
+const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
+  <div className={`flex items-center gap-[3px] font-extrabold tracking-[0.12em] uppercase text-white ${className}`}>
+    <span>GRO</span>
+    {/* Bar chart icon inline */}
+    <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none" className="inline-block -mt-[2px]">
+      <rect x="2" y="12" width="4" height="8" rx="1" fill="currentColor" opacity="0.5" />
+      <rect x="8" y="7" width="4" height="13" rx="1" fill="currentColor" opacity="0.75" />
+      <rect x="14" y="2" width="4" height="18" rx="1" fill="currentColor" />
+    </svg>
+    <span>TH TOOLS</span>
+  </div>
+);
 
 const Index = () => {
   return (
@@ -31,14 +44,23 @@ const Index = () => {
 
         {/* Left sidebar */}
         <div className="w-[30%] flex flex-col items-center pt-8 md:pt-10 pb-6 px-4 relative border-r border-white/10">
-          {/* Face top-left */}
+          {/* Face with logo badge */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
+            className="relative"
           >
             <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-[3px] border-[hsl(45,100%,55%)] shadow-lg shadow-black/20">
               <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
+            </div>
+            {/* Logo badge */}
+            <div className="absolute -bottom-2 -right-2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[hsl(145,65%,38%)] border-2 border-[hsl(45,100%,55%)] flex items-center justify-center shadow-md">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                <rect x="2" y="12" width="4" height="8" rx="1" fill="white" opacity="0.5" />
+                <rect x="8" y="7" width="4" height="13" rx="1" fill="white" opacity="0.75" />
+                <rect x="14" y="2" width="4" height="18" rx="1" fill="white" />
+              </svg>
             </div>
           </motion.div>
 
@@ -46,35 +68,26 @@ const Index = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.45 }}
-            className="text-white font-bold text-sm md:text-base mt-3"
+            className="text-white font-bold text-sm md:text-base mt-4"
           >
             Coach Bryan
           </motion.p>
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-white/40 text-[9px] md:text-[10px] font-semibold tracking-[0.25em] uppercase mt-1"
           >
-            Growth Tools
-          </motion.p>
+            <GrowthToolsLogo className="text-[8px] md:text-[9px] mt-1 text-white/50" />
+          </motion.div>
 
-          {/* Icons / decorative elements */}
+          {/* Big trending icon as visual element */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-            className="mt-auto flex flex-col items-center gap-4"
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+            className="mt-auto"
           >
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm">
-              <Target className="w-5 h-5 md:w-6 md:h-6 text-[hsl(45,100%,55%)]" />
-            </div>
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm">
-              <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-[hsl(145,60%,65%)]" />
-            </div>
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm">
-              <Rocket className="w-5 h-5 md:w-6 md:h-6 text-white/60" />
-            </div>
+            <TrendingUp className="w-20 h-20 md:w-28 md:h-28 text-white/[0.08]" strokeWidth={1.5} />
           </motion.div>
         </div>
 
@@ -100,7 +113,7 @@ const Index = () => {
               $120,000
             </h1>
             <span className="block text-[hsl(45,100%,55%)] text-sm md:text-lg font-medium mt-1 opacity-70">
-              per year
+              in next 12 months
             </span>
           </motion.div>
 
