@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Slide1 from "@/components/Slide1";
 import Slide2 from "@/components/Slide2";
@@ -21,6 +21,18 @@ const days = [
 
 const Index = () => {
   const [activeSlide, setActiveSlide] = useState(1);
+  const totalSlides = Object.keys(slides).length;
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === "ArrowRight") setActiveSlide(s => Math.min(s + 1, totalSlides));
+    if (e.key === "ArrowLeft") setActiveSlide(s => Math.max(s - 1, 1));
+  }, [totalSlides]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
   const SlideComponent = slides[activeSlide];
 
   return (
