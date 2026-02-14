@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import coachImg from "@/assets/coach-whiteboard.jpg";
+import coachImg from "@/assets/bryan-harris.jpg";
 import gtFavicon from "@/assets/gt-favicon.png";
 import { Search, BarChart3, Users, Package, ArrowRight, Sparkles } from "lucide-react";
 
