@@ -60,7 +60,7 @@ const Slide6 = () => {
         {/* Headline */}
         <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
           <h2 className="text-xl md:text-3xl font-black text-white leading-tight">
-            How We Borrowed Justin's Audience and Landed a <span className="text-[hsl(45,100%,55%)]">$10,000</span> Client
+            Case Study: How We Borrowed Justin's Audience and Landed a <span className="text-[hsl(45,100%,55%)]">$10,000</span> Client
           </h2>
           <span className="text-[hsl(145,50%,45%)] text-[10px] md:text-xs font-semibold">
             BOPA Partnership Case Study
