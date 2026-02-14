@@ -274,7 +274,13 @@ const DynamicSlide4 = ({ data }: DynamicSlide4Props) => {
             <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[hsl(45,100%,55%)]/20 flex items-center justify-center shrink-0 mt-0.5">
               <span className="text-sm">💡</span>
             </div>
-            <p className="text-white/90 text-xs md:text-sm font-semibold leading-snug">{marketData.bottomCallout}</p>
+            <p className="text-white/90 text-xs md:text-sm font-semibold leading-snug"
+              dangerouslySetInnerHTML={{
+                __html: marketData.bottomCallout
+                  .replace(/(\d[\d,]+)/g, '<span class="text-[hsl(45,100%,55%)] font-bold">$1</span>')
+                  .replace(/(tiny fraction)/gi, '<span class="text-[hsl(45,100%,55%)] font-bold">$1</span>')
+              }}
+            />
           </div>
         </motion.div>
 
