@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import headshot from "@/assets/headshot.png";
+import gtFavicon from "@/assets/gt-favicon.svg";
 import { Users, MessageCircle, Handshake, DollarSign, ChevronDown, TrendingUp } from "lucide-react";
 
 const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
@@ -148,11 +149,7 @@ const Slide2 = () => {
             <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
           </div>
           <div className="absolute -bottom-2 -right-2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[hsl(145,65%,38%)] border-2 border-[hsl(45,100%,55%)] flex items-center justify-center shadow-md">
-            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-              <rect x="2" y="12" width="4" height="8" rx="1" fill="white" opacity="0.5" />
-              <rect x="8" y="7" width="4" height="13" rx="1" fill="white" opacity="0.75" />
-              <rect x="14" y="2" width="4" height="18" rx="1" fill="white" />
-            </svg>
+            <img src={gtFavicon} alt="Growth Tools" className="w-5 h-5 md:w-6 md:h-6" />
           </div>
         </motion.div>
 
