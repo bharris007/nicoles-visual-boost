@@ -192,13 +192,23 @@ serve(async (req) => {
   }
 
   try {
-    const { day, answers } = await req.json();
+    const { day, answers, overrides } = await req.json();
 
     if (!day || !answers) {
       return new Response(
         JSON.stringify({ error: "Missing 'day' or 'answers' field" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    // Build override instructions if provided
+    let overrideText = "";
+    if (overrides && typeof overrides === "object") {
+      const entries = Object.entries(overrides).filter(([, v]) => v);
+      if (entries.length > 0) {
+        overrideText = "\n\nIMPORTANT OVERRIDES — Use these exact values instead of parsing from the answers:\n" +
+          entries.map(([k, v]) => `- ${k}: ${v}`).join("\n");
+      }
     }
 
     const systemPrompt = DAY_PROMPTS[day];
@@ -228,7 +238,7 @@ serve(async (req) => {
             { role: "system", content: systemPrompt },
             {
               role: "user",
-              content: `Here are the client's answers for Day ${day}:\n\n${answers}`,
+              content: `Here are the client's answers for Day ${day}:\n\n${answers}${overrideText}`,
             },
           ],
         }),
