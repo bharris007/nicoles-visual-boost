@@ -104,7 +104,7 @@ const Slide9 = () => {
               <Users className="w-3.5 h-3.5 text-[hsl(145,50%,55%)]" />
               <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">List Size</span>
             </div>
-            <p className="text-white font-black text-xl md:text-2xl">1,480</p>
+            <p className="text-white font-black text-3xl md:text-4xl">1,480</p>
             <p className="text-white/30 text-[10px]">engaged email subscribers</p>
           </motion.div>
 
@@ -116,7 +116,7 @@ const Slide9 = () => {
               <Calendar className="w-3.5 h-3.5 text-[hsl(145,50%,55%)]" />
               <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">Email Cadence</span>
             </div>
-            <p className="text-white font-black text-xl md:text-2xl">3x / week</p>
+            <p className="text-white font-black text-3xl md:text-4xl">3x / week</p>
             <p className="text-white/30 text-[10px]">Tue, Thu & Sunday sends</p>
           </motion.div>
         </div>
