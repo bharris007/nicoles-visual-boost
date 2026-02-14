@@ -28,7 +28,7 @@ const pillarColors = [
   "hsl(45,95%,52%)",
 ];
 
-const pillarWords = ["Plan", "Training", "Access"];
+const pillarWords = ["Personal Roadmap", "Professional Training", "Direct Coaching"];
 
 interface DynamicSlide6Props {
   data: {
