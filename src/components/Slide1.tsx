@@ -35,7 +35,7 @@ const Slide1 = () => {
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[hsl(45,100%,55%)] opacity-[0.08] blur-[80px] pointer-events-none" />
       <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[hsl(145,60%,50%)] opacity-[0.1] blur-[100px] pointer-events-none" />
 
-      <div className="w-[30%] flex flex-col items-center pt-8 md:pt-10 pb-6 px-4 relative border-r border-white/10">
+      <div className="w-[28%] flex flex-col items-center pt-8 md:pt-10 pb-6 px-4 relative border-r border-white/10">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -71,7 +71,7 @@ const Slide1 = () => {
         </motion.div>
       </div>
 
-      <div className="w-[70%] flex flex-col justify-center px-8 md:px-14 py-8 gap-4 md:gap-6 relative z-10">
+      <div className="w-[72%] flex flex-col justify-center px-8 md:px-14 py-8 gap-4 md:gap-6 relative z-10">
         <motion.p
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
