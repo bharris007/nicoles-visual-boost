@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Loader2, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -25,6 +25,41 @@ const Generate = () => {
   const [generatedData, setGeneratedData] = useState<{ day: number; data: any } | null>(null);
   const [activeSlide, setActiveSlide] = useState(1);
   const { toast } = useToast();
+
+  // Auto-detect day from pasted content
+  const detectDay = useCallback((text: string): number | null => {
+    const lower = text.toLowerCase();
+    // Day 1 signals: revenue goals, motivations, why they want to hit their goal
+    const day1 = ["revenue goal", "motivating", "why do you want", "income goal", "how much money", "what drives you", "annual revenue", "monthly revenue"];
+    // Day 2 signals: audience, media, offer structure, newsletters, podcasts
+    const day2 = ["target audience", "newsletter", "podcast", "youtube", "media", "offer structure", "ideal client", "where do they consume", "content channels"];
+    // Day 3 signals: partnerships, projections, bonuses, close rate, 1,000 people
+    const day3 = ["partnership", "projection", "bonus", "close rate", "1,000 people", "1000 people", "ideal partner", "revenue projection"];
+
+    const score1 = day1.filter(k => lower.includes(k)).length;
+    const score2 = day2.filter(k => lower.includes(k)).length;
+    const score3 = day3.filter(k => lower.includes(k)).length;
+
+    const max = Math.max(score1, score2, score3);
+    if (max === 0) return null;
+    if (score1 === max) return 1;
+    if (score2 === max) return 2;
+    return 3;
+  }, []);
+
+  const [autoDetected, setAutoDetected] = useState(false);
+
+  useEffect(() => {
+    if (answers.trim().length < 30) {
+      setAutoDetected(false);
+      return;
+    }
+    const detected = detectDay(answers);
+    if (detected && detected !== selectedDay) {
+      setSelectedDay(detected);
+      setAutoDetected(true);
+    }
+  }, [answers]);
 
   const handleGenerate = async () => {
     if (!answers.trim()) {
@@ -221,6 +256,9 @@ const Generate = () => {
               </button>
             ))}
           </div>
+          {autoDetected && (
+            <p className="text-[hsl(45,100%,55%)]/60 text-[10px] font-semibold mt-1.5">✨ Auto-detected Day {selectedDay}</p>
+          )}
         </motion.div>
 
         {/* Textarea */}
