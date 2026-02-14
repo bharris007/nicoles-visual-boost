@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import headshot from "@/assets/headshot.png";
-import gtFavicon from "@/assets/gt-favicon.svg";
+import gtFavicon from "@/assets/gt-favicon.png";
 import { TrendingUp } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Sector } from "recharts";
 import Slide3DrillDown from "./Slide3DrillDown";
@@ -93,8 +93,8 @@ const Slide3 = () => {
           <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-[3px] border-[hsl(45,100%,55%)] shadow-lg shadow-black/20">
             <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
           </div>
-          <div className="absolute -bottom-2 -right-2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[hsl(145,65%,38%)] border-2 border-[hsl(45,100%,55%)] flex items-center justify-center shadow-md">
-            <img src={gtFavicon} alt="Growth Tools" className="w-5 h-5 md:w-6 md:h-6" />
+          <div className="absolute -bottom-1 -right-1 w-7 h-7 md:w-7 md:h-7 rounded-full bg-[hsl(145,65%,38%)] border-2 border-[hsl(45,100%,55%)] flex items-center justify-center shadow-md">
+            <img src={gtFavicon} alt="Growth Tools" className="w-3.5 h-3.5 md:w-4 md:h-4" />
           </div>
         </motion.div>
 
