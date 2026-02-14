@@ -2,26 +2,25 @@ import { useState, useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Slide1 from "@/components/Slide1";
 import Slide2 from "@/components/Slide2";
+import Slide7 from "@/components/Slide7";
 import Slide3 from "@/components/Slide3";
 import Slide4 from "@/components/Slide4";
 import Slide5 from "@/components/Slide5";
 import Slide6 from "@/components/Slide6";
-import Slide7 from "@/components/Slide7";
 
 const slides: Record<number, React.ComponentType> = {
   1: Slide1,
   2: Slide2,
-  3: Slide3,
-  4: Slide4,
-  5: Slide5,
-  6: Slide6,
-  7: Slide7,
+  3: Slide7,
+  4: Slide3,
+  5: Slide4,
+  6: Slide5,
+  7: Slide6,
 };
 
 const days = [
-  { label: "Day 1", slides: [1, 2] },
-  { label: "Day 2", slides: [3, 4, 5, 6] },
-  { label: "Day 3", slides: [7] },
+  { label: "Day 1", slides: [1, 2, 3] },
+  { label: "Day 2", slides: [4, 5, 6, 7] },
 ];
 
 const Index = () => {
