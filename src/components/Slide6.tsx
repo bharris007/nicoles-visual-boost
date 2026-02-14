@@ -43,14 +43,24 @@ const Slide6 = () => {
           className="absolute inset-0 w-full h-full object-cover object-top"
         />
         <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[hsl(160,50%,18%)] to-transparent" />
+        {/* Name badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm border border-white/15 rounded-lg px-3 py-1.5 z-10"
+        >
+          <p className="text-white text-sm md:text-base font-bold">Justin Brooke</p>
+          <p className="text-white/50 text-[9px] md:text-[10px] font-medium">BOPA Partner</p>
+        </motion.div>
       </div>
 
       {/* Right: Content */}
       <div className="w-[60%] flex flex-col justify-center px-8 md:px-10 py-6 pt-12 relative z-10">
-        {/* Name */}
+        {/* Headline */}
         <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
-          <h2 className="text-2xl md:text-4xl font-black text-white leading-tight">
-            Justin Brooke
+          <h2 className="text-xl md:text-3xl font-black text-white leading-tight">
+            How We Borrowed Justin's Audience and Landed a <span className="text-[hsl(45,100%,55%)]">$10,000</span> Client
           </h2>
           <span className="text-[hsl(145,50%,45%)] text-[10px] md:text-xs font-semibold">
             BOPA Partnership Case Study
