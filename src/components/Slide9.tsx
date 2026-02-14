@@ -68,7 +68,7 @@ const Slide9 = () => {
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="relative rounded-xl px-5 py-4 backdrop-blur-sm flex items-center gap-4 overflow-hidden"
+            className="relative rounded-xl px-5 py-4 backdrop-blur-sm flex flex-col gap-1 overflow-hidden"
             style={{
               background: "linear-gradient(135deg, hsl(145,50%,30%) 0%, hsl(145,50%,20%) 60%, hsl(45,80%,25%) 100%)",
               boxShadow: "0 0 25px hsl(45,100%,55%,0.15), 0 0 50px hsl(145,50%,45%,0.1), inset 0 1px 0 hsl(45,100%,65%,0.25)",
@@ -87,13 +87,13 @@ const Slide9 = () => {
             />
             {/* Shimmer */}
             <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-[hsl(45,100%,55%)]/10 to-transparent pointer-events-none animate-pulse" />
-            <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: "linear-gradient(135deg, hsl(145,50%,45%), hsl(45,90%,45%))" }}>
-              <CheckCircle2 className="w-6 h-6 text-white" />
+            <div className="flex items-center gap-3 relative z-10">
+              <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: "linear-gradient(135deg, hsl(145,50%,45%), hsl(45,90%,45%))" }}>
+                <CheckCircle2 className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-base font-black uppercase tracking-wider" style={{ background: "linear-gradient(90deg, hsl(145,50%,60%), hsl(45,100%,60%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>You're Matched!</span>
             </div>
-            <div className="relative z-10">
-              <span className="text-base font-black uppercase tracking-wider block" style={{ background: "linear-gradient(90deg, hsl(145,50%,60%), hsl(45,100%,60%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>You're Matched!</span>
-              <span className="text-white/40 text-[10px]">Liz is actively looking for people like you to promote!</span>
-            </div>
+            <span className="text-white/40 text-[10px] leading-tight relative z-10 pl-14">Liz is actively looking for people like you to promote!</span>
           </motion.div>
 
           <motion.div
