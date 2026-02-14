@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Loader2, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { stripDashes } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import DynamicSlide1 from "@/components/dynamic/DynamicSlide1";
 import DynamicSlide2 from "@/components/dynamic/DynamicSlide2";
@@ -81,7 +82,7 @@ const Generate = () => {
       if (data?.error) {
         toast({ title: "Generation failed", description: data.error, variant: "destructive" });
       } else {
-        setGeneratedData(data);
+        setGeneratedData(stripDashes(data));
         setActiveSlide(1);
         toast({ title: "Slides generated!", description: `Day ${selectedDay} slides are ready.` });
       }
@@ -107,7 +108,7 @@ const Generate = () => {
       if (data?.error) {
         toast({ title: "Regeneration failed", description: data.error, variant: "destructive" });
       } else {
-        setGeneratedData(data);
+        setGeneratedData(stripDashes(data));
         setActiveSlide(1);
         toast({ title: "Slides regenerated!", description: "Updated with your edits." });
       }
