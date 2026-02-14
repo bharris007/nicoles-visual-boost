@@ -28,7 +28,7 @@ const pillarColors = [
   "hsl(45,95%,52%)",
 ];
 
-const pillarWords = ["Personal Roadmap", "Professional Training", "Direct Coaching"];
+const pillarWords = ["Plan", "Training", "Access"];
 
 interface DynamicSlide6Props {
   data: {
@@ -162,7 +162,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
                 <motion.div layout className="w-8 h-px shrink-0" style={{ backgroundColor: `${color}40` }} />
 
                 <motion.p layout className="text-white/80 text-[9px] md:text-[11px] font-bold leading-snug">
-                  {pillar.headline || pillarWords[i]}
+                  {["Personal Roadmap", "Professional Training", "Direct Coaching"][i]}
                 </motion.p>
 
                 <ul className="space-y-1.5 w-full mt-2">
