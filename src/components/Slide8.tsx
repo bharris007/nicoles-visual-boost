@@ -45,7 +45,7 @@ const Slide8 = () => {
             You said <span className="text-[hsl(45,100%,55%)]">2 clients</span> from every 1,000 people.
           </h2>
           <p className="text-white/50 text-sm mt-1 max-w-2xl">
-            The BOPA cadence is simple — each week you give one resource to one audience owner. That puts you in front of ~1,000 people. You said you'd close at least 2. Here's what that compounds to.
+            The BOPA cadence is simple: each week you give one resource to one audience owner. That puts you in front of ~1,000 people. You said you'd close at least 2. Here's what that compounds to.
           </p>
         </motion.div>
       </div>
@@ -123,7 +123,7 @@ const Slide8 = () => {
           <p className="text-white/70 text-sm md:text-base leading-relaxed">
             At just <span className="text-[hsl(45,100%,55%)] font-bold">2 clients per 1,000 people</span>, you hit your
             <span className="text-[hsl(45,100%,55%)] font-bold"> $120K goal in 6 weeks</span>.
-            The only question is — where do those 1,000 people come from? <span className="text-white font-bold">We already have an answer for you.</span>
+            The only question is: where do those 1,000 people come from? <span className="text-white font-bold">We already have an answer for you.</span>
           </p>
         </motion.div>
       </div>
