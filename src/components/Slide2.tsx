@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import headshot from "@/assets/headshot.png";
 import { Users, MessageCircle, Handshake, DollarSign, ChevronDown } from "lucide-react";
 
@@ -14,10 +15,17 @@ const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
   </div>
 );
 
+type TimeFrame = "year" | "month" | "day";
+
+const funnelData: Record<TimeFrame, { leads: string; conversations: string; clients: string; revenue: string }> = {
+  year: { leads: "1,200", conversations: "120", clients: "12", revenue: "$120,000" },
+  month: { leads: "100", conversations: "10", clients: "1", revenue: "$10,000" },
+  day: { leads: "~3", conversations: "<1", clients: "—", revenue: "~$333" },
+};
+
 const FunnelStep = ({
   number,
   label,
-  subLabel,
   icon: Icon,
   delay,
   widthPercent,
@@ -25,7 +33,6 @@ const FunnelStep = ({
 }: {
   number: string;
   label: string;
-  subLabel?: string;
   icon: React.ElementType;
   delay: number;
   widthPercent: number;
@@ -47,9 +54,7 @@ const FunnelStep = ({
     >
       <div
         className={`w-8 h-8 md:w-9 md:h-9 rounded-lg flex items-center justify-center shrink-0 ${
-          highlight
-            ? "bg-[hsl(45,100%,55%)]/20"
-            : "bg-white/10"
+          highlight ? "bg-[hsl(45,100%,55%)]/20" : "bg-white/10"
         }`}
       >
         <Icon
@@ -59,23 +64,25 @@ const FunnelStep = ({
         />
       </div>
       <div className="min-w-0">
-        <p
-          className={`text-xl md:text-2xl font-extrabold leading-none ${
-            highlight ? "text-[hsl(45,100%,55%)]" : "text-white"
-          }`}
-        >
-          {number}
-        </p>
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={number}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2 }}
+            className={`text-xl md:text-2xl font-extrabold leading-none ${
+              highlight ? "text-[hsl(45,100%,55%)]" : "text-white"
+            }`}
+          >
+            {number}
+          </motion.p>
+        </AnimatePresence>
         <p className="text-white/50 text-[8px] md:text-[10px] font-semibold uppercase tracking-wider mt-0.5">
           {label}
         </p>
       </div>
     </div>
-    {subLabel && (
-      <p className="text-white/30 text-[10px] md:text-[11px] font-medium italic shrink-0">
-        {subLabel}
-      </p>
-    )}
   </motion.div>
 );
 
@@ -90,7 +97,16 @@ const FunnelArrow = ({ delay }: { delay: number }) => (
   </motion.div>
 );
 
+const timeFrameLabels: { value: TimeFrame; label: string }[] = [
+  { value: "year", label: "Year" },
+  { value: "month", label: "Month" },
+  { value: "day", label: "Day" },
+];
+
 const Slide2 = () => {
+  const [timeFrame, setTimeFrame] = useState<TimeFrame>("year");
+  const data = funnelData[timeFrame];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -106,8 +122,7 @@ const Slide2 = () => {
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+          backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -123,11 +138,7 @@ const Slide2 = () => {
           className="relative"
         >
           <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-[3px] border-[hsl(45,100%,55%)] shadow-lg shadow-black/20">
-            <img
-              src={headshot}
-              alt="Coach Bryan"
-              className="w-full h-full object-cover"
-            />
+            <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
           </div>
           <div className="absolute -bottom-2 -right-2 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[hsl(145,65%,38%)] border-2 border-[hsl(45,100%,55%)] flex items-center justify-center shadow-md">
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
@@ -138,29 +149,15 @@ const Slide2 = () => {
           </div>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.45 }}
-          className="text-white font-bold text-xs md:text-sm mt-3"
-        >
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }} className="text-white font-bold text-xs md:text-sm mt-3">
           Coach Bryan
         </motion.p>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
           <GrowthToolsLogo className="text-[7px] md:text-[8px] mt-1 text-white/50" />
         </motion.div>
 
         {/* Conversion rates visual */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="mt-auto mb-4 w-full px-2"
-        >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="mt-auto mb-4 w-full px-2">
           <div className="bg-white/[0.05] rounded-lg p-3 border border-white/10 space-y-2">
             <p className="text-[hsl(45,100%,55%)] text-[7px] md:text-[8px] font-bold tracking-[0.2em] uppercase text-center">
               Conversion Rates
@@ -182,12 +179,7 @@ const Slide2 = () => {
       {/* Right content — the math */}
       <div className="w-[75%] flex flex-col justify-between px-6 md:px-10 py-14 md:py-16 gap-2 relative z-10">
         {/* Title */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mb-2"
-        >
+        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="mb-2">
           <p className="text-white text-xl md:text-2xl font-extrabold tracking-normal uppercase">
             Nicole's Path to $120,000
           </p>
@@ -198,43 +190,38 @@ const Slide2 = () => {
 
         {/* Funnel */}
         <div className="flex flex-col gap-1 md:gap-1.5">
-          <FunnelStep
-            icon={Users}
-            number="1,200"
-            label="Leads raise their hand"
-            subLabel="~100/month · ~3/day"
-            delay={0.45}
-            widthPercent={100}
-          />
+          <FunnelStep icon={Users} number={data.leads} label="Leads raise their hand" delay={0.45} widthPercent={100} />
           <FunnelArrow delay={0.55} />
-          <FunnelStep
-            icon={MessageCircle}
-            number="120"
-            label="Conversations"
-            subLabel="~2 per week"
-            delay={0.65}
-            widthPercent={80}
-          />
+          <FunnelStep icon={MessageCircle} number={data.conversations} label="Conversations" delay={0.65} widthPercent={80} />
           <FunnelArrow delay={0.75} />
-          <FunnelStep
-            icon={Handshake}
-            number="12"
-            label="Clients"
-            subLabel="1 per month"
-            delay={0.85}
-            widthPercent={55}
-          />
+          <FunnelStep icon={Handshake} number={data.clients} label="Clients" delay={0.85} widthPercent={55} />
           <FunnelArrow delay={0.95} />
-          <FunnelStep
-            icon={DollarSign}
-            number="$120,000"
-            label="Revenue"
-            subLabel="12 × $10,000"
-            delay={1.05}
-            widthPercent={45}
-            highlight
-          />
+          <FunnelStep icon={DollarSign} number={data.revenue} label="Revenue" delay={1.05} widthPercent={45} highlight />
         </div>
+
+        {/* Time frame toggle — bottom right */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.1 }}
+          className="flex justify-end mt-1"
+        >
+          <div className="flex items-center bg-white/[0.06] rounded-lg border border-white/10 p-0.5">
+            {timeFrameLabels.map(({ value, label }) => (
+              <button
+                key={value}
+                onClick={() => setTimeFrame(value)}
+                className={`px-3 py-1 rounded-md text-[10px] md:text-xs font-semibold transition-all ${
+                  timeFrame === value
+                    ? "bg-[hsl(45,100%,55%)]/20 text-[hsl(45,100%,55%)] shadow-sm"
+                    : "text-white/35 hover:text-white/55"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </motion.div>
   );
