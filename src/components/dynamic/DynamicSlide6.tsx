@@ -115,7 +115,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
           <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">
             {clientName}'s {price} Offer
           </p>
-          <p className="text-white/60 text-[10px] md:text-sm mt-1 leading-snug">
+          <p className="text-white/60 text-[8px] md:text-xs mt-1 leading-snug">
             {narrative ? renderNarrative(narrative) : (
               <>Imagine this: You are hired. And you do an intake and turn that into a <span className="text-[hsl(45,100%,55%)] font-semibold">simple plan</span> for them. Then you <span className="text-[hsl(45,100%,55%)] font-semibold">train them</span> and walk alongside them. <span className="text-[hsl(45,100%,55%)] font-semibold">Coaching and advising</span> them for several months until they're thriving.</>
             )}
