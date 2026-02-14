@@ -85,7 +85,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.3 }}
       className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex"
       style={{
         background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)",
@@ -97,7 +97,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
 
       {/* Left sidebar */}
       <div className="w-[28%] flex flex-col items-center pt-8 md:pt-10 pb-6 px-4 relative border-r border-white/10">
-        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }} className="relative">
+        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.15, duration: 0.25 }} className="relative">
           <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-[3px] border-[hsl(45,100%,55%)] shadow-lg shadow-black/20">
             <img src={headshot} alt="Coach Bryan" className="w-full h-full object-cover" />
           </div>
@@ -105,11 +105,11 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
             <img src={gtFavicon} alt="Growth Tools" className="w-full h-full object-cover" />
           </div>
         </motion.div>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }} className="text-white font-bold text-sm md:text-base mt-4">Coach Bryan</motion.p>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.22 }} className="text-white font-bold text-sm md:text-base mt-4">Coach Bryan</motion.p>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.25 }}>
           <GrowthToolsLogo className="text-[8px] md:text-[9px] mt-1 text-white/50" />
         </motion.div>
-        <motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7, duration: 0.5 }} className="absolute bottom-[28%] inset-x-0 flex justify-center">
+        <motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.35, duration: 0.25 }} className="absolute bottom-[28%] inset-x-0 flex justify-center">
           <TrendingUp className="w-24 h-24 md:w-32 md:h-32 text-white/[0.08]" strokeWidth={1.5} />
         </motion.div>
       </div>
@@ -117,7 +117,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
       {/* Right content */}
       <div className="w-[72%] flex flex-col px-6 md:px-10 py-5 md:py-6 relative z-10">
         {/* Title */}
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="mb-2">
+        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 }} className="mb-2">
           <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">
             {clientName}'s {price} Offer
           </p>
@@ -133,7 +133,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
           {pillars.map((pillar, i) => {
             const color = pillarColors[i];
             const Icon = iconMap[pillar.key] || Map;
-            const delay = 0.5 + i * 0.18;
+            const delay = 0.25 + i * 0.09;
             const isActive = activeIdx === i;
 
             return (
@@ -141,7 +141,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
                 key={pillar.key}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
+                transition={{ delay, duration: 0.25, type: "spring", stiffness: 80 }}
                 onClick={() => setActiveIdx(isActive ? null : i)}
                 layout
                 className={`flex-1 rounded-xl border cursor-pointer transition-colors duration-300 flex flex-col items-center text-center px-3 md:px-4 py-2 md:py-3 gap-1 group relative ${
@@ -158,7 +158,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
                   layout
                   initial={{ scale: 0.6, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: delay + 0.15, duration: 0.4, type: "spring" }}
+                  transition={{ delay: delay + 0.08, duration: 0.2, type: "spring" }}
                   className="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
                   style={{ backgroundColor: `${color}18` }}
                 >
@@ -181,7 +181,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
                       key={bi}
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: delay + 0.2 + bi * 0.07 }}
+                      transition={{ delay: delay + 0.1 + bi * 0.035 }}
                       className="flex items-start gap-2 text-left"
                     >
                       <div className="w-1.5 h-1.5 rounded-full mt-[4px] shrink-0" style={{ backgroundColor: color }} />
@@ -198,7 +198,7 @@ const DynamicSlide6 = ({ data }: DynamicSlide6Props) => {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.5 }}
+          transition={{ delay: 0.55, duration: 0.25 }}
           className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2 md:py-2.5 border border-[hsl(45,100%,55%)]/20 flex items-center justify-between mt-3"
         >
           <div className="flex items-center gap-3">

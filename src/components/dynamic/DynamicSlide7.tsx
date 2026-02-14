@@ -7,7 +7,7 @@ const DynamicSlide7 = () => {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.3 }}
       className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex"
       style={{
         background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)",
@@ -19,7 +19,7 @@ const DynamicSlide7 = () => {
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.15 }}
         className="absolute top-0 left-[40%] right-0 z-20 bg-[hsl(45,100%,55%)]/15 backdrop-blur-sm border-b border-[hsl(45,100%,55%)]/20 px-6 py-3 flex items-center gap-3"
       >
         <span className="text-xl">🔥</span>
@@ -37,7 +37,7 @@ const DynamicSlide7 = () => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.25 }}
           className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm border border-white/15 rounded-lg px-3 py-1.5 z-10"
         >
           <p className="text-white text-sm md:text-base font-bold">Justin Brooke</p>
@@ -46,7 +46,7 @@ const DynamicSlide7 = () => {
       </div>
 
       <div className="w-[60%] flex flex-col justify-center px-8 md:px-10 py-6 pt-12 relative z-10">
-        <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
+        <motion.div initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
           <h2 className="text-xl md:text-3xl font-black text-white leading-tight">
             Case Study: How We Borrowed Justin's Audience and Landed a <span className="text-[hsl(45,100%,55%)]">$10,000</span> Client
           </h2>
@@ -55,7 +55,7 @@ const DynamicSlide7 = () => {
           </span>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }} className="flex gap-3 mt-4">
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.27 }} className="flex gap-3 mt-4">
           <div className="flex-1 bg-white/[0.06] border border-white/10 rounded-xl p-3">
             <div className="flex items-center gap-1.5 mb-1.5">
               <div className="w-2 h-2 rounded-full bg-white/30" />
@@ -76,7 +76,7 @@ const DynamicSlide7 = () => {
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="bg-[hsl(45,100%,55%)]/[0.08] border border-[hsl(45,100%,55%)]/20 rounded-xl px-5 py-3 flex items-center justify-around mt-4">
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="bg-[hsl(45,100%,55%)]/[0.08] border border-[hsl(45,100%,55%)]/20 rounded-xl px-5 py-3 flex items-center justify-around mt-4">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-[hsl(25,100%,55%)]/15 flex items-center justify-center">
               <Target className="w-4 h-4 text-[hsl(25,100%,55%)]" />
@@ -98,7 +98,7 @@ const DynamicSlide7 = () => {
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="flex gap-2 items-start mt-4">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }} className="flex gap-2 items-start mt-4">
           <div className="w-1 self-stretch rounded-full bg-[hsl(45,100%,55%)]/30 shrink-0" />
           <p className="text-white/45 text-xs md:text-sm italic leading-relaxed">
             "One partnership changed everything. We went from grinding for leads to having them come to us. BOPA made it repeatable."
