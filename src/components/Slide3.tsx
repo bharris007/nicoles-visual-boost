@@ -115,8 +115,8 @@ const Slide3 = () => {
         {/* Title */}
         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
           <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">Target Market Analysis</p>
-          <p className="text-white/25 text-[9px] md:text-[11px] mt-0.5">
-            <span className="text-[hsl(45,100%,55%)] font-semibold">12 million</span> struggling marriages in the U.S. — broken down by household income.
+          <p className="text-white/50 text-[9px] md:text-[11px] mt-0.5">
+            <span className="text-[hsl(45,100%,55%)] font-semibold">12 million struggling marriages</span> in the U.S. — broken down by household income.
           </p>
         </motion.div>
 
