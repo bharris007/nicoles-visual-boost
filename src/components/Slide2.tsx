@@ -15,12 +15,12 @@ const GrowthToolsLogo = ({ className = "" }: { className?: string }) => (
   </div>
 );
 
-type TimeFrame = "year" | "month" | "day";
+type TimeFrame = "year" | "month" | "week";
 
 const funnelData: Record<TimeFrame, { leads: string; conversations: string; clients: string; revenue: string }> = {
   year: { leads: "1,200", conversations: "120", clients: "12", revenue: "$120,000" },
   month: { leads: "100", conversations: "10", clients: "1", revenue: "$10,000" },
-  day: { leads: "~3", conversations: "<1", clients: "—", revenue: "~$333" },
+  week: { leads: "~23", conversations: "~2", clients: "<1", revenue: "~$2,308" },
 };
 
 const FunnelStep = ({
@@ -100,7 +100,7 @@ const FunnelArrow = ({ delay }: { delay: number }) => (
 const timeFrameLabels: { value: TimeFrame; label: string }[] = [
   { value: "year", label: "Year" },
   { value: "month", label: "Month" },
-  { value: "day", label: "Day" },
+  { value: "week", label: "Week" },
 ];
 
 const Slide2 = () => {
