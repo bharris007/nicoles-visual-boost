@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import headshot from "@/assets/headshot.png";
 import gtFavicon from "@/assets/gt-favicon.png";
 import { TrendingUp, Video, MessageCircle, Map } from "lucide-react";
@@ -23,6 +24,11 @@ const tapItems = [
     color: "hsl(25,100%,55%)",
     headline: "Custom Recovery Plan",
     description: "Day one: a deep analysis of their marriage. Then a clear, simple roadmap from dysfunction to thriving — with milestones they can see.",
+    bullets: [
+      "Deep-dive assessment of their unique situation",
+      "Clear roadmap: dysfunction → thriving",
+      "Monthly milestones to track progress",
+    ],
   },
   {
     letter: "T",
@@ -31,6 +37,11 @@ const tapItems = [
     color: "hsl(145,50%,45%)",
     headline: "Personal Training",
     description: "Nicole teaches them communication, conflict resolution, and trust-building through live video sessions and core training modules.",
+    bullets: [
+      "Communication & conflict resolution modules",
+      "Live video training sessions with Nicole",
+      "Trust-rebuilding frameworks & exercises",
+    ],
   },
   {
     letter: "A",
@@ -39,15 +50,24 @@ const tapItems = [
     color: "hsl(45,95%,52%)",
     headline: "Direct Access",
     description: "Weekly coaching on Zoom. Email support between sessions. Nicole walks alongside them for 6–12 months until they're thriving.",
+    bullets: [
+      "Weekly Zoom coaching calls",
+      "Email support between sessions",
+      "6–12 months until they're thriving",
+    ],
   },
 ];
 
 const TapPillar = ({
   item,
   index,
+  isActive,
+  onClick,
 }: {
   item: (typeof tapItems)[0];
   index: number;
+  isActive: boolean;
+  onClick: () => void;
 }) => {
   const delay = 0.5 + index * 0.18;
 
@@ -56,50 +76,96 @@ const TapPillar = ({
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
-      className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300 flex flex-col items-center text-center px-4 md:px-5 py-5 md:py-6 gap-3 group"
+      onClick={onClick}
+      layout
+      className={`rounded-xl border cursor-pointer transition-colors duration-300 flex flex-col items-center text-center px-4 md:px-5 py-4 md:py-5 gap-2.5 group ${
+        isActive
+          ? "bg-white/[0.10] border-white/20 shadow-xl"
+          : "bg-white/[0.04] border-white/10 hover:bg-white/[0.08] hover:border-white/20"
+      }`}
+      style={{ flex: isActive ? 2.2 : 1 }}
     >
       {/* Large icon area */}
       <motion.div
+        layout
         initial={{ scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: delay + 0.15, duration: 0.4, type: "spring" }}
-        className="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+        className="w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
         style={{ backgroundColor: `${item.color}18` }}
       >
         <item.icon
-          className="w-7 h-7 md:w-8 md:h-8"
+          className="w-6 h-6 md:w-7 md:h-7"
           style={{ color: item.color }}
           strokeWidth={1.8}
         />
       </motion.div>
 
       {/* Letter + Word */}
-      <div>
-        <p className="text-2xl md:text-3xl font-black leading-none" style={{ color: item.color }}>
+      <motion.div layout>
+        <p className="text-xl md:text-2xl font-black leading-none" style={{ color: item.color }}>
           {item.letter}
         </p>
-        <p className="text-white text-xs md:text-sm font-extrabold uppercase tracking-wider mt-1">
+        <p className="text-white text-[10px] md:text-xs font-extrabold uppercase tracking-wider mt-0.5">
           {item.word}
         </p>
-      </div>
+      </motion.div>
 
       {/* Divider */}
-      <div className="w-8 h-px" style={{ backgroundColor: `${item.color}40` }} />
+      <motion.div layout className="w-8 h-px shrink-0" style={{ backgroundColor: `${item.color}40` }} />
 
       {/* Headline */}
-      <p className="text-white/80 text-[10px] md:text-xs font-bold leading-snug">
+      <motion.p layout className="text-white/80 text-[9px] md:text-[11px] font-bold leading-snug">
         {item.headline}
-      </p>
+      </motion.p>
 
-      {/* Description */}
-      <p className="text-white/40 text-[8px] md:text-[10px] leading-relaxed">
-        {item.description}
-      </p>
+      {/* Expandable bullets */}
+      <AnimatePresence>
+        {isActive && (
+          <motion.div
+            initial={{ opacity: 0, width: 0 }}
+            animate={{ opacity: 1, width: "auto" }}
+            exit={{ opacity: 0, width: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="overflow-hidden w-full"
+          >
+            <motion.ul
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.15, duration: 0.2 }}
+              className="space-y-1.5 mt-1"
+            >
+              {item.bullets.map((b, i) => (
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 + i * 0.07 }}
+                  className="flex items-start gap-2 text-left"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full mt-[4px] shrink-0" style={{ backgroundColor: item.color }} />
+                  <span className="text-white/50 text-[8px] md:text-[10px] leading-snug">{b}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Description only when not expanded */}
+      {!isActive && (
+        <p className="text-white/35 text-[7px] md:text-[9px] leading-relaxed">
+          {item.description}
+        </p>
+      )}
     </motion.div>
   );
 };
 
 const Slide5 = () => {
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -136,12 +202,12 @@ const Slide5 = () => {
       </div>
 
       {/* Right content */}
-      <div className="w-[72%] flex flex-col justify-between px-6 md:px-10 py-6 md:py-8 relative z-10">
+      <div className="w-[72%] flex flex-col px-6 md:px-10 py-5 md:py-6 relative z-10">
         {/* Title */}
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
+        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }} className="mb-2">
           <div className="flex items-baseline gap-3">
             <p className="text-white text-lg md:text-2xl font-extrabold tracking-normal uppercase">
-              Nicole's Offer
+              Nicole's $10,000 Offer
             </p>
             <div className="flex items-center gap-0.5">
               {tapItems.map((t) => (
@@ -157,18 +223,24 @@ const Slide5 = () => {
         </motion.div>
 
         {/* 3 Pillars */}
-        <div className="flex gap-3 md:gap-4 flex-1 items-stretch py-3 md:py-4">
+        <motion.div layout className="flex gap-3 md:gap-4 flex-1 items-stretch min-h-0">
           {tapItems.map((item, i) => (
-            <TapPillar key={item.letter} item={item} index={i} />
+            <TapPillar
+              key={item.letter}
+              item={item}
+              index={i}
+              isActive={activeIdx === i}
+              onClick={() => setActiveIdx(activeIdx === i ? null : i)}
+            />
           ))}
-        </div>
+        </motion.div>
 
         {/* Price callout */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.5 }}
-          className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2.5 md:py-3 border border-[hsl(45,100%,55%)]/20 flex items-center justify-between"
+          className="bg-[hsl(45,100%,55%)]/[0.08] backdrop-blur-md rounded-lg px-4 py-2 md:py-2.5 border border-[hsl(45,100%,55%)]/20 flex items-center justify-between mt-3"
         >
           <div className="flex items-center gap-3">
             <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-[hsl(45,100%,55%)]/20 flex items-center justify-center shrink-0">
