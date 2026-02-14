@@ -11,9 +11,9 @@ import {
   Tooltip,
 } from "recharts";
 
-const CLIENTS_PER_1000: number = 2;
+const CLIENTS_PER_1000: number = 1;
 const PRICE: number = 10000;
-const GOAL: number = 120000;
+const GOAL: number = 500000;
 
 // Derive timeline
 const revenuePerWeek = CLIENTS_PER_1000 * PRICE;
