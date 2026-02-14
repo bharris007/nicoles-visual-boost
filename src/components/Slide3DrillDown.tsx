@@ -98,7 +98,7 @@ const Slide3DrillDown = ({ segmentIndex, segmentColor, onClose }: DrillDownProps
         animate={{ rotateX: 0, rotateY: 0 }}
         exit={{ rotateX: 15, rotateY: -10, opacity: 0 }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        className="relative z-10 w-[85%] max-w-lg rounded-xl overflow-hidden shadow-2xl border border-white/15"
+        className="relative z-10 w-[92%] max-w-xl rounded-xl overflow-hidden shadow-2xl border border-white/15"
         style={{
           background: `linear-gradient(145deg, hsl(160,50%,14%), hsl(160,50%,10%) 60%, hsl(160,50%,7%))`,
           transformStyle: "preserve-3d",
@@ -109,18 +109,18 @@ const Slide3DrillDown = ({ segmentIndex, segmentColor, onClose }: DrillDownProps
         <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full opacity-20 blur-[60px] pointer-events-none" style={{ backgroundColor: segmentColor }} />
 
         {/* Header */}
-        <div className="flex items-center justify-between px-5 pt-4 pb-2">
+        <div className="flex items-center justify-between px-6 pt-5 pb-3">
           <div>
-            <p className="text-white/50 text-[10px] font-semibold uppercase tracking-wider">World Wide Market (English Primary Language)</p>
-            <p className="text-white text-sm md:text-base font-extrabold mt-0.5">{segmentNames[segmentIndex]} Household Income</p>
+            <p className="text-white/50 text-[12px] font-semibold uppercase tracking-wider">World Wide Market (English Primary Language)</p>
+            <p className="text-white text-base md:text-lg font-extrabold mt-0.5">{segmentNames[segmentIndex]} Household Income</p>
           </div>
-          <button onClick={onClose} className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
-            <X className="w-3.5 h-3.5 text-white/70" />
+          <button onClick={onClose} className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+            <X className="w-4 h-4 text-white/70" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex items-center gap-4 px-5 py-4">
+        <div className="flex items-center gap-5 px-6 py-5">
           {/* Mini pie */}
           <div className="w-[45%] aspect-square relative [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none [&_path]:outline-none [&_.recharts-layer]:outline-none">
             <ResponsiveContainer width="100%" height="100%">
@@ -148,13 +148,13 @@ const Slide3DrillDown = ({ segmentIndex, segmentColor, onClose }: DrillDownProps
             </ResponsiveContainer>
             {/* Center total */}
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <p className="text-[hsl(45,100%,55%)] text-base md:text-xl font-extrabold leading-none">{formatTotal(data.total)}</p>
-              <p className="text-white/40 text-[7px] md:text-[9px] font-semibold mt-0.5">total couples</p>
+              <p className="text-[hsl(45,100%,55%)] text-lg md:text-2xl font-extrabold leading-none">{formatTotal(data.total)}</p>
+              <p className="text-white/40 text-[8px] md:text-[10px] font-semibold mt-0.5">total couples</p>
             </div>
           </div>
 
           {/* Country list */}
-          <div className="flex-1 flex flex-col gap-2">
+          <div className="flex-1 flex flex-col gap-2.5">
             {data.countries.map((country, i) => {
               const pct = ((country.couples / parseInt(data.total.replace(/,/g, ""), 10)) * 100).toFixed(0);
               return (
@@ -165,17 +165,17 @@ const Slide3DrillDown = ({ segmentIndex, segmentColor, onClose }: DrillDownProps
                   transition={{ delay: 0.15 + i * 0.08 }}
                   onMouseEnter={() => setHoveredIdx(i)}
                   onMouseLeave={() => setHoveredIdx(undefined)}
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all duration-200 cursor-default ${
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all duration-200 cursor-default ${
                     hoveredIdx === i ? "bg-white/[0.1] border border-white/15" : "bg-white/[0.03] border border-transparent"
                   }`}
                 >
-                  <span className="text-base">{country.flag}</span>
+                  <span className="text-lg">{country.flag}</span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline justify-between">
-                      <p className={`text-[11px] font-bold transition-colors ${hoveredIdx === i ? "text-white" : "text-white/60"}`}>
+                      <p className={`text-[13px] font-bold transition-colors ${hoveredIdx === i ? "text-white" : "text-white/60"}`}>
                         {country.name}
                       </p>
-                      <p className={`text-xs font-extrabold transition-colors ${hoveredIdx === i ? "text-[hsl(45,100%,55%)]" : "text-white/50"}`}>
+                      <p className={`text-sm font-extrabold transition-colors ${hoveredIdx === i ? "text-[hsl(45,100%,55%)]" : "text-white/50"}`}>
                         {country.couplesLabel}
                       </p>
                     </div>
@@ -197,8 +197,8 @@ const Slide3DrillDown = ({ segmentIndex, segmentColor, onClose }: DrillDownProps
         </div>
 
         {/* Footer hint */}
-        <div className="px-5 pb-3">
-          <p className="text-white/25 text-[8px] text-center">Click outside or ✕ to close · Data approximate, pending final research</p>
+        <div className="px-6 pb-4">
+          <p className="text-white/25 text-[9px] text-center">Click outside or ✕ to close · Data approximate, pending final research</p>
         </div>
       </motion.div>
     </motion.div>
