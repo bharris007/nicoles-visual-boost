@@ -115,39 +115,21 @@ const TapPillar = ({
         {item.headline}
       </motion.p>
 
-      {/* Expandable bullets — vertical */}
-      <AnimatePresence>
-        {isActive && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden w-full"
+      {/* Bullets — always visible */}
+      <ul className="space-y-1.5 w-full">
+        {item.bullets.map((b, i) => (
+          <motion.li
+            key={i}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: delay + 0.2 + i * 0.07 }}
+            className="flex items-start gap-2 text-left"
           >
-            <motion.ul
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.1, duration: 0.2 }}
-              className="space-y-1.5 mt-1"
-            >
-              {item.bullets.map((b, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 + i * 0.07 }}
-                  className="flex items-start gap-2 text-left"
-                >
-                  <div className="w-1.5 h-1.5 rounded-full mt-[4px] shrink-0" style={{ backgroundColor: item.color }} />
-                  <span className="text-white/50 text-[8px] md:text-[10px] leading-snug">{b}</span>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <div className="w-1.5 h-1.5 rounded-full mt-[4px] shrink-0 transition-colors duration-200" style={{ backgroundColor: isActive ? item.color : `${item.color}60` }} />
+            <span className={`text-[8px] md:text-[10px] leading-snug transition-colors duration-200 ${isActive ? "text-white/70" : "text-white/40"}`}>{b}</span>
+          </motion.li>
+        ))}
+      </ul>
     </motion.div>
   );
 };
