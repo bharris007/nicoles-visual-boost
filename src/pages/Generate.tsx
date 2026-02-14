@@ -8,6 +8,7 @@ import DynamicSlide2 from "@/components/dynamic/DynamicSlide2";
 import DynamicSlide3 from "@/components/dynamic/DynamicSlide3";
 import DynamicSlide4 from "@/components/dynamic/DynamicSlide4";
 import DynamicSlide5 from "@/components/dynamic/DynamicSlide5";
+import VariablesPanel from "@/components/VariablesPanel";
 
 const dayLabels = [
   { day: 1, label: "Day 1", desc: "Revenue goals, motivations & target market", slides: "Slides 1–3" },
@@ -19,6 +20,7 @@ const Generate = () => {
   const [selectedDay, setSelectedDay] = useState<number>(1);
   const [answers, setAnswers] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isRegenerating, setIsRegenerating] = useState(false);
   const [generatedData, setGeneratedData] = useState<{ day: number; data: any } | null>(null);
   const [activeSlide, setActiveSlide] = useState(1);
   const { toast } = useToast();
@@ -51,6 +53,32 @@ const Generate = () => {
       toast({ title: "Something went wrong", description: err.message || "Please try again.", variant: "destructive" });
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  const handleRegenerate = async (overrides: Record<string, string>) => {
+    if (!generatedData) return;
+    setIsRegenerating(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("generate-slides", {
+        body: { day: generatedData.day, answers: answers.trim(), overrides },
+      });
+
+      if (error) throw error;
+
+      if (data?.error) {
+        toast({ title: "Regeneration failed", description: data.error, variant: "destructive" });
+      } else {
+        setGeneratedData(data);
+        setActiveSlide(1);
+        toast({ title: "Slides regenerated!", description: "Updated with your edits." });
+      }
+    } catch (err: any) {
+      console.error("Regeneration error:", err);
+      toast({ title: "Something went wrong", description: err.message || "Please try again.", variant: "destructive" });
+    } finally {
+      setIsRegenerating(false);
     }
   };
 
@@ -140,6 +168,14 @@ const Generate = () => {
             Day {generatedData.day} • {generatedData.data.clientName}
           </p>
         </div>
+
+        {/* Variables Panel */}
+        <VariablesPanel
+          day={generatedData.day}
+          data={generatedData.data}
+          isRegenerating={isRegenerating}
+          onRegenerate={handleRegenerate}
+        />
 
         {/* Slide */}
         <AnimatePresence mode="wait">
