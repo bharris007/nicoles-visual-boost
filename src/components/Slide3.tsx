@@ -186,6 +186,7 @@ const Slide3 = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.65 + i * 0.08 }}
                   onClick={() => setActiveIdx(item.idx)}
+                  onDoubleClick={() => { if (typeof item.idx === "number") setDrillDownIdx(item.idx); }}
                   className={`flex flex-col rounded-lg px-3 py-2 md:py-3 cursor-pointer transition-all duration-200 ${
                     isActive
                       ? "bg-white/[0.12] border border-white/20 shadow-lg"
