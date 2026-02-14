@@ -16,8 +16,7 @@ const slides: Record<number, React.ComponentType> = {
 
 const days = [
   { label: "Day 1", slides: [1, 2] },
-  { label: "Day 2", slides: [3, 4] },
-  { label: "Day 3", slides: [5] },
+  { label: "Day 2", slides: [3, 4, 5] },
 ];
 
 const Index = () => {
