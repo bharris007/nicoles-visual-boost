@@ -133,7 +133,7 @@ const Slide3 = () => {
               <PieChart>
                 <Pie
                   data={pieData}
-                  cx="50%"
+                  cx="40%"
                   cy="50%"
                   innerRadius="38%"
                   outerRadius="72%"
