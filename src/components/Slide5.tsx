@@ -75,7 +75,7 @@ const TapPillar = ({
       transition={{ delay, duration: 0.5, type: "spring", stiffness: 80 }}
       onClick={onClick}
       layout
-      className={`flex-1 rounded-xl border cursor-pointer transition-colors duration-300 flex flex-col items-center text-center px-3 md:px-4 py-3 md:py-4 gap-1.5 group ${
+      className={`flex-1 rounded-xl border cursor-pointer transition-colors duration-300 flex flex-col items-center text-center px-3 md:px-4 py-2 md:py-3 gap-1 group ${
         isActive
           ? "bg-white/[0.10] border-white/20 shadow-xl"
           : "bg-white/[0.04] border-white/10 hover:bg-white/[0.08] hover:border-white/20"
@@ -87,25 +87,20 @@ const TapPillar = ({
         initial={{ scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: delay + 0.15, duration: 0.4, type: "spring" }}
-        className="w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
+        className="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-110"
         style={{ backgroundColor: `${item.color}18` }}
       >
         <item.icon
-          className="w-6 h-6 md:w-7 md:h-7"
+          className="w-7 h-7 md:w-8 md:h-8"
           style={{ color: item.color }}
           strokeWidth={1.8}
         />
       </motion.div>
 
-      {/* Letter + Word */}
-      <motion.div layout>
-        <p className="text-xl md:text-2xl font-black leading-none" style={{ color: item.color }}>
-          {item.letter}
-        </p>
-        <p className="text-white text-[10px] md:text-xs font-extrabold uppercase tracking-wider mt-0.5">
-          {item.word}
-        </p>
-      </motion.div>
+      {/* Word */}
+      <motion.p layout className="text-sm md:text-base font-extrabold uppercase tracking-wider" style={{ color: item.color }}>
+        {item.word}
+      </motion.p>
 
       {/* Divider */}
       <motion.div layout className="w-8 h-px shrink-0" style={{ backgroundColor: `${item.color}40` }} />
@@ -125,8 +120,8 @@ const TapPillar = ({
             transition={{ delay: delay + 0.2 + i * 0.07 }}
             className="flex items-start gap-2 text-left"
           >
-            <div className="w-1.5 h-1.5 rounded-full mt-[4px] shrink-0 transition-colors duration-200" style={{ backgroundColor: isActive ? item.color : `${item.color}60` }} />
-            <span className={`text-[10px] md:text-xs leading-snug transition-colors duration-200 ${isActive ? "text-white/70" : "text-white/40"}`}>{b}</span>
+            <div className="w-1.5 h-1.5 rounded-full mt-[4px] shrink-0" style={{ backgroundColor: item.color }} />
+            <span className="text-[10px] md:text-xs leading-snug text-white/60">{b}</span>
           </motion.li>
         ))}
       </ul>
