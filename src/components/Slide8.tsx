@@ -44,8 +44,8 @@ const Slide8 = () => {
           <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
             You said <span className="text-[hsl(45,100%,55%)]">2 clients</span> from every 1,000 people.
           </h2>
-          <p className="text-white/50 text-sm mt-1">
-            Here's what that looks like when you do it once a week.
+          <p className="text-white/50 text-sm mt-1 max-w-2xl">
+            The BOPA cadence is simple — each week you give one resource to one audience owner. That puts you in front of ~1,000 people. You said you'd close at least 2. Here's what that compounds to.
           </p>
         </motion.div>
       </div>
