@@ -23,10 +23,10 @@ const Slide6 = () => {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="absolute top-0 left-[40%] right-0 z-20 bg-[hsl(45,100%,55%)]/15 backdrop-blur-sm border-b border-[hsl(45,100%,55%)]/20 px-6 py-2 flex items-center gap-2"
+        className="absolute top-0 left-[40%] right-0 z-20 bg-[hsl(45,100%,55%)]/15 backdrop-blur-sm border-b border-[hsl(45,100%,55%)]/20 px-6 py-3 flex items-center gap-3"
       >
-        <span className="text-lg">🔥</span>
-        <span className="text-[hsl(45,100%,55%)] text-[10px] md:text-xs font-bold uppercase tracking-wider">
+        <span className="text-xl">🔥</span>
+        <span className="text-[hsl(45,100%,55%)] text-sm md:text-base font-bold uppercase tracking-wider">
           Tomorrow's Training Preview
         </span>
         <div className="flex-1 h-px bg-[hsl(45,100%,55%)]/20" />
