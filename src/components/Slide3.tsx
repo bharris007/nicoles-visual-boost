@@ -154,7 +154,7 @@ const Slide3 = () => {
             </ResponsiveContainer>
             {/* Center label — click to select ALL */}
             <div
-              className="absolute inset-0 flex flex-col items-center justify-center cursor-pointer"
+              className="absolute inset-y-0 left-0 w-[80%] flex flex-col items-center justify-center cursor-pointer"
               onClick={() => setActiveIdx("all")}
             >
               <AnimatePresence mode="wait">
