@@ -52,7 +52,7 @@ const Slide8 = () => {
 
 
       {/* Weekly progression */}
-      <div className="flex-1 px-8 py-4 relative z-10 flex flex-col justify-between min-h-0">
+      <div className="flex-1 px-8 py-4 relative z-10 flex flex-col justify-evenly min-h-0">
         <div className="grid grid-cols-6 gap-2.5">
           {weeks.map((w, i) => (
             <motion.div
