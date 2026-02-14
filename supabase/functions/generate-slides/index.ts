@@ -126,11 +126,16 @@ STEP 3 — From their answers, extract and return a JSON object with EXACTLY thi
   "offerDuration": "6–12 months",
   "offerFooter": "A compelling one-liner about the offer value",
   "caseStudy": {
-    "partnerName": "Name of a hypothetical or real partner",
-    "partnerRole": "What they do",
-    "audienceSize": "XX,XXX",
+    "partnerName": "Name of a real influencer, newsletter writer, or podcaster in this niche who has a large audience. Must be a real person.",
+    "partnerRole": "Their role/title (e.g. 'Email Marketing Expert', 'Podcast Host')",
+    "partnerPlatform": "Their primary platform (e.g. 'Newsletter', 'Podcast', 'YouTube')",
+    "audienceSize": "XX,XXX formatted with commas",
+    "beforeDesc": "1 sentence describing the client's situation before using this partnership strategy (e.g. 'Running ads and content alone with unpredictable lead flow')",
+    "afterDesc": "1 sentence describing the result after the partnership (e.g. '327 leads and a new high-ticket client from a single partnership')",
+    "leadsGenerated": "Number of leads as a string (e.g. '327')",
+    "clientsLanded": "Number of clients as a string (e.g. '1')",
     "result": "What happened from the partnership",
-    "quote": "A testimonial-style quote about the partnership"
+    "quote": "A testimonial-style quote (2 sentences) about how the partnership changed their business. Written in first person."
   },
   "trainingPreview": {
     "steps": [
