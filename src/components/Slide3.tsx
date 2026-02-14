@@ -135,8 +135,7 @@ const Slide3 = () => {
             </ResponsiveContainer>
             {/* Center label — click to select ALL */}
             <div
-              className="absolute inset-y-0 left-0 w-[80%] flex flex-col items-center justify-center cursor-pointer"
-              onClick={() => setActiveIdx("all")}
+              className="absolute inset-y-0 left-0 w-[80%] flex flex-col items-center justify-center pointer-events-none"
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -145,7 +144,8 @@ const Slide3 = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.2 }}
-                  className="text-center"
+                  className="text-center pointer-events-auto cursor-pointer"
+                  onClick={() => setActiveIdx("all")}
                 >
                   <p className="text-[hsl(45,100%,55%)] text-lg md:text-2xl font-extrabold leading-none">{formatNum(activeSeg.couples)}</p>
                   <p className="text-white/40 text-[8px] md:text-[10px] font-semibold mt-0.5">couples</p>
