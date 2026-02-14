@@ -8,6 +8,7 @@ import DynamicSlide2 from "@/components/dynamic/DynamicSlide2";
 import DynamicSlide3 from "@/components/dynamic/DynamicSlide3";
 import DynamicSlide4 from "@/components/dynamic/DynamicSlide4";
 import DynamicSlide5 from "@/components/dynamic/DynamicSlide5";
+import DynamicSlide6 from "@/components/dynamic/DynamicSlide6";
 import VariablesPanel from "@/components/VariablesPanel";
 
 const dayLabels = [
@@ -120,7 +121,9 @@ const Generate = () => {
           return <DynamicSlide4 data={d} />;
         case 2:
           return <DynamicSlide5 data={d} />;
-        // Day 2 slides 3-4 coming soon
+        case 3:
+          return <DynamicSlide6 data={d} />;
+        // Day 2 slide 4 coming soon
       }
     }
 
