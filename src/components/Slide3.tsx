@@ -109,7 +109,7 @@ const Slide3 = () => {
           className="flex items-center gap-4 md:gap-6 flex-1 min-h-0 -ml-4"
         >
           {/* Chart */}
-          <div className="w-[55%] aspect-square max-h-full relative">
+          <div className="w-[55%] aspect-square max-h-full relative [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none [&_path]:outline-none [&_.recharts-layer]:outline-none">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
