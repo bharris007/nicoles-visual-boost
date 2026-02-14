@@ -125,10 +125,10 @@ const Slide3 = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="flex items-center gap-4 md:gap-6 flex-1 min-h-0"
+          className="flex items-center gap-4 md:gap-6 flex-1 min-h-0 -ml-4"
         >
           {/* Chart */}
-          <div className="w-[52%] aspect-square max-h-full relative">
+          <div className="w-[58%] aspect-square max-h-full relative">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -174,7 +174,7 @@ const Slide3 = () => {
           </div>
 
           {/* Legend */}
-          <div className="flex flex-col gap-2 md:gap-3 w-[48%]">
+          <div className="flex flex-col gap-2 md:gap-3 w-[42%]">
             {/* All option */}
             <motion.div
               initial={{ opacity: 0, x: 15 }}
