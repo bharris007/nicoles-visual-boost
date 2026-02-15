@@ -41,7 +41,7 @@ const DynamicSlide7 = () => {
           className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm border border-white/15 rounded-lg px-3 py-1.5 z-10"
         >
           <p className="text-white text-sm md:text-base font-bold">Justin Brooke</p>
-          <p className="text-white/50 text-[9px] md:text-[10px] font-medium">BOPA Partner</p>
+          <p className="text-white/50 text-[9px] md:text-[10px] font-medium">Founder, AdSkills</p>
         </motion.div>
       </div>
 
@@ -101,7 +101,7 @@ const DynamicSlide7 = () => {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }} className="flex gap-2 items-start mt-4">
           <div className="w-1 self-stretch rounded-full bg-[hsl(45,100%,55%)]/30 shrink-0" />
           <p className="text-white/45 text-xs md:text-sm italic leading-relaxed">
-            "One partnership changed everything. We went from grinding for leads to having them come to us. BOPA made it repeatable."
+            "We screwed up multiple things with the partnership with Justin. But at the end of the day it was still a success because his audience got valuable content and we landed 1 high ticket client."
           </p>
         </motion.div>
       </div>
