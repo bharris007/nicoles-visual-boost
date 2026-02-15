@@ -150,17 +150,30 @@ const DynamicSlide9 = ({ data }: DynamicSlide9Props) => {
           </motion.div>
         </div>
 
-        {/* Why you'd be a good fit */}
-        <motion.div
-          {...fadeUp(0.65)}
-          className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm flex-1 transition-all duration-200 hover:bg-white/[0.10] hover:border-white/20 hover:shadow-lg"
-        >
-          <div className="flex items-center gap-2 mb-1.5">
-            <Handshake className="w-4 h-4 text-[hsl(145,50%,55%)]" />
-            <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">Why You'd Be a Good Fit Together</span>
-          </div>
-          <p className="text-white/80 text-xs md:text-sm leading-relaxed">{p.whyGoodFit}</p>
-        </motion.div>
+        {/* What they do + Why good fit */}
+        <div className="grid grid-cols-2 gap-3 mb-3 flex-1">
+          <motion.div
+            {...fadeUp(0.65)}
+            className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.10] hover:border-white/20 hover:shadow-lg"
+          >
+            <div className="flex items-center gap-2 mb-1.5">
+              <Mail className="w-4 h-4 text-[hsl(145,50%,55%)]" />
+              <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">What {p.name.split(" ")[0]} Does</span>
+            </div>
+            <p className="text-white/80 text-xs md:text-sm leading-relaxed">{p.problemSolved}</p>
+          </motion.div>
+
+          <motion.div
+            {...fadeUp(0.7)}
+            className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.10] hover:border-white/20 hover:shadow-lg"
+          >
+            <div className="flex items-center gap-2 mb-1.5">
+              <Handshake className="w-4 h-4 text-[hsl(145,50%,55%)]" />
+              <span className="text-white/40 text-[10px] font-bold uppercase tracking-wider">Why You'd Be a Good Fit</span>
+            </div>
+            <p className="text-white/80 text-xs md:text-sm leading-relaxed">{p.whyGoodFit}</p>
+          </motion.div>
+        </div>
 
         {/* CTA callout */}
         <motion.div
