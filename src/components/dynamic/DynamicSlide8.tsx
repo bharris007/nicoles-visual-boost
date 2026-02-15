@@ -150,7 +150,7 @@ const DynamicSlide8 = ({ data }: DynamicSlide8Props) => {
               </defs>
               <XAxis dataKey="label" tick={{ fill: "rgba(255,255,255,0.35)", fontSize: 11 }} axisLine={false} tickLine={false} interval={useMonthlyLabels ? 3 : 0} />
               <YAxis tickFormatter={fmtCurrency} tick={{ fill: "rgba(255,255,255,0.35)", fontSize: 11 }} axisLine={false} tickLine={false} width={50} />
-              <Tooltip content={<CustomTooltip />} defaultIndex={goalWeekIndex} trigger="click" />
+              <Tooltip content={<CustomTooltip />} />
               <ReferenceLine y={GOAL} stroke="hsl(45,100%,55%)" strokeDasharray="6 4" strokeWidth={2} label={{ value: `🎯 ${fmtCurrency(GOAL)} Goal`, position: "right", fill: "hsl(45,100%,55%)", fontSize: 12, fontWeight: 700 }} />
               <Area type="monotone" dataKey="revenue" stroke="hsl(145,50%,45%)" strokeWidth={3} fill="url(#revenueGradDynamic)" animationDuration={1500} animationBegin={700} />
               <ReferenceDot x={chartData[goalWeekIndex]?.label} y={GOAL} r={6} fill="hsl(45,100%,55%)" stroke="white" strokeWidth={2} label={{ value: `Week ${weeksToGoal}: ${fmtCurrency(GOAL)}`, position: "top", fill: "hsl(45,100%,55%)", fontSize: 11, fontWeight: 700 }} />
