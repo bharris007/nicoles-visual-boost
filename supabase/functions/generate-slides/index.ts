@@ -197,7 +197,7 @@ From their answers, extract and return a JSON object with EXACTLY this structure
     "business": "Their business name",
     "website": "Their website URL (include https://)",
     "audience": "Who their audience is (from the database)",
-    "problemSolved": "What problem they solve (from the database)",
+    "problemSolved": "2-3 sentences describing what this partner does. Start with the database description, then expand and elaborate based on what you can infer from their business name, website, and audience. Make it read like a compelling mini-bio of their work. Do NOT be generic — be specific about their methods, approach, or unique angle.",
     "listSize": "Their list size (e.g. '1,000+' or '10,000+')",
     "whyGoodFit": "2-3 sentences explaining why this partner's audience might contain at least one potential client. Focus on the OVERLAP: what kind of person on their list might also need what THIS client offers. Be specific and compelling.",
     "criteriaChecks": {
