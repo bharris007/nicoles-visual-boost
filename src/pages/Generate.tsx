@@ -12,6 +12,7 @@ import DynamicSlide5 from "@/components/dynamic/DynamicSlide5";
 import DynamicSlide6 from "@/components/dynamic/DynamicSlide6";
 import DynamicSlide7 from "@/components/dynamic/DynamicSlide7";
 import DynamicSlide8 from "@/components/dynamic/DynamicSlide8";
+import DynamicSlide9 from "@/components/dynamic/DynamicSlide9";
 import VariablesPanel from "@/components/VariablesPanel";
 
 const dayLabels = [
@@ -170,6 +171,8 @@ const Generate = () => {
       switch (activeSlide) {
         case 1:
           return <DynamicSlide8 data={d} />;
+        case 2:
+          return <DynamicSlide9 data={d} />;
         default:
           return (
             <div className="w-full max-w-5xl aspect-video rounded-2xl shadow-2xl overflow-hidden relative flex items-center justify-center" style={{ background: "linear-gradient(135deg, #0bbf62 0%, hsl(155,55%,28%) 40%, hsl(160,50%,18%) 100%)" }}>

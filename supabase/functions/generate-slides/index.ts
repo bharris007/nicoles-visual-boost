@@ -160,7 +160,26 @@ Make the incomeSegments percentages realistic (e.g. $100K+ is typically ~20-25% 
 Return ONLY valid JSON, no markdown fences.`,
 
   3: `You are a business coach creating personalized slide content for a coaching client.
-The client has answered questions about their revenue projections, ideal partnerships, and readiness to start.
+The client has answered questions about their revenue projections and how many clients they think they can get per 1,000 audience members.
+
+PARTNER DATABASE — You must pick EXACTLY ONE partner from this list based on the client's industry/niche.
+Selection criteria (in order of importance):
+1. Do they have an audience? (All do, so yes)
+2. Do they send that audience content regularly? (All do, so yes)
+3. MIGHT they have even ONE person on their list who could be a potential client for THIS specific client?
+
+Pick the partner whose audience is most likely to contain at least one person who would benefit from THIS client's offer. It does NOT need to be the same industry. Think broadly about overlap.
+
+PARTNERS:
+1. Luis Lan | Better Than Points | betterthanpoints.com | Audience: People who want to travel more | Problem: Helping people travel better using credit card points | List: 1,000+
+2. Tisha Castillo | Simplified Health & Nutrition | tishacastillo.com | Audience: High-functioning adults managing health symptoms | Problem: Rewriting future health without dependence on prescriptions | List: 100+
+3. Ashley Nance | ReVoice | revoicecommunication.com | Audience: Moms and service providers | Problem: Helping parents with special needs kids reclaim calm | List: 1,000+
+4. Liz Taylor | Legacy Coaching Group | legacycoachinggroup.com | Audience: People making 6 figures but feeling broke | Problem: Creating money peace by rewiring financial beliefs | List: 100+
+5. Ramon Salinas | RSX Marketing | RSXmarketing.com | Audience: Service business owners interested in growing and scaling | Problem: Helping prospects feel confident choosing you | List: 1,000+
+6. Honey Syed | Tenacious, Inc. | honeysyed.com | Audience: MMO/Biz-opp | Problem: Finding ready to buy leads from existing audiences | List: 1,000+
+7. Jim Brenner | Brenco CCM Ltd | jimbrenner.me | Audience: Business owners at inflection points (post-funding, post-exit, pre/post-divorce) | Problem: Building personal operating systems for business owners in crisis | List: 1,000+
+8. Tolulade Ademisoye | Semis from Reispar | semis.reispar.com | Audience: Tech founders, business owners, managers, HR, L&D professionals | Problem: Automating employee training needs analysis with AI | List: 1,000+
+9. TJ Antone | Champion Test Prep | aceyoursat.com | Audience: Parents of teenagers | Problem: SAT test preparation | List: 10,000+
 
 From their answers, extract and return a JSON object with EXACTLY this structure:
 {
@@ -173,20 +192,19 @@ From their answers, extract and return a JSON object with EXACTLY this structure
     "weeklyClients": 1,
     "goalWeeks": 50
   },
-  "idealPartner": {
-    "name": "Name of ideal partner to match with",
-    "role": "What they do (e.g. 'Email Marketing Expert')",
-    "audienceSize": "XXX,XXX",
-    "audienceType": "subscribers/followers/etc",
-    "platform": "Newsletter/Podcast/YouTube",
-    "matchReasons": ["reason 1", "reason 2", "reason 3", "reason 4"],
-    "overlapScore": 94,
-    "stats": [
-      { "label": "Stat label", "value": "Stat value" },
-      { "label": "Stat label", "value": "Stat value" },
-      { "label": "Stat label", "value": "Stat value" },
-      { "label": "Stat label", "value": "Stat value" }
-    ]
+  "selectedPartner": {
+    "name": "The chosen partner's full name from the database above",
+    "business": "Their business name",
+    "website": "Their website URL (include https://)",
+    "audience": "Who their audience is (from the database)",
+    "problemSolved": "What problem they solve (from the database)",
+    "listSize": "Their list size (e.g. '1,000+' or '10,000+')",
+    "whyGoodFit": "2-3 sentences explaining why this partner's audience might contain at least one potential client. Focus on the OVERLAP: what kind of person on their list might also need what THIS client offers. Be specific and compelling.",
+    "criteriaChecks": {
+      "hasAudience": "1 sentence confirming they have an active audience and what kind",
+      "sendsContent": "1 sentence confirming they regularly send content to their list (emails, resources, etc.)",
+      "mightHaveClient": "1-2 sentences explaining specifically why someone on their list might need THIS client's service. Be concrete about the type of person."
+    }
   },
   "chartFooter": "A compelling statement about the revenue trajectory",
   "bonuses": [
@@ -195,6 +213,7 @@ From their answers, extract and return a JSON object with EXACTLY this structure
   ]
 }
 
+CRITICAL: The selectedPartner MUST be one of the 9 partners listed above. Use their exact name, business, and website from the database. Do NOT invent a partner.
 Make reasonable estimates based on their niche. Keep the tone motivational and data-driven.
 Return ONLY valid JSON, no markdown fences.`,
 };
