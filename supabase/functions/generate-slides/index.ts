@@ -308,38 +308,68 @@ serve(async (req) => {
       );
     }
 
-    // Parse the JSON from the AI response, with repair for common AI mistakes
+    // Parse the JSON from the AI response, with multi-strategy repair
     let slideData;
     try {
       // Strip markdown fences if present
       let cleaned = content.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
-      
-      // Try parsing as-is first
+
+      const tryParse = (s: string) => JSON.parse(s);
+
+      // Strategy 1: parse as-is
       try {
-        slideData = JSON.parse(cleaned);
+        slideData = tryParse(cleaned);
       } catch {
-        // Attempt to repair common JSON issues from AI output
-        
-        // Fix missing } before ] (AI often forgets to close the last object in an array)
-        // Pattern: "value" ] where a } should be between them
-        cleaned = cleaned.replace(/(")\s*\n?\s*\]/g, '$1 }]');
-        
-        // Fix trailing commas before ] or }
-        cleaned = cleaned.replace(/,\s*([\]}])/g, '$1');
-        
-        // Fix missing closing brackets by balancing them
-        let openBraces = 0, closeBraces = 0, openBrackets = 0, closeBrackets = 0;
-        for (const ch of cleaned) {
-          if (ch === '{') openBraces++;
-          if (ch === '}') closeBraces++;
-          if (ch === '[') openBrackets++;
-          if (ch === ']') closeBrackets++;
+        // Strategy 2: fix trailing commas + balance brackets at end
+        let repaired = cleaned.replace(/,\s*([\]}])/g, '$1');
+
+        let ob = 0, cb = 0, osq = 0, csq = 0;
+        for (const ch of repaired) {
+          if (ch === '{') ob++; if (ch === '}') cb++;
+          if (ch === '[') osq++; if (ch === ']') csq++;
         }
-        cleaned += ']'.repeat(Math.max(0, openBrackets - closeBrackets));
-        cleaned += '}'.repeat(Math.max(0, openBraces - closeBraces));
-        
-        slideData = JSON.parse(cleaned);
-        console.log("Repaired malformed AI JSON successfully");
+        repaired += ']'.repeat(Math.max(0, osq - csq));
+        repaired += '}'.repeat(Math.max(0, ob - cb));
+
+        try {
+          slideData = tryParse(repaired);
+          console.log("Repaired JSON (strategy 2: trailing commas + bracket balance)");
+        } catch {
+          // Strategy 3: fix missing } before ] in object arrays
+          // Only match ': "value" ]' pattern (property value missing closing brace)
+          repaired = cleaned.replace(/:\s*"([^"]*)"\s*\]/g, ': "$1" }]');
+          repaired = repaired.replace(/,\s*([\]}])/g, '$1');
+
+          ob = 0; cb = 0; osq = 0; csq = 0;
+          for (const ch of repaired) {
+            if (ch === '{') ob++; if (ch === '}') cb++;
+            if (ch === '[') osq++; if (ch === ']') csq++;
+          }
+          repaired += ']'.repeat(Math.max(0, osq - csq));
+          repaired += '}'.repeat(Math.max(0, ob - cb));
+
+          try {
+            slideData = tryParse(repaired);
+            console.log("Repaired JSON (strategy 3: missing } + bracket balance)");
+          } catch {
+            // Strategy 4: also fix missing } before , in arrays of objects
+            // Pattern: ': "value" ,' where } is missing
+            repaired = cleaned.replace(/:\s*"([^"]*)"\s*,\s*\{/g, ': "$1" }, {');
+            repaired = repaired.replace(/:\s*"([^"]*)"\s*\]/g, ': "$1" }]');
+            repaired = repaired.replace(/,\s*([\]}])/g, '$1');
+
+            ob = 0; cb = 0; osq = 0; csq = 0;
+            for (const ch of repaired) {
+              if (ch === '{') ob++; if (ch === '}') cb++;
+              if (ch === '[') osq++; if (ch === ']') csq++;
+            }
+            repaired += ']'.repeat(Math.max(0, osq - csq));
+            repaired += '}'.repeat(Math.max(0, ob - cb));
+
+            slideData = tryParse(repaired);
+            console.log("Repaired JSON (strategy 4: aggressive object repair)");
+          }
+        }
       }
     } catch {
       console.error("Failed to parse AI JSON:", content);
