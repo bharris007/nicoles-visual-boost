@@ -150,30 +150,9 @@ const DynamicSlide9 = ({ data }: DynamicSlide9Props) => {
           </motion.div>
         </div>
 
-        {/* 3 criteria checks */}
-        <div className="grid grid-cols-3 gap-3 mb-3">
-          {[
-            { label: "Has an audience", value: p.criteriaChecks.hasAudience },
-            { label: "Sends them content", value: p.criteriaChecks.sendsContent },
-            { label: "Might have your client", value: p.criteriaChecks.mightHaveClient },
-          ].map((check, i) => (
-            <motion.div
-              key={check.label}
-              {...fadeUp(0.65 + i * 0.05)}
-              className="bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.10] hover:border-white/20"
-            >
-              <div className="flex items-center gap-2 mb-1">
-                <CheckCircle2 className="w-4 h-4 text-[hsl(145,50%,55%)]" />
-                <span className="text-[hsl(145,50%,55%)] text-[10px] font-bold uppercase tracking-wider">{check.label}</span>
-              </div>
-              <p className="text-white/70 text-xs leading-relaxed">{check.value}</p>
-            </motion.div>
-          ))}
-        </div>
-
         {/* Why you'd be a good fit */}
         <motion.div
-          {...fadeUp(0.8)}
+          {...fadeUp(0.65)}
           className="bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3.5 backdrop-blur-sm flex-1 transition-all duration-200 hover:bg-white/[0.10] hover:border-white/20 hover:shadow-lg"
         >
           <div className="flex items-center gap-2 mb-1.5">
